@@ -1,0 +1,4 @@
+Backend/.env
+Backend/key/*
+Backend/node_modules/*
+Backend/package.json

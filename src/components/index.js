@@ -1,9 +1,11 @@
 export { default as Navbar } from './Navbar';
-export { default as Feed } from './Feed';
+export { default as Feed } from './Home/Feed';
 export { default as SearchFeed } from './SearchFeed';
-export { default as Post } from './Post';
-export { default as Login } from './Login';
+export { default as Post } from './Post/Post';
+export { default as Login } from './Login/Login';
 export { default as Register } from './Register';
 export { default as SearchBar } from './SearchBar';
-export { default as PostElement } from './PostElement';
-export { default as PostCard } from './PostCard';
+export { default as PostElement } from './Home/PostElement';
+export { default as PostCard } from './Home/PostCard';
+export { default as PostBody } from './Post/PostBody';
+export { default as CommentFeed } from './Post/CommentFeed';

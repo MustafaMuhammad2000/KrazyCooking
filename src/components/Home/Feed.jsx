@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 
 import PostElement from './PostElement';
-import { fetchFromAPI } from '../utils/fetchFromApi';
+import { fetchFromAPI } from '../../utils/fetchFromApi';
 
 const Feed = () => {
 

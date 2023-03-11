@@ -13,14 +13,14 @@ const usersSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   dateCreated: { type: Date, required: true },
-  profilePicture: { type: String },
-  savedPosts: { type: mongoose.Schema.Types.ObjectId, ref: "SavedPost" },
+  profilePicture: { type: String, required: true },
+  savedPosts: { type: mongoose.Schema.Types.ObjectId, ref: "SavedPosts" },
 });
 
 const postsSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  body: { type: Boolean, required: true },
-  postAuthor: {
+  body: { type: String, required: true },
+  author: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: "User",
@@ -29,8 +29,8 @@ const postsSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  postPicture: { type: String },
-  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comment" }],
+  picture: { type: String },
+  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comments" }],
   tags: [{ type: String }],
 });
 
@@ -42,47 +42,54 @@ const savedPostSchema = new mongoose.Schema({
   },
   savedPosts: [
     {
-      post: { type: mongoose.Schema.Types.ObjectId, ref: "Post" },
-      date_created: { type: Date, required: true },
+      post: { type: mongoose.Schema.Types.ObjectId, ref: "Posts" },
+      dateCreated: { type: Date, required: true },
     },
   ],
+});
+
+const commentsSchema = new mongoose.Schema({
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
+  picture: { type: String },
+  upvotes: { type: Number, required: true },
+  body: { type: String, required: true },
+  dateCreated: {
+    type: Date,
+    required: true,
+  },
+  reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Reviews" }],
 });
 
 const reviewSchema = new mongoose.Schema({
   body: { type: String, required: true },
   rating: { type: Number, required: true, min: 0, max: 5 },
-  reviewPicture: { type: String },
-  userId: {
+  picture: { type: String, required: true },
+  author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
-  createdAt: { type: Date, default: Date.now },
+  dateCreated: {
+    type: Date,
+    required: true,
+  },
 });
 
-const commentsSchema = new mongoose.Schema(
-  {
-    author: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: "User",
-    },
-    commentPicture: { type: String },
-    upvotes: { type: Number, required: true },
-    body: { type: String, required: true },
-    reviews: [reviewSchema],
-  },
-  { timestamps: true }
-);
-
-const User = mongoose.model("Users", usersSchema);
+const User = mongoose.model("User", usersSchema);
 const Post = mongoose.model("Posts", postsSchema);
 const Comment = mongoose.model("Comments", commentsSchema);
+const Review = mongoose.model("Reviews", reviewSchema);
+
 const SavedPost = mongoose.model("SavedPost", savedPostSchema);
 
 module.exports = {
   User,
   Post,
   Comment,
+  Review,
   SavedPost,
 };

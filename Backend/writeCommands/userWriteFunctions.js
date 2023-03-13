@@ -3,10 +3,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const db = require("../Models/DB");
-const { uploadImage } = require("../helpers/imageFunctions");
-const { response } = require("express");
-const { Promise } = require("mongodb");
-const { json } = require("body-parser");
+const { uploadImage, deleteImage } = require("../helpers/imageFunctions");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const registerUser = async (req, res) => {
   try {
@@ -25,6 +24,7 @@ const registerUser = async (req, res) => {
         admin,
         username,
         password: hash,
+        profilePicture: process.env.DEFAULT_IMAGE_URL,
         dateCreated: new Date(),
       });
       newUser.save();
@@ -84,13 +84,21 @@ const uploadProfilePic = async (req, res) => {
       return res.status(400).json({ message: "No file found" });
     }
     image_url = await uploadImage(req.file);
-    console.log(image_url);
+    const username = req.user.username;
+    const user = await db.User.findOne({ username });
+    if (
+      user.profilePicture !== process.env.DEFAULT_IMAGE_URL &&
+      user.profilePicture != null &&
+      user.profilePicture !== ""
+    ) {
+      await deleteImage(user.profilePicture, username);
+    }
     const updatedUser = await db.User.findOneAndUpdate(
-      { username: req.user.username },
+      { username: username },
       { profilePicture: image_url },
       { new: true }
     );
-    console.log(updatedUser);
+    // console.log(updatedUser);
     res.status(200).json(updatedUser);
   } catch (error) {
     console.log(error);

@@ -27,7 +27,7 @@ router.post(
   uploadProfilePic
 );
 
-router.post("/updatePassword", verifyToken, updatePassword);
+router.patch("/updatePassword", verifyToken, updatePassword);
 
 router.post("/checkImage", upload.single("image"), checkImage);
 

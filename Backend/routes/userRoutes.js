@@ -1,5 +1,6 @@
 const express = require("express");
 const upload = require("../middleware/multer.js");
+const { verifyToken } = require("../middleware/verifyJWT");
 
 const {
   registerUser,
@@ -7,9 +8,14 @@ const {
   checkImage,
   uploadProfilePic,
   updatePassword,
+  savePost,
+  removeSavedPost,
 } = require("../writeCommands/userWriteFunctions");
 
-const { verifyToken } = require("../middleware/verifyJWT");
+const {
+  getMyPosts,
+  getSavedPosts,
+} = require("../readCommands/userReadFunctions");
 const router = express.Router();
 
 /*
@@ -29,9 +35,15 @@ router.post(
 
 router.patch("/updatePassword", verifyToken, updatePassword);
 
+router.post("/savePost/:pid", verifyToken, savePost);
+
+router.delete("/removedSavedPost/:pid", verifyToken, removeSavedPost);
+
 router.post("/checkImage", upload.single("image"), checkImage);
 
-// router.get("/myPosts", verifyJWT, getMyPosts);
+router.get("/savedPosts", verifyToken, getSavedPosts);
+
+router.get("/myPosts", verifyToken, getMyPosts);
 
 // test route for getting user who is logged in
 router.get("/getUser", verifyToken, (req, res) => {

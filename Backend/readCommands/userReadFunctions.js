@@ -2,19 +2,45 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const db = require("../Models/DB");
 
-const getSavedPost = async (req, res) => {
-  console.log(req.user.username);
-  const userPosts = await db.Post.find({ author: req.user.id });
-
-  res.status(200).json(userPosts);
+const getMyPosts = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const posts = await db.Post.find({ author: userId })
+      .sort({ createdAt: -1 })
+      .populate("author", "username profilePicture");
+    res.status(200).json({ posts });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
 };
 
-const getMyPosts = async (req, res) => {
-  console.log(req.user.username);
-  const userPosts = await db.Post.find({ author: req.user.id })
-    .populate("author")
-    .populate("pet")
-    .populate("comments");
+const getSavedPosts = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const savedPosts = await db.SavedPost.findOne({ userId })
+      .populate({
+        path: "savedPosts",
+        populate: {
+          path: "author",
+          select: "username profilePicture",
+        },
+      })
+      .sort({ createdAt: -1 });
+    if (!savedPosts) {
+      return res
+        .status(404)
+        .json({ message: "Saved posts not found for user" });
+    }
 
-  res.status(200).json(userPosts);
+    res.status(200).json({ savedPosts: savedPosts.savedPosts });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  getMyPosts,
+  getSavedPosts,
 };

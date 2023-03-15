@@ -20,6 +20,7 @@ const createPost = async (req, res) => {
       title,
       body,
       tags,
+      upvotes: [],
       dateCreated: new Date(),
       author: req.user.id,
       picture: image_url,
@@ -37,8 +38,8 @@ const deletePost = async (req, res) => {
     if (!ObjectId.isValid(postId)) {
       return res.status(400).json({ message: "Invalid post id" });
     }
-    // Find the post and its associated comments
-    const post = await db.Post.findById(postId).populate("comments").exec();
+    // Find the post and its associated recipes
+    const post = await db.Post.findById(postId).populate("recipes").exec();
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
@@ -46,10 +47,10 @@ const deletePost = async (req, res) => {
       return res.status(400).json({ message: "Not your post" });
     }
 
-    // Delete the comments and their associated reviews
-    const deleteCommentPromises = post.comments.map(async (comment) => {
+    // Delete the recipes and their associated reviews
+    const deleteRecipePromises = post.recipes.map(async (recipe) => {
       // Delete the reviews' images
-      const deleteReviewPromises = comment.reviews.map(async (reviewId) => {
+      const deleteReviewPromises = recipe.reviews.map(async (reviewId) => {
         const review = await db.Review.findById(reviewId);
         if (review && review.picture) {
           await deleteImage(review.picture);
@@ -57,15 +58,15 @@ const deletePost = async (req, res) => {
         return db.Review.deleteOne({ _id: reviewId });
       });
 
-      // Delete the comment's image
-      if (comment.picture) {
-        await deleteImage(comment.picture);
+      // Delete the recipe's image
+      if (recipe.picture) {
+        await deleteImage(recipe.picture);
       }
 
-      const deleteCommentPromise = db.Comment.deleteOne({ _id: comment._id });
+      const deleteRecipePromise = db.Recipe.deleteOne({ _id: recipe._id });
       const deleteReviewsPromise = Promise.all(deleteReviewPromises);
 
-      return Promise.all([deleteCommentPromise, deleteReviewsPromise]);
+      return Promise.all([deleteRecipePromise, deleteReviewsPromise]);
     });
 
     // Delete the post's images
@@ -73,10 +74,10 @@ const deletePost = async (req, res) => {
       await deleteImage(post.image);
     }
 
-    const deleteCommentsPromise = Promise.all(deleteCommentPromises);
+    const deleteRecipesPromise = Promise.all(deleteRecipePromises);
     const deletePostPromise = db.Post.findOneAndDelete({ _id: postId });
 
-    await Promise.all([deleteCommentsPromise, deletePostPromise]);
+    await Promise.all([deleteRecipesPromise, deletePostPromise]);
 
     res.status(200).json({ message: "Post deleted successfully" });
   } catch (error) {
@@ -85,7 +86,66 @@ const deletePost = async (req, res) => {
   }
 };
 
+const upvotePost = async (req, res) => {
+  try {
+    const postId = req.params.pid;
+    if (!ObjectId.isValid(postId)) {
+      return res.status(400).json({ message: "Invalid post id" });
+    }
+    const post = await db.Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    const userId = req.user.id;
+    if (post.upvotes.includes(userId)) {
+      return res
+        .status(400)
+        .json({ message: "You have already upvoted this post" });
+    }
+
+    post.upvotes.push(userId);
+    await post.save();
+
+    return res.status(200).json({ message: "Post upvoted" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+const removeUpvote = async (req, res) => {
+  try {
+    const postId = req.params.pid;
+    if (!ObjectId.isValid(postId)) {
+      return res.status(400).json({ message: "Invalid post id" });
+    }
+    const post = await db.Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    const userId = req.user.id;
+    const index = post.upvotes.indexOf(userId);
+    if (index === -1) {
+      return res
+        .status(400)
+        .json({ message: "You have not upvoted this post" });
+    }
+
+    post.upvotes.splice(index, 1);
+    await post.save();
+
+    return res.status(200).json({ message: "Remove post upvote" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createPost,
   deletePost,
+  upvotePost,
+  removeUpvote,
 };

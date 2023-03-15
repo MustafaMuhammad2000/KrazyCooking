@@ -4,9 +4,16 @@ const upload = require("../middleware/multer.js");
 const {
   createPost,
   deletePost,
+  upvotePost,
+  removeUpvote,
 } = require("../writeCommands/postWriteFunctions");
 
-const { getAllPosts, getPost } = require("../readCommands/postReadFunctions");
+const {
+  getAllPosts,
+  getPost,
+  getRandomPost,
+  searchPosts,
+} = require("../readCommands/postReadFunctions");
 
 const { verifyToken } = require("../middleware/verifyJWT");
 const router = express.Router();
@@ -19,8 +26,16 @@ router.post("/", verifyToken, upload.single("image"), createPost);
 
 router.delete("/:pid", verifyToken, deletePost);
 
+router.put("/:pid/upvote", verifyToken, upvotePost);
+
+router.put("/:pid/remove-upvote", verifyToken, removeUpvote);
+
 router.get("/", getAllPosts);
 
-router.get("/:pid", getPost);
+router.get("/:pid/view", getPost);
+
+router.get("/random", getRandomPost);
+
+router.get("/search", searchPosts);
 
 module.exports = router;

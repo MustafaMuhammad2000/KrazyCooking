@@ -40,7 +40,7 @@ const registerUser = async (req, res) => {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(400).json({ message: error.message });
     } else {
-      console.error(error);
+      console.log(error);
       res.status(500).json({ message: error.message });
     }
   }

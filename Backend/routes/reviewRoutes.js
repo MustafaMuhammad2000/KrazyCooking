@@ -13,7 +13,7 @@ const router = express.Router();
     Review Routes 
 */
 
-router.post("/:cid", verifyToken, upload.single("image"), createReview);
+router.post("/:rcid", verifyToken, upload.single("image"), createReview);
 
 router.delete("/:rid", verifyToken, deleteReview);
 

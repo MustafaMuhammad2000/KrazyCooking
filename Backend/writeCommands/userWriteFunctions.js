@@ -6,11 +6,12 @@ const db = require("../Models/DB");
 const { uploadImage, deleteImage } = require("../helpers/imageFunctions");
 const dotenv = require("dotenv");
 dotenv.config();
+const ObjectId = mongoose.Types.ObjectId;
 
 const registerUser = async (req, res) => {
   try {
     console.log(req.body);
-    const { admin, username, password } = req.body;
+    const { admin, username, password, dateOfBirth } = req.body;
 
     const userInDb = await db.User.findOne({ username: username });
     if (userInDb) {
@@ -25,6 +26,7 @@ const registerUser = async (req, res) => {
         username,
         password: hash,
         profilePicture: process.env.DEFAULT_IMAGE_URL,
+        dateOfBirth: new Date(),
         dateCreated: new Date(),
       });
       newUser.save();
@@ -38,7 +40,7 @@ const registerUser = async (req, res) => {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(400).json({ message: error.message });
     } else {
-      console.error(error);
+      console.log(error);
       res.status(500).json({ message: error.message });
     }
   }
@@ -136,10 +138,66 @@ const updatePassword = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+const savePost = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const postId = req.params.pid;
+    if (!ObjectId.isValid(postId)) {
+      return res.status(400).json({ message: "Invalid post id" });
+    }
+    let savedPost = await db.SavedPost.findOne({ userId });
+
+    if (!savedPost) {
+      savedPost = new db.SavedPost({ userId, savedPosts: [] });
+    }
+
+    if (savedPost.savedPosts.some((p) => p.equals(postId))) {
+      return res.status(400).json({ message: "Post already saved" });
+    }
+
+    savedPost.savedPosts.push(postId);
+    await savedPost.save();
+
+    res.status(200).json({ message: "Post saved" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const removeSavedPost = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const postId = req.params.pid;
+    if (!ObjectId.isValid(postId)) {
+      return res.status(400).json({ message: "Invalid post id" });
+    }
+    const savedPost = await db.SavedPost.findOne({ userId });
+
+    if (!savedPost || !savedPost.savedPosts.some((p) => p.equals(postId))) {
+      return res.status(404).json({ message: "Post not found in saved posts" });
+    }
+
+    const updatedSavedPost = await db.SavedPost.findOneAndUpdate(
+      { userId },
+      { $pull: { savedPosts: { post: postId } } },
+      { new: true }
+    );
+
+    res.status(200).json({ message: "Post removed from saved posts" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   checkImage,
   uploadProfilePic,
   updatePassword,
+  savePost,
+  removeSavedPost,
 };

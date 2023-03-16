@@ -4,7 +4,7 @@ const db = require("../Models/DB");
 const { uploadImage, deleteImage } = require("../helpers/imageFunctions");
 const ObjectId = mongoose.Types.ObjectId;
 
-const createComment = async (req, res) => {
+const createRecipe = async (req, res) => {
   try {
     const { body } = req.body;
     const postId = req.params.pid;
@@ -23,7 +23,7 @@ const createComment = async (req, res) => {
       image_url = await uploadImage(req.file);
     }
 
-    const comment = new db.Comment({
+    const recipe = new db.Recipe({
       body,
       author: userId,
       upvotes: 0,
@@ -31,61 +31,61 @@ const createComment = async (req, res) => {
       picture: image_url,
     });
 
-    await comment.save();
+    await recipe.save();
 
-    post.comments.push(comment._id);
+    post.recipes.push(recipe._id);
     await post.save();
 
-    return res.status(201).json({ comment });
+    return res.status(201).json({ recipe });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "Server error" });
   }
 };
 
-const deleteComment = async (req, res) => {
+const deleteRecipe = async (req, res) => {
   try {
-    const commentId = req.params.cid;
-    if (!ObjectId.isValid(commentId)) {
-      return res.status(400).json({ message: "Invalid comment id" });
+    const recipeId = req.params.rcid;
+    if (!ObjectId.isValid(recipeId)) {
+      return res.status(400).json({ message: "Invalid recipe id" });
     }
-    const comment = await db.Comment.findById(commentId).populate("reviews");
-    if (!comment) {
-      return res.status(404).json({ message: "Comment not found" });
+    const recipe = await db.Recipe.findById(recipeId).populate("reviews");
+    if (!recipe) {
+      return res.status(404).json({ message: "Recipe not found" });
     }
-    if (req.user.id != comment.author) {
-      return res.status(400).json({ message: "Not your comment" });
+    if (req.user.id != recipe.author) {
+      return res.status(400).json({ message: "Not your recipe" });
     }
 
-    // Delete reviews' images and remove reviews from the comment
-    const deleteReviewPromises = comment.reviews.map(async (review) => {
+    // Delete reviews' images and remove reviews from the recipe
+    const deleteReviewPromises = recipe.reviews.map(async (review) => {
       if (review.picture) {
         await deleteImage(review.picture);
       }
       return db.Review.deleteOne({ _id: review._id });
     });
     await Promise.all(deleteReviewPromises);
-    comment.reviews = [];
+    recipe.reviews = [];
 
-    // Delete comment's image
-    if (comment.picture) {
-      await deleteImage(comment.picture);
+    // Delete recipe's image
+    if (recipe.picture) {
+      await deleteImage(recipe.picture);
     }
 
-    // Remove comment from post's comments array
+    // Remove recipe from post's recipes array
     const post = await db.Post.findOneAndUpdate(
-      { comments: commentId },
-      { $pull: { comments: commentId } },
+      { recipes: recipeId },
+      { $pull: { recipes: recipeId } },
       { new: true }
     );
 
     if (!post) {
       console.log("WTF no parent post?");
     }
-    // Delete comment
-    await db.Comment.deleteOne({ _id: commentId });
+    // Delete recipe
+    await db.Recipe.deleteOne({ _id: recipeId });
 
-    res.status(200).json({ message: "Comment deleted successfully" });
+    res.status(200).json({ message: "Recipe deleted successfully" });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: error });
@@ -93,6 +93,6 @@ const deleteComment = async (req, res) => {
 };
 
 module.exports = {
-  createComment,
-  deleteComment,
+  createRecipe,
+  deleteRecipe,
 };

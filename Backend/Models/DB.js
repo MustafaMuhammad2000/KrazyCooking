@@ -1,19 +1,12 @@
 const mongoose = require("mongoose");
 
-//Saved Posts (DONE)
-//Use Cloudinary for images
-//Profile picture
-//Comment picture
-//Post picture
-//Ability to resolve/archive post (Have to discuss)
-//Reply Schema (DONE)
-
 const usersSchema = new mongoose.Schema({
   admin: { type: Boolean, required: true },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   dateCreated: { type: Date, required: true },
   profilePicture: { type: String, required: true },
+  dateOfBirth: { type: Date, required: true },
   savedPosts: { type: mongoose.Schema.Types.ObjectId, ref: "SavedPosts" },
 });
 
@@ -29,10 +22,19 @@ const postsSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  upvotes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      unique: true,
+    },
+  ],
   picture: { type: String },
-  comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "Comments" }],
+  recipes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Recipes" }],
   tags: [{ type: String }],
 });
+
+postsSchema.index({ title: "text", tags: "text" });
 
 const savedPostSchema = new mongoose.Schema({
   userId: {
@@ -40,15 +42,10 @@ const savedPostSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
-  savedPosts: [
-    {
-      post: { type: mongoose.Schema.Types.ObjectId, ref: "Posts" },
-      dateCreated: { type: Date, required: true },
-    },
-  ],
+  savedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Posts" }],
 });
 
-const commentsSchema = new mongoose.Schema({
+const recipeSchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
@@ -81,15 +78,14 @@ const reviewSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", usersSchema);
 const Post = mongoose.model("Posts", postsSchema);
-const Comment = mongoose.model("Comments", commentsSchema);
+const Recipe = mongoose.model("Recipes", recipeSchema);
 const Review = mongoose.model("Reviews", reviewSchema);
-
-const SavedPost = mongoose.model("SavedPost", savedPostSchema);
+const SavedPost = mongoose.model("SavedPosts", savedPostSchema);
 
 module.exports = {
   User,
   Post,
-  Comment,
+  Recipe,
   Review,
   SavedPost,
 };

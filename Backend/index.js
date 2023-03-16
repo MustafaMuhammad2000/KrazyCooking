@@ -3,7 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes.js");
 const postRoutes = require("./routes/postRoutes.js");
-const commentRoutes = require("./routes/commentRoutes.js");
+const recipeRoutes = require("./routes/recipeRoutes.js");
 const reviewRoutes = require("./routes/reviewRoutes.js");
 
 const dotenv = require("dotenv");
@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 
 app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
-app.use("/api/comment", commentRoutes);
+app.use("/api/recipe", recipeRoutes);
 app.use("/api/review", reviewRoutes);
 
 mongoose.set("strictQuery", true);

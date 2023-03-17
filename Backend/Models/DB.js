@@ -52,7 +52,6 @@ const recipeSchema = new mongoose.Schema({
     ref: "User",
   },
   picture: { type: String },
-  upvotes: { type: Number, required: true },
   body: { type: String, required: true },
   dateCreated: {
     type: Date,

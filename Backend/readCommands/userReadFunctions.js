@@ -7,7 +7,11 @@ const getMyPosts = async (req, res) => {
     const userId = req.user.id;
     const posts = await db.Post.find({ author: userId })
       .sort({ createdAt: -1 })
-      .populate("author", "username profilePicture");
+      .populate("author", "username profilePicture")
+      .lean();
+    posts.forEach(function (post) {
+      post.upvotes = post.upvotes.length;
+    });
     res.status(200).json({ posts });
   } catch (error) {
     console.error(error);
@@ -26,13 +30,13 @@ const getSavedPosts = async (req, res) => {
           select: "username profilePicture",
         },
       })
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .lean();
     if (!savedPosts) {
       return res
         .status(404)
         .json({ message: "Saved posts not found for user" });
     }
-
     res.status(200).json({ savedPosts: savedPosts.savedPosts });
   } catch (error) {
     console.error(error);

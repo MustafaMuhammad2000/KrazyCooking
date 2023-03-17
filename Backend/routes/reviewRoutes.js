@@ -9,11 +9,19 @@ const {
 const { verifyToken } = require("../middleware/verifyJWT");
 const router = express.Router();
 
+const { validateReview } = require("../middleware/bodyVerify");
+
 /*
     Review Routes 
 */
 
-router.post("/:rcid", verifyToken, upload.single("image"), createReview);
+router.post(
+  "/:rcid",
+  verifyToken,
+  upload.single("image"),
+  validateReview,
+  createReview
+);
 
 router.delete("/:rid", verifyToken, deleteReview);
 

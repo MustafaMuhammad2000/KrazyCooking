@@ -18,13 +18,19 @@ const {
 } = require("../readCommands/userReadFunctions");
 const router = express.Router();
 
+const {
+  validateRegister,
+  validateLogin,
+  validateUpdatePass,
+} = require("../middleware/bodyVerify");
+
 /*
     register and login routes
 */
 
-router.post("/register", registerUser);
+router.post("/register", validateRegister, registerUser);
 
-router.post("/login", loginUser);
+router.post("/login", validateLogin, loginUser);
 
 router.post(
   "/uploadProfilePic",
@@ -33,7 +39,12 @@ router.post(
   uploadProfilePic
 );
 
-router.patch("/updatePassword", verifyToken, updatePassword);
+router.patch(
+  "/updatePassword",
+  verifyToken,
+  validateUpdatePass,
+  updatePassword
+);
 
 router.post("/savePost/:pid", verifyToken, savePost);
 

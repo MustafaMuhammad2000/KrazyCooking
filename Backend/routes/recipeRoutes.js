@@ -9,11 +9,19 @@ const {
 const { verifyToken } = require("../middleware/verifyJWT");
 const router = express.Router();
 
+const { validateRecipe } = require("../middleware/bodyVerify");
+
 /*
     Recipe Routes 
 */
 
-router.post("/:pid", verifyToken, upload.single("image"), createRecipe);
+router.post(
+  "/:pid",
+  verifyToken,
+  upload.single("image"),
+  validateRecipe,
+  createRecipe
+);
 
 router.delete("/:rcid", verifyToken, deleteRecipe);
 

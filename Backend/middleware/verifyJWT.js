@@ -13,6 +13,7 @@ const verifyToken = (req, res, next) => {
     req.user = {};
     req.user.id = decoded.id;
     req.user.username = decoded.username;
+    req.user.admin = decoded.admin;
     console.log(decoded);
     next();
   });

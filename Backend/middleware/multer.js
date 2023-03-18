@@ -14,6 +14,10 @@ const storage = multer.memoryStorage();
 
 // Define file filter to accept image files only
 const fileFilter = function (req, file, cb) {
+  console.log("WTF");
+  if (!file || !file.fieldname) {
+    return cb(new Error("File field is required!"), false);
+  }
   if (file.mimetype.startsWith("image/")) {
     cb(null, true);
   } else {
@@ -27,8 +31,8 @@ const limits = {
 };
 
 const upload = multer({
-  storage: storage,
   fileFilter: fileFilter,
+  storage: storage,
   limits: limits,
 });
 // Export Multer middleware

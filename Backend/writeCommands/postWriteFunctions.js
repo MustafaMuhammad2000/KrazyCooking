@@ -43,7 +43,7 @@ const deletePost = async (req, res) => {
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
-    if (req.user.id != post.author) {
+    if (req.user.id != post.author && !req.user.admin) {
       return res.status(400).json({ message: "Not your post" });
     }
 

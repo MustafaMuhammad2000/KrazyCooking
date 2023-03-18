@@ -62,7 +62,7 @@ const deleteReview = async (req, res) => {
     if (!review) {
       return res.status(404).json({ message: "Review not found" });
     }
-    if (req.user.id != review.author) {
+    if (req.user.id != review.author && !req.user.admin) {
       return res.status(400).json({ message: "Not your review" });
     }
     if (review.picture) {

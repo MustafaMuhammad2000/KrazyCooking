@@ -9,3 +9,5 @@ export { default as PostElement } from './Home/PostElement';
 export { default as PostCard } from './Home/PostCard';
 export { default as PostBody } from './Post/PostBody';
 export { default as CommentFeed } from './Post/CommentFeed';
+export { default as CommentForm } from './Post/CommentForm';
+export { default as Comment } from './Post/Comment';

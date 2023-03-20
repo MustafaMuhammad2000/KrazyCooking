@@ -4,6 +4,7 @@ import PostBody from './PostBody';
 import {Stack, IconButton} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { fetchFromAPI } from '../../utils/fetchFromApi';
+import CommentFeed from './CommentFeed';
 
 
 
@@ -39,7 +40,7 @@ const Post = () => {
         {/* Contains all the info from original post */}
         <PostBody post = {post} />
 
-        {/* <CommentFeed /> */}
+        
 
     </Stack>
   )

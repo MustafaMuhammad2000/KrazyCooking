@@ -2,6 +2,7 @@ import { useState } from 'react'
 import {Stack, Typography, IconButton, Box, TextField } from '@mui/material';
 import {North, South, Person, AccessTime} from '@mui/icons-material';
 import moment from 'moment';
+import CommentFeed from './CommentFeed';
 
 
 const PostBody = ({post}) => {
@@ -96,6 +97,8 @@ const PostBody = ({post}) => {
             </Stack>
             
         </Stack>
+
+        <CommentFeed currentUserId = "1"/>
 
     </Stack>
   )

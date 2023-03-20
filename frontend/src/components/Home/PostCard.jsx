@@ -2,12 +2,14 @@ import {Link} from 'react-router-dom';
 import { Typography, Stack, Grid, Box, IconButton} from '@mui/material';
 import {AccessTime, Person, North, South} from '@mui/icons-material';
 import { useState } from 'react';
+import moment from 'moment';
 
 
-const PostCard = () => {
+const PostCard = ({post}) => {
 
     const [counter, setCounter] = useState(0);
-    
+    const timeSincePost = moment(new Date(post.dateCreated)).fromNow();
+
   return (
     <Stack direction= "column" mb={5}>
 
@@ -29,9 +31,9 @@ const PostCard = () => {
                 pl: 1,
                 pr: 1
             }}>
-                <Person />
+                <img src={post.author.profilePicture} alt="logo" height={30} />
                 <Typography>
-                    Lebron James
+                    {post.author.username}
                 </Typography>
             </Stack>
 
@@ -45,7 +47,7 @@ const PostCard = () => {
             }}>
                 <AccessTime />
                 <Typography>
-                    2d
+                    {timeSincePost}
                 </Typography>
             </Stack>
         
@@ -64,7 +66,7 @@ const PostCard = () => {
         }}>
             {/* Title */}
             <Typography variant = "h2" color="gray">
-                Doritos Cheesecake
+                <Link to={`post/${post._id}`}>{post.title}</Link>
             </Typography>
             
             {/* Voting */}

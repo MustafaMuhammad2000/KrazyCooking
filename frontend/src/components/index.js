@@ -12,3 +12,4 @@ export { default as CommentFeed } from './Post/CommentFeed';
 export { default as CommentForm } from './Post/CommentForm';
 export { default as Comment } from './Post/Comment';
 export { default as ReviewForm } from './Post/Popup';
+export { default as ProfilePage} from './ProfilePage/ProfilePage';

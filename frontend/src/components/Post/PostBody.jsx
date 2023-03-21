@@ -105,7 +105,7 @@ const PostBody = ({post}) => {
             
         </Stack>
         
-        <CommentForm />
+        <CommentForm postId = {post._id}/>
         
         <CommentFeed comments = {post.recipes}/>
         

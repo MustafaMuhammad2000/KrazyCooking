@@ -1,9 +1,24 @@
-import React from 'react'
+import React, {useState} from 'react'
 import moment from 'moment';
+import Popup from './Popup';
+import styled from '@emotion/styled';
 
+const CommentInput = styled.textarea`
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+`;
 
 
 const CommentFeed = ({ comments }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const togglePopup = () => {
+        setIsOpen(!isOpen);
+    }
 
   return (
     <div>
@@ -17,6 +32,20 @@ const CommentFeed = ({ comments }) => {
                     Author: {comment.author} <br/>
                     Upvotes: {comment.upvotes} <br/>
                     Date: {moment(new Date(comment.dateCreated)).fromNow()} <br/>
+                    <input 
+                        type = "button"
+                        value = "Reply"
+                        onClick={togglePopup}/>
+                    {isOpen && <Popup
+                        content={<>
+                            <CommentInput 
+                                placeholder="Leave your review..."
+                                />
+                            <button>Review</button>
+                        </>}
+                        handleClose={togglePopup}
+                    />}
+
                     <ul>
                         {comment.reviews.map((review, reviewIndex) => (
                             <li key = {reviewIndex}>

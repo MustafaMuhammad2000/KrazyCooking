@@ -1,10 +1,10 @@
 import React from 'react'
-
+import moment from 'moment';
 
 
 
 const CommentFeed = ({ comments }) => {
-    console.log(comments)
+
   return (
     <div>
         <h3>CommentFeed</h3>
@@ -16,7 +16,7 @@ const CommentFeed = ({ comments }) => {
                     Body: {comment.body} <br/>
                     Author: {comment.author} <br/>
                     Upvotes: {comment.upvotes} <br/>
-                    Date: {comment.dateCreated} <br/>
+                    Date: {moment(new Date(comment.dateCreated)).fromNow()} <br/>
                     <ul>
                         {comment.reviews.map((review, reviewIndex) => (
                             <li key = {reviewIndex}>
@@ -25,7 +25,7 @@ const CommentFeed = ({ comments }) => {
                                 Rating: {review.rating} <br/>
                                 Picture: <img src={review.picture} alt="post-picture" height={100}/> <br/>
                                 author: {review.author} <br/>
-                                date: {review.dateCreated} <br/>
+                                date: {moment(new Date(review.dateCreated)).fromNow()} <br/>
                             </li>
                         ))}
                     </ul>

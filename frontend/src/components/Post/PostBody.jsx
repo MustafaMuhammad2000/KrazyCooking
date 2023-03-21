@@ -3,6 +3,7 @@ import {Stack, Typography, IconButton, Box, TextField } from '@mui/material';
 import {North, South, Person, AccessTime} from '@mui/icons-material';
 import moment from 'moment';
 import CommentFeed from './CommentFeed';
+import CommentForm from './CommentForm';
 
 
 const PostBody = ({post}) => {
@@ -103,6 +104,8 @@ const PostBody = ({post}) => {
             </Stack>
             
         </Stack>
+        
+        <CommentForm />
         
         <CommentFeed comments = {post.recipes}/>
         

@@ -1,34 +1,286 @@
 const request = require('supertest');
-const express = require('express');
-const router = require('../routes/postRoutes.js');
+const dotenv = require("dotenv");
+dotenv.config();
 
-const app = new express();
-app.use('/', router);
+postURL = process.env.BASEURL + '/post';
 
-describe('Post Routes', function () {
+describe('Read Post Routes', function () {
 
-  test('responds to /', async () => {
-    const res = await request(app).post('/');
-    expect(res.header['content-type']).toBe('text/html; charset=utf-8');
+  // router.get("/", getAllPosts);
+  // pr-1 Getting all the data in posts from the database
+  test('Getting all the data in posts from the database', async () => {
+    const res = await request(postURL).get('/'); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(200);
+  });
+
+  // router.get("/:pid/view", getPost);
+  // pr-2 Find and view post with valid Post ID 
+  test('Find and view post with valid Post ID', async () => {
+    const res = await request(postURL).get('/64134c6f84de83bc075d329e/view'); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(200);
+  });
+
+  // pr-3 Find post with invalid Post ID 
+  test('Find post with invalid Post ID', async () => {
+    const res = await request(postURL).get('/junk/view'); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(400);
+  });
+
+  // pr-4 Find post with non-existent Post ID 
+  test('Find post with non-existent Post ID', async () => {
+    const res = await request(postURL).get('/6411426bc0af3ce9950438f2/view'); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(404);
+  });
+
+  // router.get("/random", getRandomPost);
+  // pr-5 Get random post
+  test('Get random post', async () => {
+    const res = await request(postURL).get('/random'); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(200);
+  });
+
+  // router.get("/search", searchPosts);
+  // pr-7 Find posts with search term "cheese"
+  test('Find posts with search term cheese', async () => {
+    const res = await request(postURL).get('/search?q=cheese'); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(200);
+  });
+
+  // pr-8 Find posts with empty search term
+  test('Find posts with empty search term', async () => {
+    const res = await request(postURL).get('/search?q='); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(200);
+  });
+
+  // pr-9 Find posts with search term ?
+  test('Find posts with search term ?', async () => {
+    const res = await request(postURL).get('/search?q=t̵̨̡̤̹̮̥̫͙̗͐͑̋́͊̒̆̓̔̐̀̀͒̓̚͠͠ͅḥ̸̢̳̫̼̥̘͇̳͈̮͍̈́́̆̈͗͛̊̎̑̾̀̆̽̽̈̏̀͘̚͠͠ͅi̵̢̢̹̘̩͉̲̦̺͌̀̏̂̾̽̌̇͌͝s̴̢̧̼̹̞̯̤̰̫̺̩̟̱̺̠̗͉̟͉͖͇̞̺̙̩̮̎́͒͒̂͒͒̓͂͋̓̓́̐̇͆̈͂̒̐̀̀̐̍̕͜ ̶̡̨̨̢̥̜̤̥̝̠̪̫͚̙͚̐͜͝ͅţ̶̢̡̢̫̜̱̖͚̝̪̲͇̦̭͍̗̣̜͓̦͖̓̽̋̌ͅẻ̸̞̤̳͈̤͚̖͓̙͒̊̂͒̃̈̌̆̎̍͗̂̈́̐̎̊͐̆̚͘͝͠x̸̨̨̧̳̳̲̖̘͔͖̥̏̆ͅt̵̨̨̢͔̘̥͇̻̝͚̫̙̔́͊͠ͅͅ ̸̢̮̯͖̘̣̑͊̄̿̒͌̆̓̀̚͘i̴̧̡̧̡̺̖̝̠͎̰̘̦͇͔͍̩͙̼͖̯̭̒͐͆̒̄̚͜ͅş̴̧̨͔͎̣̲͙̲̠͈͙̟̀̈́̉̈́̽͊̊̐́͑̀̐̌͂̅̚̚͝ ̵͓̠̠̫̲͍͚͖̾̋͛̆̆͑̇͋͑̂̅́̐͌́͠͝w̵̡̧̡̡̢̯̫͕̲̬̫̮̯̥̜̞̬̘̬̯̜̰̙̙̗̫̱͌͑̂͑̈͋̾̋͋̒͂i̵̡̡̧̮̯̠̖̺̠̖̘̖̥̣̦̪̟̫͉̙̓͊̓́̿͠e̶̢̡̱̞̯̥̎̅̑̌͋̑͛̓̓̄́͑̎̎̈́̇̂͆̌̀͐̓́̓͋̏͐̕͝͝r̶̢̯̫͙̱̝̘̯̝̼̗̲̞̭͓͍͕̠̝͕͇̈͊̅̀͂̑̾̔̾̇̈́̇̀͘̕͝d̵̛͙̀̀̉͋́̈́̊̅̈́͐̑͊̊̇̉̏̍̓̆͛̆̈́͒̒̐̆͠'); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(500);
+  });
+
+  // pr-10 Find posts with multiple search terms
+  test('Find posts with multiple search terms', async () => {
+    const res = await request(postURL).get('/search?q=cheese+salad'); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(200);
+  });
+
+});
+
+describe('Write Post Routes', function () {
+
+  var token = '';
+  // Before tests, login to an account to get authorization token
+  beforeAll(async() => {
+    const body = {
+      username: "test1",
+      password: "test2"
+    }
+    const res = await request(process.env.BASEURL+'/user').post('/login').send(body); 
+    token = res.body.token;
+    console.log(token);
+  });
+
+  var pid = '';
+
+  // router.post("/", verifyToken, upload.single("image"), validatePost, createPost);
+  // pr-11 Create new post with all valid data and proper authorization token
+  test('Create new post with all valid data and proper authorization token', async () => {
+    const body = {
+      title: "Unit Test Post",
+      body: "Test body",
+      tags: ["test", "post"]
+    }
+    const res = await request(postURL).post('/').set('authorization', token).send(body); 
+    const posts = res.body;
+    pid = res.body._id;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(201);
+  });
+
+  // pr-12 Create post with all empty fields
+  test('Create post with all empty ', async () => {
+    const body = {
+      title: '',
+      body: '',
+      tags: []
+    }
+    const res = await request(postURL).post('/').set('authorization', token).send(body); 
+    const posts = res.body;
+    console.log(posts);
+    //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(500);
+  });
+
+  // pr-13 Create new post with all valid data and but no authorization token
+  test('Create new post with all valid data and but no authorization token', async () => {
+    const body = {
+      title: "Unit Test Post",
+      body: "Test body",
+      tags: ["test", "post"]
+    }
+    const res = await request(postURL).post('/').send(body); 
+    const posts = res.body;
+    console.log(posts);
+    //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(401);
+  });
+
+  // router.put("/:pid/upvote", verifyToken, upvotePost);
+  // pr-14 Upvote post with proper authorization and valid Post ID
+  test('Upvote post with proper authorization and valid Post ID', async () => {
+    const res = await request(postURL).put('/'+pid+'/upvote').set('authorization', token); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(200);
+  });
+
+  // pr-15 Upvote post with proper authorization and valid Post ID but a second time
+  test('Upvote post with proper authorization and valid Post ID but a second time', async () => {
+    const res = await request(postURL).put('/'+pid+'/upvote').set('authorization', token); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(400);
+  });
+
+  // router.put("/:pid/remove-upvote", verifyToken, removeUpvote);
+  // pr-16 Remove upvote on post with proper authorization and valid Post ID
+  test('Remove upvote on post with proper authorization and valid Post ID', async () => {
+    const res = await request(postURL).put('/'+pid+'/remove-upvote').set('authorization', token); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(200);
+  });
+
+  // pr-17 Remove upvote on post with proper authorization and valid Post ID but a second time
+  test('Remove upvote on post with proper authorization and valid Post ID but a second time', async () => {
+    const res = await request(postURL).put('/'+pid+'/remove-upvote').set('authorization', token); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(400);
+  });
+
+  // pr-18 Upvote post with invalid authorization but valid Post ID
+  test('Upvote post with invalid authorization but valid Post ID', async () => {
+    const res = await request(postURL).put('/'+pid+'/upvote'); 
+    const posts = res.body;
+    console.log(posts);
+    //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(401);
+  });
+
+  // pr-19 Remove upvote on post without proper authorization but valid Post ID
+  test('Remove upvote on post without proper authorization but valid Post ID', async () => {
+    const res = await request(postURL).put('/'+pid+'/remove-upvote'); 
+    const posts = res.body;
+    console.log(posts);
+    //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(401);
+  });
+
+  // router.delete("/:pid", verifyToken, deletePost);
+  // pr-20 Delete post with valid Post ID but wrong authorization token
+  test('Delete post with valid Post ID but wrong authorization token', async () => {
+    const body = {
+      username: "postTest",
+      password: "password"
+    }
+    const res1 = await request(process.env.BASEURL+'/user').post('/login').send(body); 
+    var wrongToken = res1.body.token;
+    console.log(wrongToken);
+
+    const res2 = await request(postURL).delete('/'+pid).set('authorization', wrongToken); 
+    const posts = res2.body;
+    console.log(posts);
+    expect(res2.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res2.statusCode).toBe(400);
+  });
+
+  // pr-21 Delete post with valid Post ID and proper authorization token
+  test('Delete post with valid Post ID and proper authorization token', async () => {
+    const res = await request(postURL).delete('/'+pid).set('authorization', token); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(200);
+  });
+
+  // pr-22 Delete post with invalid Post ID and proper authorization token
+  test('Delete post with invalid Post ID and proper authorization token', async () => {
+    const res = await request(postURL).delete('/'+pid).set('authorization', token); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(404);
   });
   
-  test('responds to /:pid', async () => {
-    const res = await request(app).delete('/:pid'); 
-    expect(res.header['content-type']).toBe('text/html; charset=utf-8');
-    expect(res.statusCode).toBe(200);
+
+   // pr-23 Delete post with invalid Post ID
+   test('Delete post with invalid Post ID', async () => {
+    const res = await request(postURL).delete('/lol').set('authorization', token); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(400);
   });
 
-  test('responds to /', async () => {
-    const res = await request(app).get('/');
-    expect(res.header['content-type']).toBe('text/html; charset=utf-8');
-    expect(res.statusCode).toBe(200);
+  // pr-24 Delete post with non-existing Post ID
+  test('Delete post with non-existing Post ID', async () => {
+    const res = await request(postURL).delete('/6411426bc0af3ce9950438f2').set('authorization', token); 
+    const posts = res.body;
+    console.log(posts);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(404);
   });
-  
-  test('responds to /:pid', async () => {
-    const res = await request(app).get('/:pid'); 
-    expect(res.header['content-type']).toBe('text/html; charset=utf-8');
-    expect(res.statusCode).toBe(200);
+
+  // pr-25 Upvote post with valid authorization but invalid Post ID
+  test('Upvote post with valid authorization but invalid Post ID', async () => {
+    const res = await request(postURL).put('/'+pid+'/upvote').set('authorization', token); 
+    const posts = res.body;
+    console.log(posts);
+    //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(404);
   });
+
+  // pr-26 Remove upvote on post with proper authorization but invalid Post ID
+  test('Remove upvote on post with proper authorization but invalid Post ID', async () => {
+    const res = await request(postURL).put('/'+pid+'/remove-upvote').set('authorization', token); 
+    const posts = res.body;
+    console.log(posts);
+    //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(404);
+  });
+
 
 });

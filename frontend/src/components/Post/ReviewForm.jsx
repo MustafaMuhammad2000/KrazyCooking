@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import { postComment } from "../../utils/fetchFromApi";
+import { postReview } from "../../utils/fetchFromApi";
 import styled from "@emotion/styled";
 import { useUser } from "../../utils/UserContext";
-
-const post = {
-  postId: "64190e2b00157c19240f50cd",
-  commentBody: "this is a comment",
-};
+import Rating from "@mui/material/Rating";
 
 const Container = styled.div`
   display: flex;
@@ -40,11 +36,13 @@ const SubmitButton = styled.button`
   }
 `;
 
-const CommentForm = ({ postId }) => {
+const ReviewForm = ({ recipeId }) => {
   const { user, setUser } = useUser();
   const [comment, setComment] = useState("");
   const [image, setImage] = useState("");
+  const [value, setValue] = React.useState(2);
 
+  console.log("comment id: ", recipeId);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (comment.trim() === "") return;
@@ -52,8 +50,9 @@ const CommentForm = ({ postId }) => {
     let data = new FormData();
     data.append("image", image);
     data.append("body", comment);
+    data.append("rating", value);
 
-    const res = postComment(data, postId, user);
+    const res = postReview(data, recipeId, user);
     console.log(res);
 
     setComment("");
@@ -65,12 +64,9 @@ const CommentForm = ({ postId }) => {
         <CommentInput
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          placeholder="Write your comment here..."
+          placeholder="Write your review here..."
         />
-        {/* <input type="file" accept="image/jpeg, image/png, image/jpg"
-                onChange={(e) => setImage(e.target.files)}>
 
-            </input> */}
         <input
           type="file"
           accept="image/jpeg, image/png, image/jpg"
@@ -79,10 +75,20 @@ const CommentForm = ({ postId }) => {
             setImage(event.target.files[0]);
           }}
         ></input>
+
+        <Rating
+          name="simple-controlled"
+          value={value}
+          precision={0.5}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+        />
+
         <SubmitButton type="submit">Submit</SubmitButton>
       </form>
     </Container>
   );
 };
 
-export default CommentForm;
+export default ReviewForm;

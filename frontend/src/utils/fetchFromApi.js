@@ -1,21 +1,47 @@
 import axios from 'axios';
+import { useUser } from './UserContext';
 
 const BASE_URL = 'http://localhost:8000';
 
-const options = {
-    headers: {
-        "Content-Type": 'application/json',
-        "authorization": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImphY2sxMjMiLCJpZCI6IjY0MTkwMWNhMDAxNTdjMTkyNDBmNTA2YSIsImFkbWluIjpmYWxzZSwiaWF0IjoxNjc5NDIzNTczLCJleHAiOjE2Nzk0NTk1NzN9.EWdvc5wILFJVVAg43_p1Zn2LvW9HP7y3l3anq0sQwn0'
-    }
-};
 
-export const postComment = async (body, postId) => {
+
+export const postComment = async (body, postId, user) => {
+
+    const options = {
+        headers: {
+            "Content-Type": 'application/json',
+            "authorization": `${user}`
+        }
+    };
 
     
     console.log("post comment body: ", body);
     console.log("post id: ", postId);
+    console.log("token: ", user)
     try {
         const response = await axios.post(`${BASE_URL}/api/recipe/${postId}`, body, options);
+        console.log(response.data);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+    return;
+}
+
+export const postReview = async (body, commentId, user) => {
+    const options = {
+        headers: {
+            "Content-Type": 'application/json',
+            "authorization": `${user}`
+        }
+    };
+
+    
+    console.log("post review body: ", body);
+    console.log("recipe id: ", commentId);
+    console.log("token: ", user)
+    try {
+        const response = await axios.post(`${BASE_URL}/api/review/${commentId}`, body, options);
         console.log(response.data);
         return response;
     } catch (error) {

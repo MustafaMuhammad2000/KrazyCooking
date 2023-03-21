@@ -11,7 +11,7 @@ const ObjectId = mongoose.Types.ObjectId;
 const registerUser = async (req, res) => {
   try {
     console.log(req.body);
-    const { admin, username, password, dateOfBirth } = req.body;
+    const { username, password, dateOfBirth } = req.body;
 
     const userInDb = await db.User.findOne({ username: username });
     if (userInDb) {
@@ -22,7 +22,7 @@ const registerUser = async (req, res) => {
       //   console.log(hash);
       //   console.log(err);
       const newUser = await db.User.create({
-        admin,
+        admin: false,
         username,
         password: hash,
         profilePicture: process.env.DEFAULT_IMAGE_URL,
@@ -59,7 +59,11 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ message: "Invalid username or password" });
     }
     console.log("passed authentication");
-    const payload = { username: user.username, id: user._id };
+    const payload = {
+      username: user.username,
+      id: user._id,
+      admin: user.admin,
+    };
     const secretKey = process.env.JWT_SECRET_KEY;
     const options = { expiresIn: "10h" };
     const token = jwt.sign(payload, secretKey, options);

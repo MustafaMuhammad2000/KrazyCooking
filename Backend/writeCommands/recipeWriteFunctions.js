@@ -26,7 +26,6 @@ const createRecipe = async (req, res) => {
     const recipe = new db.Recipe({
       body,
       author: userId,
-      upvotes: 0,
       dateCreated: new Date(),
       picture: image_url,
     });
@@ -53,7 +52,7 @@ const deleteRecipe = async (req, res) => {
     if (!recipe) {
       return res.status(404).json({ message: "Recipe not found" });
     }
-    if (req.user.id != recipe.author) {
+    if (req.user.id != recipe.author && !req.user.admin) {
       return res.status(400).json({ message: "Not your recipe" });
     }
 

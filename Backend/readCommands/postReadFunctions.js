@@ -8,7 +8,11 @@ const getAllPosts = async (req, res) => {
   //get all posts, sorted by most recent
   const Posts = await db.Post.find({})
     .sort({ createdAt: -1 })
-    .populate("author", "username profilePicture");
+    .populate("author", "username profilePicture")
+    .lean();
+  Posts.forEach(function (post) {
+    post.upvotes = post.upvotes.length;
+  });
   res.status(200).json(Posts);
 };
 
@@ -25,10 +29,12 @@ const getPost = async (req, res) => {
         populate: {
           path: "reviews",
         },
-      });
+      })
+      .lean();
     if (!post) {
       return res.status(404).json({ error: "Post not found" });
     }
+    post.upvotes = post.upvotes.length;
     res.status(200).json(post);
   } catch (err) {
     console.error(err);
@@ -48,10 +54,12 @@ const getRandomPost = async (req, res) => {
         populate: {
           path: "reviews",
         },
-      });
+      })
+      .lean();
     if (!post) {
       return res.status(404).json({ error: "No posts found" });
     }
+    post.upvotes = post.upvotes.length;
     res.status(200).json(post);
   } catch (err) {
     console.error(err);
@@ -70,7 +78,9 @@ const searchPosts = async (req, res) => {
   try {
     const posts = await db.Post.find({
       $or: [{ title: { $regex: regex } }, { tags: { $regex: regex } }],
-    }).populate("author", "username profilePicture");
+    })
+      .populate("author", "username profilePicture")
+      .lean();
 
     const sortedPosts = posts.sort((a, b) => {
       const aTitleMatch = a.title.match(regex);
@@ -102,6 +112,9 @@ const searchPosts = async (req, res) => {
       } else {
         return 0;
       }
+    });
+    posts.forEach(function (post) {
+      post.upvotes = post.upvotes.length;
     });
     res.status(200).json(posts);
   } catch (err) {

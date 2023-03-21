@@ -15,6 +15,8 @@ const {
   searchPosts,
 } = require("../readCommands/postReadFunctions");
 
+const { validatePost } = require("../middleware/bodyVerify");
+
 const { verifyToken } = require("../middleware/verifyJWT");
 const router = express.Router();
 
@@ -22,7 +24,7 @@ const router = express.Router();
     Post Routes 
 */
 
-router.post("/", verifyToken, upload.single("image"), createPost);
+router.post("/", verifyToken, upload.single("image"), validatePost, createPost);
 
 router.delete("/:pid", verifyToken, deletePost);
 

@@ -10,6 +10,12 @@ const PostBody = ({post}) => {
     const [counter, setCounter] = useState(0);
     const timeSincePost = moment(new Date(post.dateCreated)).fromNow();
     console.log(post);
+    console.log(post.recipes);
+
+    if (post.recipes === undefined) {
+        return
+    }
+
   return (
     <Stack direction= "column" mb={5} width = "75vw">
 
@@ -97,8 +103,10 @@ const PostBody = ({post}) => {
             </Stack>
             
         </Stack>
-
-        <CommentFeed currentUserId = "1"/>
+        
+        <CommentFeed comments = {post.recipes}/>
+        
+        
 
     </Stack>
   )

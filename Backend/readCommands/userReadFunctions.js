@@ -2,6 +2,24 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const db = require("../Models/DB");
 
+const getUserProfile = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    console.log(userId);
+    const user = await db.User.findById(userId);
+    const profileInfo = {
+      username: user.username,
+      dateCreated: user.dateCreated,
+      profilePicture: user.profilePicture,
+      dateOfBirth: user.dateOfBirth,
+    };
+    res.status(200).json(profileInfo);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server Error" });
+  }
+};
+
 const getMyPosts = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -47,4 +65,5 @@ const getSavedPosts = async (req, res) => {
 module.exports = {
   getMyPosts,
   getSavedPosts,
+  getUserProfile,
 };

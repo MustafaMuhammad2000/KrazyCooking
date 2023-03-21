@@ -26,7 +26,7 @@ const registerUser = async (req, res) => {
         username,
         password: hash,
         profilePicture: process.env.DEFAULT_IMAGE_URL,
-        dateOfBirth: new Date(),
+        dateOfBirth: dateOfBirth,
         dateCreated: new Date(),
       });
       newUser.save();
@@ -150,6 +150,12 @@ const savePost = async (req, res) => {
     if (!ObjectId.isValid(postId)) {
       return res.status(400).json({ message: "Invalid post id" });
     }
+
+    const post = await db.Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
     let savedPost = await db.SavedPost.findOne({ userId });
 
     if (!savedPost) {

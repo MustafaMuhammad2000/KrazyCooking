@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Box } from '@mui/material';
 
-import { Navbar, Feed, Post, SearchFeed, Login, Register} from './components';
+import { Navbar, Feed, Post, SearchFeed, Login, Register, ProfilePage} from './components';
+import {UserProvider} from './utils/UserContext';
 
 
 const App = () => (
+    <UserProvider>
     <BrowserRouter>
         <Box sx={{backgroundColor: '#f5f5f5'}}>
         <Navbar />
@@ -14,9 +16,11 @@ const App = () => (
             <Route path = "/search/:searchTerm" element = {<SearchFeed />}/>
             <Route path = "/login" element = {<Login />} />
             <Route path = "/register" element = {<Register />} />
+            <Route path = "/user/:id" element = {<ProfilePage />} />
         </Routes>
         </Box>
     </BrowserRouter>    
+    </UserProvider>
 );
 
 

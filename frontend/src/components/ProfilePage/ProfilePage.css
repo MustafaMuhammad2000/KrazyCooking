@@ -1,0 +1,184 @@
+
+
+
+.profile-page{
+    height: 90%;
+    width: 100%;
+    background: lightgray;
+    overflow-x: hidden;
+    z-index: -1;
+
+    
+}
+
+.profile-portion{
+    height: 100vh;
+    width: 90%;
+    background: white;
+    margin: auto;
+}
+
+.profile-top{
+    height: 35%;
+    width: 100%;
+}
+
+
+.Profile-Background{
+    height: 80%;
+    width: 100%;
+    background: #4dd6b6;
+    position: relative;
+}
+
+.Profile-Picture{
+    z-index: 0;
+    height: 85%;
+    width: 15%;
+    border-radius: 50%;
+    transform: translate(30%);
+    right: 50%;
+
+    background-color: black;
+    
+    
+}
+
+.user-name-title {
+    font-size: 48px;
+    font-family: 'Helvetica', sans-serif;
+    color: #333;
+    text-shadow: 2px 2px #ccc;
+    text-align: center;
+    margin-top: -50px;
+  }
+
+.Profile-Picture img{
+    height: 100%;
+    width: 100%;
+    object-fit:cover;
+    border-radius: 50%;
+}
+
+
+.Edit-Profile-Button {
+    background-color: #1c1c1e;
+    border: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+}
+  
+.Edit-Profile-Button:hover {
+    background-color: #373739;
+}
+.country-title {
+    
+    font-family: 'Helvetica', sans-serif;
+    color: #333;
+    text-shadow: 2px 2px #ccc;
+    font-size: 16px;
+    margin-top: 240px;
+    display: flex;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+}
+.age-title {
+    
+    font-family: 'Helvetica', sans-serif;
+    color: #333;
+    text-shadow: 2px 2px #ccc;
+    font-size: 16px;
+    margin-top: 220px;
+    display: flex;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+}
+
+.profile-middle{
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-top:-1rem;
+}
+
+.profile-info {
+    background-color: #f2f2f2;
+    border-radius: 30px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 65%;
+}
+  
+.profile-info h2 {
+    font-family: 'Helvetica', sans-serif;
+    text-align: center;
+}
+  
+.user-stats {
+    background-color: #f2f2f2;
+    border-radius: 30px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 25%;
+}
+
+.user-stats h2 {
+    font-family: 'Helvetica', sans-serif;
+    text-align: center;
+}
+  
+
+.profile-bottom{
+    height:10%;
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-top:5rem;
+}
+
+.profile-left{
+    flex:0.50;
+    background: white;
+    height: 100%;
+    position:relative;
+}
+
+.post-list {
+    background-color: lightcyan;
+    border-radius: 30px;
+    padding: 20px;
+    margin: 0 auto;
+    margin-top:5rem;
+    width: 90%;
+}
+
+.comment-list {
+    background-color: powderblue;
+    border-radius: 30px;
+    padding: 20px;
+    margin: 0 auto;
+    margin-top:5rem;
+    width: 90%;
+}
+
+.profile-right{
+    flex:0.50;
+    background: white;
+    height:100%;
+    position: relative;
+}

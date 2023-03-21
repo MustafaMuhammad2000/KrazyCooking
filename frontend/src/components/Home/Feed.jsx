@@ -9,7 +9,7 @@ const Feed = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetchFromAPI('api').then((data) => setPosts(data.items))
+    fetchFromAPI('api/post').then((data) => setPosts(data))
   }, []);
 
   return (

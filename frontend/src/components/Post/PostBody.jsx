@@ -1,13 +1,24 @@
 import { useState } from 'react'
-import {Stack, Typography, IconButton } from '@mui/material';
+import {Stack, Typography, IconButton, Box, TextField } from '@mui/material';
 import {North, South, Person, AccessTime} from '@mui/icons-material';
+import moment from 'moment';
+import CommentFeed from './CommentFeed';
+import CommentForm from './CommentForm';
 
-const PostBody = () => {
+
+const PostBody = ({post}) => {
 
     const [counter, setCounter] = useState(0);
+    const timeSincePost = moment(new Date(post.dateCreated)).fromNow();
+    console.log(post);
+    console.log(post.recipes);
+
+    if (post.recipes === undefined) {
+        return
+    }
 
   return (
-    <Stack direction= "column" mb={5}>
+    <Stack direction= "column" mb={5} width = "75vw">
 
         {/* Upper Section - user and time components */}
         <Stack
@@ -29,8 +40,9 @@ const PostBody = () => {
             }}>
                 <Person />
                 <Typography>
-                    Lebron James
+                    {/* {post.author.username} */}
                 </Typography>
+                
             </Stack>
 
             {/* Clock element */}
@@ -43,7 +55,7 @@ const PostBody = () => {
             }}>
                 <AccessTime />
                 <Typography>
-                    2d
+                    {timeSincePost}
                 </Typography>
             </Stack>
         
@@ -63,21 +75,20 @@ const PostBody = () => {
             <Stack>
               {/* Title */}
               <Typography variant = "h2" color="black">
-                  Title
+                  {post.title}
               </Typography>
 
               {/* Post Content   */}
               <Typography variant = "h6" color="black">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
-              ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-              esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-              non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    {post.body}
               </Typography>
+              {/* Post image */}
+              
             </Stack>
             
-            
+            {/* Post Image */}
+            <img src={post.picture} alt="post-picture"/>
+
             {/* Voting */}
             <Stack direction="row" alignItems="center">
                 <IconButton type = "button" onClick={() =>{setCounter(counter+1)}}>
@@ -93,6 +104,12 @@ const PostBody = () => {
             </Stack>
             
         </Stack>
+        
+        <CommentForm postId = {post._id}/>
+        
+        <CommentFeed comments = {post.recipes}/>
+        
+        
 
     </Stack>
   )

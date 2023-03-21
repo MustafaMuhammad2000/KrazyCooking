@@ -4,3 +4,6 @@ Backend/.env
 Backend/key/*
 Backend/node_modules/*
 Backend/package-lock.json
+Backend/package.json
+Backend/unitTests/chicken_salad.jpg
+

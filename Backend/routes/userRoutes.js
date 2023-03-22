@@ -15,6 +15,7 @@ const {
 const {
   getMyPosts,
   getSavedPosts,
+  getUserProfile,
 } = require("../readCommands/userReadFunctions");
 const router = express.Router();
 
@@ -55,6 +56,8 @@ router.post("/checkImage", upload.single("image"), checkImage);
 router.get("/savedPosts", verifyToken, getSavedPosts);
 
 router.get("/myPosts", verifyToken, getMyPosts);
+
+router.get("/profile", verifyToken, getUserProfile);
 
 // test route for getting user who is logged in
 router.get("/getUser", verifyToken, (req, res) => {

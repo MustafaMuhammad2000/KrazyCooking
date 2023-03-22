@@ -23,7 +23,7 @@ const updatePass = Joi.object({
 function validateRegister(req, res, next) {
   const { error } = userRegister.validate(req.body);
   if (error) {
-    return res.status(400).send(error.details[0].message);
+    return res.status(400).json({ message: "Invalid register body" });
   }
   next();
 }
@@ -31,14 +31,14 @@ function validateRegister(req, res, next) {
 function validateLogin(req, res, next) {
   const { error } = userLogin.validate(req.body);
   if (error) {
-    return res.status(400).send(error.details[0].message);
+    return res.status(400).json({ message: "Invalid login body" });
   }
   next();
 }
 function validateUpdatePass(req, res, next) {
   const { error } = updatePass.validate(req.body);
   if (error) {
-    return res.status(400).send(error.details[0].message);
+    return res.status(400).json({ message: "Invalid update pass body" });
   }
   next();
 }
@@ -52,7 +52,7 @@ const createPost = Joi.object({
 function validatePost(req, res, next) {
   const { error } = createPost.validate(req.body);
   if (error) {
-    return res.status(400).send(error.details[0].message);
+    return res.status(400).json({ message: "Invalid post body" });
   }
   next();
 }
@@ -64,7 +64,7 @@ const createRecipe = Joi.object({
 function validateRecipe(req, res, next) {
   const { error } = createRecipe.validate(req.body);
   if (error) {
-    return res.status(400).send(error.details[0].message);
+    return res.status(400).json({ message: "Invalid recipe body" });
   }
   next();
 }
@@ -77,10 +77,10 @@ const createReview = Joi.object({
 function validateReview(req, res, next) {
   const { error } = createReview.validate(req.body);
   if (error) {
-    return res.status(400).send(error.details[0].message);
+    return res.status(400).json({ message: "Invalid review body" });
   }
   if (!req.file) {
-    return res.status(400).send("No file found");
+    return res.status(400).json({ message: "No image found" });
   }
   next();
 }

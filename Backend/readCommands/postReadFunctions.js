@@ -26,9 +26,19 @@ const getPost = async (req, res) => {
       .populate("author", "username profilePicture")
       .populate({
         path: "recipes",
-        populate: {
-          path: "reviews",
-        },
+        populate: [
+          {
+            path: "author",
+            select: "username profilePicture",
+          },
+          {
+            path: "reviews",
+            populate: {
+              path: "author",
+              select: "username profilePicture",
+            },
+          },
+        ],
       })
       .lean();
     if (!post) {

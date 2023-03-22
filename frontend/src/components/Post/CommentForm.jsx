@@ -42,40 +42,54 @@ const SubmitButton = styled.button`
 
 const CommentForm = ({ postId }) => {
   const { user, setUser } = useUser();
+  const { id, setId } = useUser();
   const [comment, setComment] = useState("");
   const [image, setImage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("user id: ", id);
     if (comment.trim() === "") return;
+    if (user === null) {
+      console.error("USER ISNT LOGGED IN!");
+      window.alert("you must be logged in to suggest a recipe");
+      return;
+    }
+
+    if (comment.length < 5 || comment.length > 1000) {
+      window.alert(
+        `your recipe was ${comment.length} characters, it must be within 5 and 1000 characters`
+      );
+      return;
+    }
 
     let data = new FormData();
-    data.append("image", image);
+    if (image !== "") data.append("image", image);
     data.append("body", comment);
 
     const res = postComment(data, postId, user);
-    console.log(res);
+    console.log("recipe response: ", res);
 
     setComment("");
   };
 
+  //Element for writing recipes, includes a text box and adding an image
   return (
     <Container>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
+        {/* Adding Recipe */}
         <CommentInput
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           placeholder="Write your comment here..."
         />
-        {/* <input type="file" accept="image/jpeg, image/png, image/jpg"
-                onChange={(e) => setImage(e.target.files)}>
 
-            </input> */}
+        {/* Submitting Image */}
         <input
           type="file"
           accept="image/jpeg, image/png, image/jpg"
           onChange={(event) => {
-            console.log(event.target.files[0]);
+            console.log("recipe image: ", event.target.files[0]);
             setImage(event.target.files[0]);
           }}
         ></input>

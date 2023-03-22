@@ -47,6 +47,26 @@ const ReviewForm = ({ recipeId }) => {
     e.preventDefault();
     if (comment.trim() === "") return;
 
+    if (user === null) {
+      console.error("USER ISNT LOGGED IN!");
+      window.alert(
+        "you must be logged in to leave a review! 💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀"
+      );
+      return;
+    }
+
+    if (image === "") {
+      window.alert("you must add an image to your review");
+      return;
+    }
+
+    if (comment.length < 5 || comment.length > 1000) {
+      window.alert(
+        `your comment was ${comment.length} characters, it must be within 5 and 1000 characters`
+      );
+      return;
+    }
+
     let data = new FormData();
     data.append("image", image);
     data.append("body", comment);

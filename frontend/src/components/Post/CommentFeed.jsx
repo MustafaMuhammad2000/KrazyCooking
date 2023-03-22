@@ -16,7 +16,7 @@ const CommentInput = styled.textarea`
 `;
 
 const CommentFeed = ({ comments }) => {
-  const { id, user } = useUser();
+  const { id, user, admin } = useUser();
   const [isOpen, setIsOpen] = useState(false);
   const [commentOwner, setCommentOwner] = useState(false);
   const [commentId, setCommentId] = useState("");
@@ -48,7 +48,7 @@ const CommentFeed = ({ comments }) => {
               onClick={() => togglePopup(comment._id)}
             />
             {/* Delete Recipe Button */}
-            {comment.author._id === id && (
+            {(comment.author._id === id || admin) && (
               <input
                 type="button"
                 value="Delete"
@@ -89,7 +89,7 @@ const CommentFeed = ({ comments }) => {
                   <img src={review.author.profilePicture} height={40} /> <br />
                   date: {moment(new Date(review.dateCreated)).fromNow()} <br />
                   {/* Delete Button */}
-                  {review.author._id === id && (
+                  {(review.author._id === id || admin) && (
                     <input
                       type="button"
                       value="Delete"

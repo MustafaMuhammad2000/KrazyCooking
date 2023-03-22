@@ -41,8 +41,7 @@ const SubmitButton = styled.button`
 `;
 
 const CommentForm = ({ postId }) => {
-  const { user, setUser } = useUser();
-  const { id, setId } = useUser();
+  const { user, id } = useUser();
   const [comment, setComment] = useState("");
   const [image, setImage] = useState("");
 

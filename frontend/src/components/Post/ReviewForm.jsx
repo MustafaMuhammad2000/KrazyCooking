@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import { postReview } from "../../utils/fetchFromApi";
-import styled from "@emotion/styled";
+//import { styled } from "@emotion/styled";
 import { useUser } from "../../utils/UserContext";
-import Rating from "@mui/material/Rating";
 
-const Container = styled.div`
+import Rating from "@mui/material/Rating";
+import PropTypes from "prop-types";
+import { styled } from "@mui/material/styles";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
+import SentimentSatisfiedIcon from "@mui/icons-material/SentimentSatisfied";
+import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAltOutlined";
+import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
+
+const Container = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +20,7 @@ const Container = styled.div`
   margin-top: 50px;
 `;
 
-const CommentInput = styled.textarea`
+const CommentInput = styled("textarea")`
   width: 100%;
   height: 150px;
   padding: 10px;
@@ -21,7 +29,7 @@ const CommentInput = styled.textarea`
   resize: none;
 `;
 
-const SubmitButton = styled.button`
+const SubmitButton = styled("button")`
   width: 100px;
   height: 40px;
   border: none;
@@ -36,16 +44,56 @@ const SubmitButton = styled.button`
   }
 `;
 
+const StyledRating = styled(Rating)(({ theme }) => ({
+  "& .MuiRating-iconEmpty .MuiSvgIcon-root": {
+    color: theme.palette.action.disabled,
+  },
+}));
+
+const customIcons = {
+  1: {
+    icon: <SentimentVeryDissatisfiedIcon color="error" />,
+    label: "Very Dissatisfied",
+  },
+  2: {
+    icon: <SentimentDissatisfiedIcon color="error" />,
+    label: "Dissatisfied",
+  },
+  3: {
+    icon: <SentimentSatisfiedIcon color="warning" />,
+    label: "Neutral",
+  },
+  4: {
+    icon: <SentimentSatisfiedAltIcon color="success" />,
+    label: "Satisfied",
+  },
+  5: {
+    icon: <SentimentVerySatisfiedIcon color="success" />,
+    label: "Very Satisfied",
+  },
+};
+
+function IconContainer(props) {
+  const { value, ...other } = props;
+  return <span {...other}>{customIcons[value].icon}</span>;
+}
+
+IconContainer.propTypes = {
+  value: PropTypes.number.isRequired,
+};
+
 const ReviewForm = ({ recipeId }) => {
-  const { user, setUser } = useUser();
+  const { user } = useUser();
   const [comment, setComment] = useState("");
   const [image, setImage] = useState("");
-  const [value, setValue] = React.useState(2);
+  const [value, setValue] = React.useState(3);
 
-  console.log("comment id: ", recipeId);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (comment.trim() === "") return;
+    if (comment.trim() === "") {
+      window.alert("review cannot be empty");
+      return;
+    }
 
     if (user === null) {
       console.error("USER ISNT LOGGED IN!");
@@ -62,7 +110,7 @@ const ReviewForm = ({ recipeId }) => {
 
     if (comment.length < 5 || comment.length > 1000) {
       window.alert(
-        `your comment was ${comment.length} characters, it must be within 5 and 1000 characters`
+        `your review was ${comment.length} characters, it must be between 5 and 1000 characters`
       );
       return;
     }
@@ -72,8 +120,7 @@ const ReviewForm = ({ recipeId }) => {
     data.append("body", comment);
     data.append("rating", value);
 
-    const res = postReview(data, recipeId, user);
-    console.log(res);
+    postReview(data, recipeId, user);
 
     setComment("");
   };
@@ -96,13 +143,15 @@ const ReviewForm = ({ recipeId }) => {
           }}
         ></input>
 
-        <Rating
-          name="simple-controlled"
+        <StyledRating
+          name="highlight-selected-only"
+          defaultValue={3}
+          IconContainerComponent={IconContainer}
           value={value}
-          precision={0.5}
           onChange={(event, newValue) => {
             setValue(newValue);
           }}
+          highlightSelectedOnly
         />
 
         <SubmitButton type="submit">Submit</SubmitButton>

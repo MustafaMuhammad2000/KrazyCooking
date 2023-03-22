@@ -23,16 +23,12 @@ export const postComment = async (body, postId, user) => {
     },
   };
 
-  console.log("post comment body: ", body);
-  console.log("post id: ", postId);
-  console.log("token: ", user);
   try {
     const response = await axios.post(
       `${BASE_URL}/api/recipe/${postId}`,
       body,
       options
     );
-    console.log(response.data);
     return response;
   } catch (error) {
     console.error(error);
@@ -48,20 +44,22 @@ export const postReview = async (body, commentId, user) => {
     },
   };
 
-  console.log("post review body: ", body);
-  console.log("recipe id: ", commentId);
-  console.log("token: ", user);
-  try {
-    const response = await axios.post(
-      `${BASE_URL}/api/review/${commentId}`,
-      body,
-      options
-    );
-    console.log(response.data);
-    return response;
-  } catch (error) {
-    console.error(error);
-  }
+  axios
+    .post(`${BASE_URL}/api/review/${commentId}`, body, options)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      console.error(error);
+      if (error.response) {
+        if (
+          error.response.data.message ===
+          "User has already written a review for this recipe"
+        ) {
+          window.alert("You have already reviewed this recipe!");
+        }
+      }
+    });
   return;
 };
 

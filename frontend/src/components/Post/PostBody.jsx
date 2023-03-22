@@ -9,8 +9,6 @@ import ErrorBoundary from "../../utils/ErrorBoundary";
 const PostBody = ({ post }) => {
   const [counter, setCounter] = useState(0);
   const timeSincePost = moment(new Date(post.dateCreated)).fromNow();
-  console.log(post);
-  console.log(post.recipes);
 
   if (post.recipes === undefined) {
     return;

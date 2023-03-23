@@ -16,6 +16,7 @@ const App = () => (
             <Route path = "/search/:searchTerm" element = {<SearchFeed />}/>
             <Route path = "/login" element = {<Login />} />
             <Route path = "/register" element = {<Register />} />
+            <Route path = "/user/:id" element = {<ProfilePage />} />
             <Route path = "/randompost" element = {<RandomPost />} />
         </Routes>
         </Box>

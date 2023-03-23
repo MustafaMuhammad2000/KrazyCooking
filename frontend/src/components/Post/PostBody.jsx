@@ -120,6 +120,11 @@ const PostBody = ({ post }) => {
               style={bookmarkStyle}
               type="button"
               onClick={() => {
+                console.log("user: ", user);
+                if (user === null) {
+                  window.alert("You must be logged in to save a post");
+                  return;
+                }
                 {
                   !postSaved && savePost(post._id, user);
                 }
@@ -140,6 +145,11 @@ const PostBody = ({ post }) => {
               type="button"
               onClick={() => {
                 // setUpvote(1);
+
+                if (user === null) {
+                  window.alert("You must be logged in to upvote a post");
+                  return;
+                }
                 upvotePost(post._id, user);
               }}
             >
@@ -149,6 +159,12 @@ const PostBody = ({ post }) => {
               type="button"
               onClick={() => {
                 // setUpvote(-1);
+
+                if (user === null) {
+                  window.alert("You must be logged in to remove an upvote");
+                  return;
+                }
+
                 removeUpvote(post._id, user);
               }}
             >

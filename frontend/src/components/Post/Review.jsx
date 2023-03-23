@@ -9,12 +9,13 @@ import {
   CardHeader,
   Avatar,
   CardMedia,
+  Rating,
 } from "@mui/material";
 import moment from "moment";
 import { deleteReply } from "../../utils/fetchFromApi";
 import { useUser } from "../../utils/UserContext";
 
-const Review = ({ review }) => {
+const Review = ({ review, rating }) => {
   const { user, id, admin } = useUser();
   return (
     <Card
@@ -55,6 +56,7 @@ const Review = ({ review }) => {
                 Delete
               </Button>
             )}
+            <Rating name="read-only" value={rating} readOnly />
           </CardActions>
         </Box>
       </Box>

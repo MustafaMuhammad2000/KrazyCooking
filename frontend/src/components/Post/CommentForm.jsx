@@ -70,6 +70,7 @@ const CommentForm = ({ postId }) => {
     console.log("recipe response: ", res);
 
     setComment("");
+    window.location.href = window.location.href;
   };
 
   //Element for writing recipes, includes a text box and adding an image

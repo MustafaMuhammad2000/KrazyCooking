@@ -9,6 +9,7 @@ import {
   CardHeader,
   Avatar,
   CardMedia,
+  Rating,
 } from "@mui/material";
 import moment from "moment";
 import { deleteReply } from "../../utils/fetchFromApi";
@@ -24,6 +25,15 @@ const Comment = ({ comment }) => {
     setCommentId(id);
     setIsOpen(!isOpen);
   };
+
+  const calculateAverageRating = (reviews) => {
+    if (reviews.length === 0) return 0;
+
+    const sum = reviews.reduce((acc, review) => acc + review.rating, 0);
+
+    return sum / reviews.length;
+  };
+
   return (
     <Card
       alignItems="center"
@@ -46,7 +56,7 @@ const Comment = ({ comment }) => {
             }
             title={comment.author.username}
             subheader={moment(new Date(comment.dateCreated)).fromNow()}
-          ></CardHeader>
+          />
           <CardContent>
             <Typography paragraph>{comment.body}</Typography>
           </CardContent>
@@ -67,11 +77,19 @@ const Comment = ({ comment }) => {
                 size="small"
                 onClick={() => {
                   deleteReply(`recipe/${comment._id}`, user);
+                  //  refresh page
+                  window.location.href = window.location.href;
                 }}
               >
                 Delete
               </Button>
             )}
+            <Rating
+              name="read-only"
+              value={calculateAverageRating(comment.reviews) || 0}
+              precision={0.5}
+              readOnly
+            />
           </CardActions>
         </Box>
       </Box>

@@ -73,16 +73,18 @@ const PostBody = ({ post }) => {
           borderRadius: 10,
           border: "none",
           p: 3,
+          pl: 5,
+          pr: 5,
         }}
       >
-        <Stack>
+        <Stack width="87%">
           {/* Title */}
-          <Typography variant="h2" color="black">
+          <Typography variant="h2" color="#323232" fontWeight={"400"}>
             {post.title}
           </Typography>
 
           {/* Post Content   */}
-          <Typography variant="h6" color="black">
+          <Typography variant="body1" color="black" paragraph fontSize={20}>
             {post.body}
           </Typography>
           {/* Post image */}
@@ -111,7 +113,7 @@ const PostBody = ({ post }) => {
             <South />
           </IconButton>
 
-          <Typography variant="h5">{post.upvotes}</Typography>
+          <Typography variant="h4">{post.upvotes}</Typography>
         </Stack>
       </Stack>
 

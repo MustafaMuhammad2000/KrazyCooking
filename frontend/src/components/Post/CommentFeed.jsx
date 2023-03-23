@@ -33,10 +33,7 @@ const CommentFeed = ({ comments }) => {
     <div>
       {comments.map((comment, index) => (
         <Box key={comment._id} mt={5}>
-          <Comment
-            comment={comment}
-            averageReview={calculateAverageRating(comment.reviews)}
-          />
+          <Comment comment={comment} />
           {comment.reviews.map((review, reviewIndex) => (
             <Box key={review._id}>
               <Review review={review} rating={review.rating} />

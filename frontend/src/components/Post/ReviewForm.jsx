@@ -18,6 +18,7 @@ const Container = styled("div")`
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+  z-index: 1;
 `;
 
 const CommentInput = styled("textarea")`

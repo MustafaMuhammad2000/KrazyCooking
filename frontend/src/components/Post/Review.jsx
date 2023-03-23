@@ -13,26 +13,20 @@ import {
 import moment from "moment";
 import { deleteReply } from "../../utils/fetchFromApi";
 import { useUser } from "../../utils/UserContext";
-import Popup from "./Popup";
-import ReviewForm from "./ReviewForm";
 
-const Comment = ({ comment }) => {
+const Review = ({ review }) => {
   const { user, id, admin } = useUser();
-  const [commentId, setCommentId] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const togglePopup = (id) => {
-    setCommentId(id);
-    setIsOpen(!isOpen);
-  };
   return (
     <Card
       alignItems="center"
       sx={{
         justifyContent: "space-between",
-        backgroundColor: "#A5D2FF",
+        backgroundColor: "#CEE7FF",
         borderRadius: 10,
         border: "none",
         p: 3,
+        ml: 15,
+        mt: 3,
         display: "flex",
       }}
     >
@@ -41,32 +35,21 @@ const Comment = ({ comment }) => {
           <CardHeader
             avatar={
               <Avatar>
-                <img src={comment.author.profilePicture} height={30} />
+                <img src={review.author.profilePicture} height={30} />
               </Avatar>
             }
-            title={comment.author.username}
-            subheader={moment(new Date(comment.dateCreated)).fromNow()}
+            title={review.author.username}
+            subheader={moment(new Date(review.dateCreated)).fromNow()}
           ></CardHeader>
           <CardContent>
-            <Typography paragraph>{comment.body}</Typography>
+            <Typography paragraph>{review.body}</Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" onClick={() => togglePopup(comment._id)}>
-              Reply
-            </Button>
-
-            {isOpen && (
-              <Popup
-                content={<ReviewForm recipeId={commentId} />}
-                handleClose={togglePopup}
-              />
-            )}
-
-            {(comment.author._id === id || admin) && (
+            {(review.author._id === id || admin) && (
               <Button
                 size="small"
                 onClick={() => {
-                  deleteReply(`recipe/${comment._id}`, user);
+                  deleteReply(`review/${review._id}`, user);
                 }}
               >
                 Delete
@@ -75,15 +58,15 @@ const Comment = ({ comment }) => {
           </CardActions>
         </Box>
       </Box>
-      {comment.picture && (
+      {review.picture && (
         <CardMedia
           component="img"
-          sx={{ width: 200 }}
-          image={comment.picture}
+          sx={{ width: 200, height: 200 }}
+          image={review.picture}
         />
       )}
     </Card>
   );
 };
 
-export default Comment;
+export default Review;

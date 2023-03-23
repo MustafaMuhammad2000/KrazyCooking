@@ -5,17 +5,18 @@ import moment from "moment";
 import CommentFeed from "./CommentFeed";
 import CommentForm from "./CommentForm";
 import ErrorBoundary from "../../utils/ErrorBoundary";
+import { upvotePost } from "../../utils/fetchFromApi";
+import { useUser } from "../../utils/UserContext";
 
 const PostBody = ({ post }) => {
-  const [counter, setCounter] = useState(0);
   const timeSincePost = moment(new Date(post.dateCreated)).fromNow();
-
+  const { user } = useUser();
   if (post.recipes === undefined) {
     return;
   }
 
   return (
-    <Stack direction="column" mb={5} width="75vw">
+    <Stack direction="column" mb={5} mt={5} width="75vw">
       {/* Upper Section - user and time components */}
       <Stack
         direction="row"
@@ -33,7 +34,7 @@ const PostBody = ({ post }) => {
           sx={{
             borderRadius: 20,
             border: "1px solid #e3e3e3",
-            backgroundColor: "#0BDBB6",
+            backgroundColor: "#D7D8FF",
             pl: 1,
             pr: 1,
           }}
@@ -52,7 +53,7 @@ const PostBody = ({ post }) => {
           sx={{
             borderRadius: 20,
             border: "1px solid #e3e3e3",
-            backgroundColor: "#0BDBB6",
+            backgroundColor: "#D7D8FF",
             pl: 1,
             pr: 1,
           }}
@@ -68,7 +69,7 @@ const PostBody = ({ post }) => {
         alignItems="center"
         sx={{
           justifyContent: "space-between",
-          backgroundColor: "#E9FFFF",
+          backgroundColor: "#A5D2FF",
           borderRadius: 10,
           border: "none",
           p: 3,
@@ -95,7 +96,8 @@ const PostBody = ({ post }) => {
           <IconButton
             type="button"
             onClick={() => {
-              setCounter(counter + 1);
+              //setCounter(counter + 1);
+              upvotePost(post._id, user);
             }}
           >
             <North />
@@ -103,13 +105,13 @@ const PostBody = ({ post }) => {
           <IconButton
             type="button"
             onClick={() => {
-              setCounter(counter - 1);
+              //setCounter(counter -1);
             }}
           >
             <South />
           </IconButton>
 
-          <Typography variant="h5">{counter}</Typography>
+          <Typography variant="h5">{post.upvotes}</Typography>
         </Stack>
       </Stack>
 

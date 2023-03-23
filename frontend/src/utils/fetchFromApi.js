@@ -1,7 +1,22 @@
 import axios from "axios";
-import { useUser } from "./UserContext";
 
 const BASE_URL = "http://localhost:8000";
+
+export const upvotePost = async (postId, user) => {
+  axios
+    .put(`${BASE_URL}/api/post/${postId}/upvote`, {
+      headers: {
+        authorization: `${user}`,
+      },
+    })
+    .then((response) => {
+      window.alert(response.data.message);
+    })
+    .catch((error) => {
+      console.error(error);
+      if (error.response) window.alert(error.response.data.message);
+    });
+};
 
 export const deleteReply = async (url, user) => {
   axios
@@ -12,6 +27,7 @@ export const deleteReply = async (url, user) => {
     })
     .catch((error) => {
       console.error(error);
+      if (error.response) window.alert(error.response.data.message);
     });
 };
 

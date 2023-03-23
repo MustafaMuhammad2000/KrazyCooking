@@ -70,7 +70,6 @@ const CommentForm = ({ postId }) => {
     console.log("recipe response: ", res);
 
     setComment("");
-    window.location.href = window.location.href;
   };
 
   //Element for writing recipes, includes a text box and adding an image
@@ -81,7 +80,7 @@ const CommentForm = ({ postId }) => {
         <CommentInput
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          placeholder="Write your comment here..."
+          placeholder="Write your recipe here..."
         />
 
         {/* Submitting Image */}

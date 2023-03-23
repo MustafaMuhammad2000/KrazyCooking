@@ -98,9 +98,7 @@ const ReviewForm = ({ recipeId }) => {
 
     if (user === null) {
       console.error("USER ISNT LOGGED IN!");
-      window.alert(
-        "you must be logged in to leave a review! 💀💀💀💀💀💀💀💀💀💀💀💀💀💀💀"
-      );
+      window.alert("you must be logged in to leave a review!");
       return;
     }
 

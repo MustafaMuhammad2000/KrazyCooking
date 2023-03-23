@@ -2,6 +2,21 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:8000";
 
+export const createPost = async (body, user) => {
+  axios
+    .post(`${BASE_URL}/api/post`, body, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `${user}`,
+      },
+    })
+    .catch((error) => {
+      console.log(error);
+      if (error.response)
+        console.log("create post error: ", error.response.data.message);
+    });
+};
+
 export const savePost = async (postId, user) => {
   console.log("token: ", user);
   console.log("post id: ", postId);

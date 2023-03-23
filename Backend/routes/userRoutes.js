@@ -49,7 +49,7 @@ router.patch(
 
 router.post("/savePost/:pid", verifyToken, savePost);
 
-router.delete("/removedSavedPost/:pid", verifyToken, removeSavedPost);
+router.delete("/removeSavedPost/:pid", verifyToken, removeSavedPost);
 
 router.post("/checkImage", upload.single("image"), checkImage);
 

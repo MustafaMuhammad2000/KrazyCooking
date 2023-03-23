@@ -22,10 +22,12 @@ const SortButton = styled(Button)({
   boxShadow: "none",
   textTransform: "none",
   fontSize: 20,
+  color: "#6b6c7f",
   padding: "6px 18px",
   border: "2px solid",
   borderRadius: 30,
   lineHeight: 1.5,
+  marginLeft: 40,
   backgroundColor: "#D7D8FF",
   borderColor: "#D7D8FF",
   "&:hover": {

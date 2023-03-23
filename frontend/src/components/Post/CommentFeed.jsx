@@ -23,6 +23,7 @@ const CommentFeed = ({ comments }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [commentOwner, setCommentOwner] = useState(false);
   const [commentId, setCommentId] = useState("");
+  const [ratingValue, setRating] = useState(0);
   const togglePopup = (id) => {
     setCommentId(id);
     setIsOpen(!isOpen);
@@ -32,10 +33,13 @@ const CommentFeed = ({ comments }) => {
     <div>
       {comments.map((comment, index) => (
         <Box key={comment._id} mt={5}>
-          <Comment comment={comment} />
+          <Comment
+            comment={comment}
+            averageReview={calculateAverageRating(comment.reviews)}
+          />
           {comment.reviews.map((review, reviewIndex) => (
             <Box key={review._id}>
-              <Review review={review} />
+              <Review review={review} rating={review.rating} />
             </Box>
           ))}
         </Box>

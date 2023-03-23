@@ -43,7 +43,7 @@ export const unsavePost = async (postId, user) => {
   console.log("token: ", user);
   console.log("post id: ", postId);
   axios
-    .delete(`${BASE_URL}/api/user/removedSavedPost/${postId}`, {
+    .delete(`${BASE_URL}/api/user/removeSavedPost/${postId}`, {
       headers: {
         authorization: `${user}`,
       },

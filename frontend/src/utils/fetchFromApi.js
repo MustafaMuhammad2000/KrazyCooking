@@ -2,13 +2,77 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:8000";
 
-export const upvotePost = async (postId, user) => {
+export const savePost = async (postId, user) => {
+  console.log("token: ", user);
+  console.log("post id: ", postId);
   axios
-    .put(`${BASE_URL}/api/post/${postId}/upvote`, {
+    .post(
+      `${BASE_URL}/api/user/savePost/${postId}`,
+      {},
+      {
+        headers: {
+          authorization: `${user}`,
+        },
+      }
+    )
+    .then((response) => {
+      window.alert(response.data.message);
+    })
+    .catch((error) => {
+      console.log(error);
+      if (error.response) window.alert(error.response.data.message);
+    });
+};
+
+export const unsavePost = async (postId, user) => {
+  console.log("token: ", user);
+  console.log("post id: ", postId);
+  axios
+    .delete(`${BASE_URL}/api/user/removedSavedPost/${postId}`, {
       headers: {
         authorization: `${user}`,
       },
     })
+    .then((response) => {
+      window.alert(response.data.message);
+    })
+    .catch((error) => {
+      console.log(error);
+      if (error.response) window.alert(error.response.data.message);
+    });
+};
+
+export const upvotePost = async (postId, user) => {
+  axios
+    .put(
+      `${BASE_URL}/api/post/${postId}/upvote`,
+      {},
+      {
+        headers: {
+          authorization: `${user}`,
+        },
+      }
+    )
+    .then((response) => {
+      window.alert(response.data.message);
+    })
+    .catch((error) => {
+      console.error(error);
+      if (error.response) window.alert(error.response.data.message);
+    });
+};
+
+export const removeUpvote = async (postId, user) => {
+  axios
+    .put(
+      `${BASE_URL}/api/post/${postId}/remove-upvote`,
+      {},
+      {
+        headers: {
+          authorization: `${user}`,
+        },
+      }
+    )
     .then((response) => {
       window.alert(response.data.message);
     })

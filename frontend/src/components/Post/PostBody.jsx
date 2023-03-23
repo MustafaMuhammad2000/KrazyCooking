@@ -1,19 +1,42 @@
 import { useState } from "react";
-import { Stack, Typography, IconButton, Box, TextField } from "@mui/material";
+import {
+  Stack,
+  Typography,
+  IconButton,
+  Box,
+  TextField,
+  Button,
+} from "@mui/material";
 import { North, South, Person, AccessTime } from "@mui/icons-material";
 import moment from "moment";
 import CommentFeed from "./CommentFeed";
 import CommentForm from "./CommentForm";
 import ErrorBoundary from "../../utils/ErrorBoundary";
-import { upvotePost } from "../../utils/fetchFromApi";
+import {
+  removeUpvote,
+  savePost,
+  unsavePost,
+  upvotePost,
+} from "../../utils/fetchFromApi";
 import { useUser } from "../../utils/UserContext";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 const PostBody = ({ post }) => {
   const timeSincePost = moment(new Date(post.dateCreated)).fromNow();
+  const [postSaved, setPostSaved] = useState(false);
+  const [upvote, setUpvote] = useState(0);
   const { user } = useUser();
   if (post.recipes === undefined) {
     return;
   }
+
+  const bookmarkStyle = {
+    position: "absolute",
+    top: "30px",
+    right: "30px",
+    zIndex: 1,
+  };
 
   return (
     <Stack direction="column" mb={5} mt={5} width="75vw">
@@ -62,60 +85,81 @@ const PostBody = ({ post }) => {
           <Typography>{timeSincePost}</Typography>
         </Stack>
       </Stack>
+      <Box position="relative">
+        {/* Main Section - title and voting components */}
+        <Stack
+          direction="row"
+          alignItems="center"
+          sx={{
+            justifyContent: "space-between",
+            backgroundColor: "#A5D2FF",
+            borderRadius: 10,
+            border: "none",
+            p: 3,
+            pl: 5,
+            pr: 5,
+          }}
+        >
+          <Stack width="87%">
+            {/* Title */}
+            <Typography variant="h2" color="#323232" fontWeight={"400"}>
+              {post.title}
+            </Typography>
 
-      {/* Main Section - title and voting components */}
-      <Stack
-        direction="row"
-        alignItems="center"
-        sx={{
-          justifyContent: "space-between",
-          backgroundColor: "#A5D2FF",
-          borderRadius: 10,
-          border: "none",
-          p: 3,
-          pl: 5,
-          pr: 5,
-        }}
-      >
-        <Stack width="87%">
-          {/* Title */}
-          <Typography variant="h2" color="#323232" fontWeight={"400"}>
-            {post.title}
-          </Typography>
+            {/* Post Content   */}
+            <Typography variant="body1" color="black" paragraph fontSize={20}>
+              {post.body}
+            </Typography>
+            {/* Post image */}
+          </Stack>
 
-          {/* Post Content   */}
-          <Typography variant="body1" color="black" paragraph fontSize={20}>
-            {post.body}
-          </Typography>
-          {/* Post image */}
+          {/* Post Image */}
+          {post.picture && <img src={post.picture} />}
+          <Box sx={{ display: "flex", backgroundColor: "black" }}>
+            <IconButton
+              style={bookmarkStyle}
+              type="button"
+              onClick={() => {
+                {
+                  !postSaved && savePost(post._id, user);
+                }
+                {
+                  postSaved && unsavePost(post._id, user);
+                }
+
+                setPostSaved(!postSaved);
+              }}
+            >
+              {!postSaved && <BookmarkBorderIcon />}
+              {postSaved && <BookmarkIcon />}
+            </IconButton>
+          </Box>
+          {/* Voting */}
+          <Stack direction="row" alignItems="center">
+            <IconButton
+              type="button"
+              onClick={() => {
+                // setUpvote(1);
+                upvotePost(post._id, user);
+              }}
+            >
+              <North />
+            </IconButton>
+            <IconButton
+              type="button"
+              onClick={() => {
+                // setUpvote(-1);
+                removeUpvote(post._id, user);
+              }}
+            >
+              <South />
+            </IconButton>
+
+            <Typography variant="h4">{post.upvotes}</Typography>
+            {/* <Typography variant="h4">{post.upvotes + upvote}</Typography> */}
+          </Stack>
         </Stack>
-
-        {/* Post Image */}
-        {post.picture && <img src={post.picture} />}
-
-        {/* Voting */}
-        <Stack direction="row" alignItems="center">
-          <IconButton
-            type="button"
-            onClick={() => {
-              //setCounter(counter + 1);
-              upvotePost(post._id, user);
-            }}
-          >
-            <North />
-          </IconButton>
-          <IconButton
-            type="button"
-            onClick={() => {
-              //setCounter(counter -1);
-            }}
-          >
-            <South />
-          </IconButton>
-
-          <Typography variant="h4">{post.upvotes}</Typography>
-        </Stack>
-      </Stack>
+      </Box>
 
       <CommentForm postId={post._id} />
 

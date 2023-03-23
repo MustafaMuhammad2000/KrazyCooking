@@ -35,7 +35,6 @@ const PostBody = ({ post }) => {
     position: "absolute",
     top: "30px",
     right: "30px",
-    zIndex: 1,
   };
 
   return (

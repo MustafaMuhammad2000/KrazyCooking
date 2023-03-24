@@ -30,6 +30,30 @@ const LoginButton = styled(Button)({
   },
 });
 
+const CreatePostButton = styled(Button)({
+  boxShadow: "none",
+  textTransform: "none",
+  fontSize: 20,
+  color: "#6b6c7f",
+  padding: "6px 18px",
+  border: "1px solid",
+  borderRadius: 30,
+  lineHeight: 1.5,
+  marginLeft: 40,
+  backgroundColor: "#b7b9f7",
+  borderColor: "#b7b9f7",
+  "&:hover": {
+    backgroundColor: "#D9DAFF",
+    borderColor: "#6b6c7f",
+    boxShadow: "none",
+  },
+  "&:active": {
+    boxShadow: "none",
+    backgroundColor: "#b7b9f7",
+    borderColor: "#b7b9f7",
+  },
+});
+
 const RegisterButton = styled(Button)({
   boxShadow: "none",
   textTransform: "none",
@@ -78,7 +102,7 @@ const Navbar = () => {
       p={2}
       sx={{
         position: "sticky",
-        background: "#4DFED1",
+        background: "#B4DAFF",
         top: 0,
         justifyContent: "space-between",
         pr: 10,
@@ -92,6 +116,9 @@ const Navbar = () => {
 
       <Stack direction="row" alignItems={"center"}>
         <SearchBar />
+        <Link to="/createPost">
+          <CreatePostButton>Create Post</CreatePostButton>
+        </Link>
 
         {user ? (
           <div>

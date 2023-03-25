@@ -162,3 +162,34 @@ export const fetchFromAPI = async (url) => {
   const { data } = await axios.get(`${BASE_URL}/${url}`);
   return data;
 };
+
+export const getSavedPosts = async (url,user) => {
+  const { data } = await axios.get(`${BASE_URL}/${url}`,{
+      headers: {
+        authorization: `${user}`,
+      },
+    })
+    .catch((error) => {
+      console.log(error);
+      console.log(user);
+      if (error.response)
+        console.log("get post error: ", error.response.data.message);
+    });
+  return data.savedPosts;
+};
+
+export const getMyPosts = async (url, user) => {
+  const { data } = await axios
+    .get(`${BASE_URL}/${url}`, {
+      headers: {
+        authorization: `${user}`,
+      },
+    })
+    .catch((error) => {
+      console.log(error);
+      console.log(user);
+      if (error.response)
+        console.log("get post error: ", error.response.data.message);
+    });
+  return data.posts;
+};

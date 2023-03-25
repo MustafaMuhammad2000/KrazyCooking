@@ -1,5 +1,5 @@
-import { Stack, Box, Typography } from "@mui/material";
-import PostCard from "./PostCard";
+import { Stack, Box, Typography } from '@mui/material';
+import PostCard from './PostCard';
 import ErrorBoundary from "../../utils/ErrorBoundary";
 
 const PostElement = ({ posts }) => {

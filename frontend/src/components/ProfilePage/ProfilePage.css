@@ -105,6 +105,19 @@
     position: absolute;
 }
 
+.admin-text {
+    
+    font-family: 'Helvetica', sans-serif;
+    color: #333;
+    text-shadow: 2px 2px #ccc;
+    font-size: 16px;
+    margin-top: 220px;
+    display: flex;
+    top: -10px;
+    right: 10px;
+    position: absolute;
+}
+
 .profile-middle{
 
     display:flex;

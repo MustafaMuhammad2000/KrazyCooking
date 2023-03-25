@@ -2,15 +2,14 @@ import React, {useState, useEffect } from 'react';
 import { useUser } from '../../utils/UserContext';
 import { Box, Stack, Typography } from '@mui/material';
 
-
 function Login() {
-  const [Username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const{setUser} = useUser();
-  const{setUserId}= useUser();
-  const axios = require('axios');
+  const [Username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const { setUser } = useUser();
+  const { setUserId } = useUser();
+  const axios = require("axios");
 
-  console.log('Entered user:', Username);
+  console.log("Entered user:", Username);
 
   const containerStyle = {
     display: 'flex',
@@ -64,14 +63,14 @@ fontStyle: 'normal'
     backgroundColor: '#FFFFFF'
     //boxShadow: '#DBDCF9'
   };
-  
+
   useEffect(() => {
     const checkToken = () => {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       if (token) {
         // Perform a check with the server to verify the token is valid
         axios
-          .get('http://localhost:8000/api/user/getUser', {
+          .get("http://localhost:8000/api/user/getUser", {
             headers: {
               authorization: `${token}`,
             },
@@ -79,21 +78,21 @@ fontStyle: 'normal'
           .then((response) => {
             const { username } = response.data;
             setUser(response.data);
-            console.log('Hey this is the data:', response.data);
-            console.log('Hey this is the token user:', response.data.username);
-            console.log('Hey this is the token id:', response.data.id);
+            console.log("Hey this is the data:", response.data);
+            console.log("Hey this is the token user:", response.data.username);
+            console.log("Hey this is the token id:", response.data.id);
           })
           .catch((error) => {
             console.error(error);
-            console.log('Hey this is the token error', token);
-            localStorage.removeItem('token');
+            console.log("Hey this is the token error", token);
+            localStorage.removeItem("token");
             setUser(null); // Remove the user from the user context if the token is invalid
           });
       }
     };
 
     checkToken(); // Call the function when the component mounts
-  
+
     // Call the function whenever the user context is updated
     return () => {
       checkToken();
@@ -108,26 +107,27 @@ fontStyle: 'normal'
     setPassword(event.target.value);
   };
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     //TODO: add login logic here
-    try{
-      const response = await axios.post('http://localhost:8000/api/user/login',{
-        username: Username,
-        password: password,
-      });
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/user/login",
+        {
+          username: Username,
+          password: password,
+        }
+      );
       const { token } = response.data;
-      localStorage.setItem('token', token);
-      console.log('this is the token:',response.data);
+      localStorage.setItem("token", token);
+      console.log("this is the token:", response.data);
       setUser(Username);
-      window.location.href ='/';
-    } catch (error){
+      window.location.href = "/";
+    } catch (error) {
       console.error(error);
-      alert('Login failed. Please try again.');
-    } 
+      alert("Login failed. Please try again.");
+    }
   };
-  
-
 
   return (
 

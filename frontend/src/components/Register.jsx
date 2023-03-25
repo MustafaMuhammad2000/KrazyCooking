@@ -10,6 +10,7 @@ export default function Form() {
 const [username, setName] = useState('');
 //const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
+const [DOB, setDOB] = useState("");
 const[admin, setAdmin] = useState(false);
 
 // States for checking the errors
@@ -124,6 +125,7 @@ fontStyle: 'normal'
     borderRadius: '3px',
     fontSize: '16px',
     backgroundColor: '#FFFFFF'
+
     //boxShadow: '#DBDCF9'
   };
 
@@ -141,7 +143,9 @@ return (
 		<p><label className="label" style={labelStyle}>Password: </label></p>
 		<input onChange={handlePassword} className="input"
           value={password} type="password" style = {inputStyle}/>
-        <p>
+
+    <p><label className="label">Date of Birth</label></p>
+   <input onChange={(e) => setDOB(e.target.value)} className="input" value={DOB}type="date"/> <p>
 		<button onClick={handleSubmit} className="btn" type="submit" style = {buttonStyle}>
 		Submit
 		</button>

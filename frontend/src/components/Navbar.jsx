@@ -2,11 +2,12 @@ import { Stack, Button, Avatar, Menu, MenuItem } from "@mui/material";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-
+import { useNavigate } from "react-router-dom";
 import logo from "../utils/krazy-logo-45.png";
 import SearchBar from "./SearchBar";
-
 import { useUser } from "../utils/UserContext";
+
+
 
 const LoginButton = styled(Button)({
   boxShadow: "none",
@@ -76,13 +77,22 @@ const RegisterButton = styled(Button)({
   },
 });
 
+
+
+
 const Navbar = () => {
+  const navigate = useNavigate();
   const { user, setUser } = useUser();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
   const axios = require("axios");
+
+  const handleRandomPress = () => {
+    navigate('/randompost');
+    window.location.reload();
+  };
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -137,9 +147,7 @@ const Navbar = () => {
         <img src={logo} alt="logo" height={45} />
       </Link>
 
-      <Link to="/randompost">
-        <LoginButton>Random Post</LoginButton>
-      </Link>
+        <LoginButton onClick={handleRandomPress}>Random Post</LoginButton>
 
       <Stack direction="row" alignItems={"center"}>
         <SearchBar />

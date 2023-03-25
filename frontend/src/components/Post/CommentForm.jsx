@@ -80,7 +80,7 @@ const CommentForm = ({ postId }) => {
         <CommentInput
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          placeholder="Write your comment here..."
+          placeholder="Write your recipe here..."
         />
 
         {/* Submitting Image */}

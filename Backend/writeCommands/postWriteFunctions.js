@@ -71,7 +71,7 @@ const deletePost = async (req, res) => {
 
     // Delete the post's images
     if (post.picture) {
-      await deleteImage(post.image);
+      await deleteImage(post.picture);
     }
 
     const deleteRecipesPromise = Promise.all(deleteRecipePromises);

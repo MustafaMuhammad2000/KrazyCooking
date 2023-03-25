@@ -29,9 +29,10 @@ const Post = () => {
       <IconButton
         sx={{
           borderRadius: 25,
-          backgroundColor: "grey",
+          backgroundColor: "#D7D8FF",
           height: 45,
           widgth: 45,
+          mt: 10,
         }}
         onClick={goBack}
       >

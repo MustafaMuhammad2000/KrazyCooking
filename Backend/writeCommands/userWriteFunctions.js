@@ -183,17 +183,14 @@ const removeSavedPost = async (req, res) => {
     if (!ObjectId.isValid(postId)) {
       return res.status(400).json({ message: "Invalid post id" });
     }
-    const savedPost = await db.SavedPost.findOne({ userId });
+    const savedPost = await db.SavedPost.findOne({ userId: userId });
 
     if (!savedPost || !savedPost.savedPosts.some((p) => p.equals(postId))) {
       return res.status(404).json({ message: "Post not found in saved posts" });
     }
 
-    const updatedSavedPost = await db.SavedPost.findOneAndUpdate(
-      { userId },
-      { $pull: { savedPosts: { post: postId } } },
-      { new: true }
-    );
+    savedPost.savedPosts.pull(postId);
+    await savedPost.save();
 
     res.status(200).json({ message: "Post removed from saved posts" });
   } catch (error) {

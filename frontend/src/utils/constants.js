@@ -1,0 +1,1 @@
+export const logo = './krazy-logo-45.png';

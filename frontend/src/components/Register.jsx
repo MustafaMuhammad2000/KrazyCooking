@@ -124,7 +124,8 @@ fontStyle: 'normal'
     border: '1px solid #ccc',
     borderRadius: '3px',
     fontSize: '16px',
-    backgroundColor: '#DBDCF9'
+    backgroundColor: '#FFFFFF'
+
     //boxShadow: '#DBDCF9'
   };
 
@@ -142,6 +143,7 @@ return (
 		<p><label className="label" style={labelStyle}>Password: </label></p>
 		<input onChange={handlePassword} className="input"
           value={password} type="password" style = {inputStyle}/>
+
     <p><label className="label">Date of Birth</label></p>
    <input onChange={(e) => setDOB(e.target.value)} className="input" value={DOB}type="date"/> <p>
 		<button onClick={handleSubmit} className="btn" type="submit" style = {buttonStyle}>

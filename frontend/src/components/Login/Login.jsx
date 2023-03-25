@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useUser } from "../../utils/UserContext";
-import { Box, Stack, Typography } from "@mui/material";
+import React, {useState, useEffect } from 'react';
+import { useUser } from '../../utils/UserContext';
+import { Box, Stack, Typography } from '@mui/material';
 
 function Login() {
   const [Username, setUsername] = useState("");
@@ -12,55 +12,55 @@ function Login() {
   console.log("Entered user:", Username);
 
   const containerStyle = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-    backgroundColor: "#FFFFFF",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    backgroundColor: '#FFFFFF'
   };
   const formStyle = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "55px",
-    backgroundColor: "#CEE7FF",
-    borderRadius: "15px",
-    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '55px',
+    backgroundColor: '#CEE7FF',
+    borderRadius: '15px',
+    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
   };
 
   const labelStyle = {
-    marginBottom: "10px",
-    fontSize: "16px",
+    marginBottom: '10px',
+    fontSize: '16px',
     fontWeight: 400,
-    textAlign: "left",
-    fontFamily: "Roboto",
-    fontStyle: "normal",
+    textAlign: 'left',
+fontFamily: 'Roboto',
+fontStyle: 'normal'
   };
 
   const buttonStyle = {
-    width: "100%",
-    padding: "10px",
-    backgroundColor: "#DBDCF9",
-    color: "#000000",
-    border: "none",
+    width: '100%',
+    padding: '10px',
+    backgroundColor: '#DBDCF9',
+    color: '#000000',
+    border: 'none',
     //borderRadius: '3px',
-    fontSize: "16px",
-    cursor: "pointer",
+    fontSize: '16px',
+    cursor: 'pointer',
     borderRadius: 20,
-    border: "1px solid #e3e3e3",
-    pl: 2,
-    boxShadow: "none",
-    mr: { sm: 5 },
+            border: '1px solid #e3e3e3',
+            pl: 2,
+            boxShadow: 'none',
+            mr: { sm: 5 } 
   };
 
   const inputStyle = {
-    width: "100%",
-    padding: "10px",
-    marginBottom: "15px",
-    border: "1px solid #ccc",
-    borderRadius: "3px",
-    fontSize: "16px",
-    backgroundColor: "#DBDCF9",
+    width: '100%',
+    padding: '10px',
+    marginBottom: '15px',
+    border: '1px solid #ccc',
+    borderRadius: '3px',
+    fontSize: '16px',
+    backgroundColor: '#FFFFFF'
     //boxShadow: '#DBDCF9'
   };
 
@@ -130,31 +130,22 @@ function Login() {
   };
 
   return (
+
     <div style={containerStyle}>
       <form onSubmit={handleSubmit} style={formStyle}>
-        <label style={labelStyle}>
+        <label  style={labelStyle}>
           Username:
-          <input
-            type="Username"
-            value={Username}
-            onChange={handleUsernameChange}
-            style={inputStyle}
-          />
+          <input type="Username" value={Username} onChange={handleUsernameChange} 
+          style = {inputStyle}/>
         </label>
         <br />
-        <label style={labelStyle}>
+        <label  style={labelStyle}>
           Password:
-          <input
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            style={inputStyle}
-          />
+          <input type="password" value={password} onChange={handlePasswordChange} 
+          style = {inputStyle}/>
         </label>
         <br />
-        <button type="submit" style={buttonStyle}>
-          Login
-        </button>
+        <button type="submit" style = {buttonStyle}>Login</button>
       </form>
     </div>
   );

@@ -13,5 +13,6 @@ export { default as CommentForm } from "./Post/CommentForm";
 export { default as Comment } from "./Post/Comment";
 export { default as ReviewForm } from "./Post/ReviewForm";
 export { default as ProfilePage } from "./ProfilePage/ProfilePage";
+export {default as RandomPost} from "./Post/RandomPost";
 export { default as Review } from "./Post/Review";
 export { default as CreatePost } from "./CreatePost/CreatePost";

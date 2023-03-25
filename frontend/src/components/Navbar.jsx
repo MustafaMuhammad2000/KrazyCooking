@@ -114,6 +114,13 @@ const Navbar = () => {
         <img src={logo} alt="logo" height={45} />
       </Link>
 
+      <Link to="/randompost">
+      <LoginButton>
+        Random Post
+      </LoginButton>
+
+      </Link>
+
       <Stack direction="row" alignItems={"center"}>
         <SearchBar />
         <Link to="/createPost">

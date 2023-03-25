@@ -1,5 +1,5 @@
 import { Stack, Button, Avatar, Menu, MenuItem } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 
@@ -80,6 +80,9 @@ const Navbar = () => {
   const { user, setUser } = useUser();
 
   const [anchorEl, setAnchorEl] = useState(null);
+  const [username, setUsername] = useState("");
+  const [avatar, setAvatar] = useState("");
+  const axios = require("axios");
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -95,6 +98,26 @@ const Navbar = () => {
     window.location.href = "/";
   };
 
+  useEffect(() => {
+    if (user!=null){
+          axios
+            .get("http://localhost:8000/api/user/Profile", {
+              headers: {
+                authorization: `${user}`,
+              },
+            })
+            .then((response) => {
+              setAvatar(response.data.profilePicture);
+              setUsername(response.data.username);
+              console.log(response);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+    }
+
+  });
+
   return (
     <Stack
       direction="row"
@@ -102,12 +125,12 @@ const Navbar = () => {
       p={2}
       sx={{
         position: "sticky",
-        background: "#B4DAFF",
+        background: "#4DFED1",
         top: 0,
         justifyContent: "space-between",
         pr: 10,
         pl: 10,
-        zIndex: 1,
+        zIndex: 20,
       }}
     >
       <Link to="/" style={{ display: "flex", alignItems: "center" }}>
@@ -115,10 +138,7 @@ const Navbar = () => {
       </Link>
 
       <Link to="/randompost">
-      <LoginButton>
-        Random Post
-      </LoginButton>
-
+        <LoginButton>Random Post</LoginButton>
       </Link>
 
       <Stack direction="row" alignItems={"center"}>
@@ -130,7 +150,7 @@ const Navbar = () => {
         {user ? (
           <div>
             <Button onClick={handleMenuOpen}>
-              <Avatar src={user.photoURL} alt={user.displayName} />
+              <Avatar src={avatar} alt={user.displayName} />
             </Button>
             <Menu
               anchorEl={anchorEl}
@@ -145,6 +165,16 @@ const Navbar = () => {
                 horizontal: "center",
               }}
             >
+              <h3
+                style={{
+                  textAlign: "center",
+                  fontWeight: "bold",
+                  margin: 2,
+                }}
+              >
+                <b> {username}</b>
+              </h3>
+
               <MenuItem onClick={handleMenuClose}>
                 <Link
                   to={`/user/${user}`}
@@ -153,16 +183,6 @@ const Navbar = () => {
                   Profile
                 </Link>
               </MenuItem>
-
-              <MenuItem onClick={handleMenuClose}>
-                <Link
-                  to={`/user/${user}`}
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  Change Password
-                </Link>
-              </MenuItem>
-
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
           </div>

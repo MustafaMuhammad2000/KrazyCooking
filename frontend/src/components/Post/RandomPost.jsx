@@ -13,11 +13,9 @@ const RandomPost = () => {
     navigate(-1);
   };
   const [post, setPost] = useState([]);
-useEffect(() => {
+  useEffect(() => {
     fetchFromAPI("api/post/random").then((data) => setPost(data));
   }, []);
-
-
 
   return (
     <Stack

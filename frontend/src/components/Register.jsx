@@ -123,7 +123,7 @@ fontStyle: 'normal'
     border: '1px solid #ccc',
     borderRadius: '3px',
     fontSize: '16px',
-    backgroundColor: '#DBDCF9'
+    backgroundColor: '#FFFFFF'
     //boxShadow: '#DBDCF9'
   };
 

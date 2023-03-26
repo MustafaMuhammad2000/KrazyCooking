@@ -33,7 +33,7 @@ const PostBody = ({ post }) => {
           sx={{
             borderRadius: 20,
             border: "1px solid #e3e3e3",
-            backgroundColor: "#0BDBB6",
+            backgroundColor: "#CEE7FF",
             pl: 1,
             pr: 1,
           }}
@@ -52,7 +52,7 @@ const PostBody = ({ post }) => {
           sx={{
             borderRadius: 20,
             border: "1px solid #e3e3e3",
-            backgroundColor: "#0BDBB6",
+            backgroundColor: "#CEE7FF",
             pl: 1,
             pr: 1,
           }}
@@ -68,7 +68,7 @@ const PostBody = ({ post }) => {
         alignItems="center"
         sx={{
           justifyContent: "space-between",
-          backgroundColor: "#E9FFFF",
+          backgroundColor: "#B4B5FF",
           borderRadius: 10,
           border: "none",
           p: 3,

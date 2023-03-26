@@ -114,7 +114,7 @@ const CreatePost = () => {
           pb={2}
           mb={40}
           sx={{
-            backgroundColor: "#A5D2FF",
+            backgroundColor: "#B4DAFF", // A5D2FF
             borderRadius: 10,
             border: "none",
           }}

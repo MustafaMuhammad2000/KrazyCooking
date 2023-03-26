@@ -87,7 +87,7 @@ const containerStyle = {
     flexDirection: 'column',
     alignItems: 'center',
     padding: '55px',
-    backgroundColor: '#CEE7FF',
+    backgroundColor: '#B4DAFF', //B4DAFF
     borderRadius: '15px',
     boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
   };

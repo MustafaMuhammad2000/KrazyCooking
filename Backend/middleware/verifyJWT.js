@@ -1,3 +1,7 @@
+/*
+  Middleware functions that reads the token from request and ensures authenticity
+*/
+
 const jwt = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
@@ -14,7 +18,6 @@ const verifyToken = (req, res, next) => {
     req.user.id = decoded.id;
     req.user.username = decoded.username;
     req.user.admin = decoded.admin;
-    console.log(decoded);
     next();
   });
 };

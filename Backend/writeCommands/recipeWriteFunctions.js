@@ -1,9 +1,12 @@
+/*
+  All functionality for write commands related to Recipes
+*/
 const mongoose = require("mongoose");
-
 const db = require("../Models/DB");
 const { uploadImage, deleteImage } = require("../helpers/imageFunctions");
 const ObjectId = mongoose.Types.ObjectId;
 
+//Create a recipe for a post
 const createRecipe = async (req, res) => {
   try {
     const { body } = req.body;
@@ -12,7 +15,6 @@ const createRecipe = async (req, res) => {
     if (!ObjectId.isValid(postId)) {
       return res.status(400).json({ message: "Invalid post id" });
     }
-    console.log(postId);
     const post = await db.Post.findById(postId);
     if (!post) {
       return res.status(404).json({ error: "Post not found" });
@@ -42,6 +44,7 @@ const createRecipe = async (req, res) => {
   }
 };
 
+//Delete an existing recipe for a post, have to recipe owner or admin
 const deleteRecipe = async (req, res) => {
   try {
     const recipeId = req.params.rcid;
@@ -79,7 +82,7 @@ const deleteRecipe = async (req, res) => {
     );
 
     if (!post) {
-      console.log("WTF no parent post?");
+      console.log("Odd... no parent post?");
     }
     // Delete recipe
     await db.Recipe.deleteOne({ _id: recipeId });

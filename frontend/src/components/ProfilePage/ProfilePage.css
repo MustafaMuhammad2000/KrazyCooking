@@ -27,7 +27,7 @@
 .Profile-Background{
     height: 80%;
     width: 100%;
-    background: #4dd6b6;
+    background: #CEE7FF;
     position: relative;
 }
 
@@ -172,7 +172,7 @@
 }
 
 .post-list {
-    background-color: lightcyan;
+    background-color: #CEE7FF;
     border-radius: 30px;
     padding: 20px;
     margin: 0 auto;

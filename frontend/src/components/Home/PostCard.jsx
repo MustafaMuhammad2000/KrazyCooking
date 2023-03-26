@@ -78,7 +78,7 @@ const PostCard = ({post}) => {
             sx={{
               borderRadius: 20,
               border: "1px solid #e3e3e3",
-              backgroundColor: "#0BDBB6",
+              backgroundColor: "#B4B5FF",
               pl: 1,
               pr: 1,
             }}
@@ -95,7 +95,7 @@ const PostCard = ({post}) => {
             sx={{
               borderRadius: 20,
               border: "1px solid #e3e3e3",
-              backgroundColor: "#0BDBB6",
+              backgroundColor: "#B4B5FF",
               pl: 1,
               pr: 1,
             }}
@@ -111,7 +111,7 @@ const PostCard = ({post}) => {
           alignItems="center"
           sx={{
             justifyContent: "space-between",
-            backgroundColor: "#E9FFFF",
+            backgroundColor: "#CEE7FF",
             borderRadius: 10,
             border: "none",
             p: 3,

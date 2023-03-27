@@ -7,16 +7,14 @@ import { fetchFromAPI } from "../../utils/fetchFromApi";
 import CommentFeed from "./CommentFeed";
 import { useNavigate } from "react-router-dom";
 
-const Post = () => {
-  const { id } = useParams();
+const RandomPost = () => {
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
   };
   const [post, setPost] = useState([]);
-
   useEffect(() => {
-    fetchFromAPI("api/post/" + id + "/view").then((data) => setPost(data));
+    fetchFromAPI("api/post/random").then((data) => setPost(data));
   }, []);
 
   return (
@@ -42,5 +40,4 @@ const Post = () => {
     </Stack>
   );
 };
-
-export default Post;
+export default RandomPost;

@@ -14,7 +14,8 @@ import {
   RandomPost,
   SavedPostsFeed,
   Sidebar,
-  MyPostsFeed
+  MyPostsFeed,
+  SearchResults
 } from "./components";
 
 const App = () => (
@@ -26,7 +27,7 @@ const App = () => (
         <Routes>
           <Route path="/" exact element={<Feed />} />
           <Route path="/post/:id" element={<Post />} />
-          <Route path="/search/:searchTerm" element={<SearchFeed />} />
+          <Route path="/search/:query" element={<SearchResults />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/user/:id" element={<ProfilePage />} />

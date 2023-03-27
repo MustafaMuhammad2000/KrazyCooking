@@ -1,38 +1,52 @@
-import React from 'react'
+import { React, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Paper, IconButton } from '@mui/material';
 import { Search } from '@mui/icons-material';
 
+
 const SearchBar = () => {
-  return (
-    <Paper
-        component="form"
-        onSubmit={() => {}}
-        sx = {{
-            borderRadius: 20,
-            border: '1px solid #e3e3e3',
-            pl: 2,
-            boxShadow: 'none',
-            mr: { sm: 5 } 
-        }}
-    >
-        <input 
-            className="search-bar"
-            placeholder="Search..."
-            value=""
-            onChange={() => {}}
-        />
-        <IconButton
-            type="submit"
+    const [searchText, setSearchText] = useState('');
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        navigate('/search/' + searchText);
+    }
+
+
+    const handleChange = (e) => {
+        setSearchText(e.target.value);
+    }
+
+    return (
+        <Paper
+            component="form"
+            onSubmit={handleSubmit}
             sx={{
-                p: '10px',
-                color: 'black'
+                borderRadius: 20,
+                border: '1px solid #e3e3e3',
+                pl: 2,
+                boxShadow: 'none',
+                mr: { sm: 5 }
             }}
         >
-            <Search />
-        </IconButton>
-    </Paper>
-  )
+            <input
+                className="search-bar"
+                placeholder="Search..."
+                value={searchText}
+                onChange={handleChange}
+            />
+            <IconButton
+                type="submit"
+                sx={{
+                    p: '10px',
+                    color: 'black'
+                }}
+            >
+                <Search />
+            </IconButton>
+        </Paper>
+    )
 }
 
 export default SearchBar

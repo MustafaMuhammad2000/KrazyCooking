@@ -321,5 +321,4 @@ describe('Write Post Routes', function () {
     expect(res.statusCode).toBe(404);
   });
 
-
 });

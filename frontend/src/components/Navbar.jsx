@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import logo from "../utils/krazy-logo-45.png";
 import SearchBar from "./SearchBar";
 import { useUser } from "../utils/UserContext";
+import { fetchFromAPI } from "../utils/fetchFromApi";
+
+
 
 const LoginButton = styled(Button)({
   boxShadow: "none",
@@ -85,7 +88,12 @@ const Navbar = () => {
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
   const axios = require("axios");
+  const [tag, setTag] = useState("");
 
+  const handleTagPress = () => {
+    navigate('/search/' + tag);
+  };
+  
   const handleRandomPress = () => {
     navigate("/randompost");
     window.location.reload();
@@ -105,6 +113,7 @@ const Navbar = () => {
     window.location.href = "/";
   };
 
+  
   useEffect(() => {
     if (user != null) {
       axios
@@ -123,6 +132,10 @@ const Navbar = () => {
         });
     }
   });
+
+  useEffect(() => {
+    fetchFromAPI('api/post/tagofmonth').then((data) => setTag(data.mostFrequentTag))
+  }, []);
 
   return (
     <Stack
@@ -143,7 +156,9 @@ const Navbar = () => {
         <img src={logo} alt="logo" height={45} />
       </Link>
 
-      <LoginButton onClick={handleRandomPress}>Random Post</LoginButton>
+        <LoginButton onClick={handleRandomPress}>Random Post</LoginButton>
+        Most popular tag this month:
+        <LoginButton onClick={handleTagPress}> {tag} </LoginButton>
 
       <Stack direction="row" alignItems={"center"}>
         <SearchBar />

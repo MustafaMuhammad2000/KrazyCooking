@@ -11,20 +11,30 @@ const SearchResults = () => {
 
   const [posts, setPosts] = useState([]);
 
-  
+
 
   useEffect(() => {
     fetchFromAPI('api/post/search?q=' + query).then((data) => setPosts(data));
   }, [query]);
 
+  if (posts.length == 0) {
+    return (
+      <Box p={2} display="flex" justifyContent="center">
+        <Typography variant="h6">No results found for "{query}"</Typography>
+      </Box>
+    )
+  }
+  else {
+    return (
 
-  return (
+      <Box p={2} justifyContent="center" display="flex" sx={{ overflowY: 'auto', flex: 2 }}>
 
-    <Box p={2} justifyContent="center" display="flex" sx={{ overflowY: 'auto', flex: 2 }}>
+        <PostElement posts={posts} />
+      </Box>
+    )
+  }
 
-      <PostElement posts={posts} />
-    </Box>
-  )
+
 }
 
 export default SearchResults

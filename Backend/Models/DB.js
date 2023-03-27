@@ -1,5 +1,12 @@
+/*
+  Specifies mondodb user schema
+*/
 const mongoose = require("mongoose");
 
+/*
+  Schema for users of the application, either regular user or admin
+  specified by the admin boolean
+*/
 const usersSchema = new mongoose.Schema({
   admin: { type: Boolean, required: true },
   username: { type: String, required: true, unique: true },
@@ -10,6 +17,10 @@ const usersSchema = new mongoose.Schema({
   savedPosts: { type: mongoose.Schema.Types.ObjectId, ref: "SavedPosts" },
 });
 
+/*
+  Schema for a post of the application, represents a user's request to find
+  a recipe for an odd food concotion
+*/
 const postsSchema = new mongoose.Schema({
   title: { type: String, required: true },
   body: { type: String, required: true },
@@ -36,6 +47,9 @@ const postsSchema = new mongoose.Schema({
 
 postsSchema.index({ title: "text", tags: "text" });
 
+/*
+  Schema for saved posts for a users account
+*/
 const savedPostSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -45,6 +59,9 @@ const savedPostSchema = new mongoose.Schema({
   savedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Posts" }],
 });
 
+/*
+  Schema for a recipe in reply to a post
+*/
 const recipeSchema = new mongoose.Schema({
   author: {
     type: mongoose.Schema.Types.ObjectId,
@@ -60,6 +77,9 @@ const recipeSchema = new mongoose.Schema({
   reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Reviews" }],
 });
 
+/*
+  Schema for review in reply to a recipe, indicates the quality of the review
+*/
 const reviewSchema = new mongoose.Schema({
   body: { type: String, required: true },
   rating: { type: Number, required: true, min: 0, max: 5 },

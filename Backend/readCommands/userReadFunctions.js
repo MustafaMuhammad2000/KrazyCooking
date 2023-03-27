@@ -1,11 +1,14 @@
+/*
+  All functionality for read commands related to users
+*/
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const db = require("../Models/DB");
 
+//Get information regarding currently logged in user
 const getUserProfile = async (req, res) => {
   try {
     const userId = req.user.id;
-    console.log(userId);
     const user = await db.User.findById(userId);
     const profileInfo = {
       username: user.username,
@@ -20,6 +23,7 @@ const getUserProfile = async (req, res) => {
   }
 };
 
+//Get all posts written by currently logged in user
 const getMyPosts = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -37,6 +41,7 @@ const getMyPosts = async (req, res) => {
   }
 };
 
+//Gets all saved posts for currently logged in user
 const getSavedPosts = async (req, res) => {
   try {
     const userId = req.user.id;

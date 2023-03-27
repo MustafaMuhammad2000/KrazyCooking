@@ -2,14 +2,13 @@ import { Link } from "react-router-dom";
 import {
   Typography,
   Stack,
-  Grid,
   Box,
   IconButton,
   Menu,
   MenuItem,
   Button,
 } from "@mui/material";
-import { AccessTime, Person, North, South } from "@mui/icons-material";
+import { AccessTime, North, South } from "@mui/icons-material";
 import { useState, useEffect } from "react";
 import moment from "moment";
 import { useUser } from "../../utils/UserContext";
@@ -21,7 +20,6 @@ import {
 } from "../../utils/fetchFromApi";
 
 const PostCard = ({ post }) => {
-  const [counter, setCounter] = useState(0);
   const timeSincePost = moment(new Date(post.dateCreated)).fromNow();
   const [menuAnchor, setMenuAnchor] = useState(null);
   const [saved, setSaved] = useState(); // new state variable
@@ -185,8 +183,6 @@ const PostCard = ({ post }) => {
           </Stack>
         </Stack>
 
-        <Box></Box>
-
         {/* Voting and Menu */}
         <Stack
           direction="row"
@@ -226,7 +222,6 @@ const PostCard = ({ post }) => {
             </IconButton>
 
             <Typography variant="h4">{post.upvotes}</Typography>
-            {/* <Typography variant="h4">{post.upvotes + upvote}</Typography> */}
           </Stack>
 
           {/* Menu*/}

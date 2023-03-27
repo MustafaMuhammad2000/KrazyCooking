@@ -3,11 +3,6 @@ import { postComment } from "../../utils/fetchFromApi";
 import styled from "@emotion/styled";
 import { useUser } from "../../utils/UserContext";
 
-const post = {
-  postId: "64190e2b00157c19240f50cd",
-  commentBody: "this is a comment",
-};
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -41,20 +36,24 @@ const SubmitButton = styled.button`
 `;
 
 const CommentForm = ({ postId }) => {
-  const { user, id } = useUser();
+  const { user } = useUser(); //user auth token
   const [comment, setComment] = useState("");
   const [image, setImage] = useState("");
 
+  //Called when user submits recipe
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("user id: ", id);
+
+    //checks if comment is empty
     if (comment.trim() === "") return;
+
+    //Only logged in user can leave recipe
     if (user === null) {
-      console.error("USER ISNT LOGGED IN!");
       window.alert("you must be logged in to suggest a recipe");
       return;
     }
 
+    //ensures recipe suggestion is correct length
     if (comment.length < 5 || comment.length > 1000) {
       window.alert(
         `your recipe was ${comment.length} characters, it must be within 5 and 1000 characters`
@@ -62,12 +61,13 @@ const CommentForm = ({ postId }) => {
       return;
     }
 
+    //Create form data object, only add image if there is one
     let data = new FormData();
     if (image !== "") data.append("image", image);
     data.append("body", comment);
 
+    //send form data to api, including post id and user auth token
     const res = postComment(data, postId, user);
-    console.log("recipe response: ", res);
 
     setComment("");
   };

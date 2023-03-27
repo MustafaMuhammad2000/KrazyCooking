@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://plucky-alliance-381901.uw.r.appspot.com";
 
+//function to create a post , requires an auth token
 export const createPost = async (body, user) => {
   axios
     .post(`${BASE_URL}/api/post`, body, {
@@ -17,6 +18,7 @@ export const createPost = async (body, user) => {
     });
 };
 
+//function to save a post, requires post id and auth token
 export const savePost = async (postId, user) => {
   console.log("token: ", user);
   console.log("post id: ", postId);
@@ -39,6 +41,7 @@ export const savePost = async (postId, user) => {
     });
 };
 
+//function to unsave a post, requires post id and auth token
 export const unsavePost = async (postId, user) => {
   console.log("token: ", user);
   console.log("post id: ", postId);
@@ -57,6 +60,7 @@ export const unsavePost = async (postId, user) => {
     });
 };
 
+//function to upvote a post, requires an auth token
 export const upvotePost = async (postId, user) => {
   axios
     .put(
@@ -77,6 +81,7 @@ export const upvotePost = async (postId, user) => {
     });
 };
 
+//function to remove upvote from a post, requires auth token
 export const removeUpvote = async (postId, user) => {
   axios
     .put(
@@ -97,6 +102,7 @@ export const removeUpvote = async (postId, user) => {
     });
 };
 
+//deletes a reply from the database, requires auth token
 export const deleteReply = async (url, user) => {
   axios
     .delete(`${BASE_URL}/api/${url}`, {
@@ -110,6 +116,7 @@ export const deleteReply = async (url, user) => {
     });
 };
 
+//Function to post a recipe to endpoint, needs auth token and post id
 export const postComment = async (body, postId, user) => {
   const options = {
     headers: {
@@ -131,6 +138,7 @@ export const postComment = async (body, postId, user) => {
   return;
 };
 
+//Function to post a review to endpoint, needs auth token and comment id
 export const postReview = async (body, commentId, user) => {
   const options = {
     headers: {
@@ -158,13 +166,16 @@ export const postReview = async (body, commentId, user) => {
   return;
 };
 
+//General function to make get requests to api
 export const fetchFromAPI = async (url) => {
   const { data } = await axios.get(`${BASE_URL}/${url}`);
   return data;
 };
 
-export const getSavedPosts = async (url,user) => {
-  const { data } = await axios.get(`${BASE_URL}/${url}`,{
+//Endpoint to get a saved post, needs user auth token
+export const getSavedPosts = async (url, user) => {
+  const { data } = await axios
+    .get(`${BASE_URL}/${url}`, {
       headers: {
         authorization: `${user}`,
       },
@@ -178,6 +189,7 @@ export const getSavedPosts = async (url,user) => {
   return data.savedPosts;
 };
 
+// Endpoint to get all posts from api
 export const getMyPosts = async (url, user) => {
   const { data } = await axios
     .get(`${BASE_URL}/${url}`, {

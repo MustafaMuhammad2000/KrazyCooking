@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  Stack,
-  Typography,
-  IconButton,
-  Box,
-  TextField,
-  Button,
-} from "@mui/material";
+import { Stack, Typography, IconButton, Box } from "@mui/material";
 import { North, South, Person, AccessTime } from "@mui/icons-material";
 import moment from "moment";
 import CommentFeed from "./CommentFeed";
@@ -25,12 +18,12 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 const PostBody = ({ post }) => {
   const timeSincePost = moment(new Date(post.dateCreated)).fromNow();
   const [postSaved, setPostSaved] = useState(false);
-  const [upvote, setUpvote] = useState(0);
   const { user } = useUser();
   if (post.recipes === undefined) {
     return;
   }
 
+  //Styling for save post button
   const bookmarkStyle = {
     position: "absolute",
     top: "30px",
@@ -136,15 +129,17 @@ const PostBody = ({ post }) => {
           {/* Post Image */}
           {post.picture && <img src={post.picture} />}
           <Box sx={{ display: "flex", backgroundColor: "black" }}>
+            {/* Button for saving/unsaving post */}
             <IconButton
               style={bookmarkStyle}
               type="button"
               onClick={() => {
-                console.log("user: ", user);
+                //check that user is logged in
                 if (user === null) {
                   window.alert("You must be logged in to save a post");
                   return;
                 }
+                //If post is saved-> save post, vice versa
                 {
                   !postSaved && savePost(post._id, user);
                 }
@@ -155,6 +150,7 @@ const PostBody = ({ post }) => {
                 setPostSaved(!postSaved);
               }}
             >
+              {/* Display correct bookmark button */}
               {!postSaved && <BookmarkBorderIcon />}
               {postSaved && <BookmarkIcon />}
             </IconButton>
@@ -164,8 +160,6 @@ const PostBody = ({ post }) => {
             <IconButton
               type="button"
               onClick={() => {
-                // setUpvote(1);
-
                 if (user === null) {
                   window.alert("You must be logged in to upvote a post");
                   return;
@@ -175,11 +169,11 @@ const PostBody = ({ post }) => {
             >
               <North />
             </IconButton>
+
+            {/* Reply button */}
             <IconButton
               type="button"
               onClick={() => {
-                // setUpvote(-1);
-
                 if (user === null) {
                   window.alert("You must be logged in to remove an upvote");
                   return;

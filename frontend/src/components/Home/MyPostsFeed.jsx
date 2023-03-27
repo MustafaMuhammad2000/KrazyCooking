@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Box, Stack, Typography } from '@mui/material';
+import React,{ useState, useEffect } from 'react';
+import { Box, Stack, Typography, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { useUser } from "../../utils/UserContext";
 import PostElement from './PostElement';
 import { getMyPosts } from '../../utils/fetchFromApi';
@@ -7,20 +7,92 @@ import { getMyPosts } from '../../utils/fetchFromApi';
 import ErrorBoundary from "../../utils/ErrorBoundary";
 
 const MyPostsFeed = () => {
-
+  
   const [posts, setPosts] = useState([]);
+  const [sortBy, setSortBy] = useState('newer');
+  const [sortedPosts, setSortedPosts] = useState(posts);
   const { user } = useUser();    
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleSortChange = (event) => {
+    setSortBy(event.target.value);
+  };
+
+  
+  
+
+
+  const sortByHighestRating = () => {
+    const sorted = [...sortedPosts].sort((a, b) => {
+      const aAverageRating = a.upvotes;
+      const bAverageRating = b.upvotes;
+      return bAverageRating - aAverageRating;
+    });
+    setSortedPosts(sorted);
+  };
+
+  const sortByLowestRating = () => {
+    const sorted = [...sortedPosts].sort((a, b) => {
+      const aAverageRating = a.upvotes;
+      const bAverageRating = b.upvotes;
+      return aAverageRating - bAverageRating;
+    });
+    setSortedPosts(sorted);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const sortByNewest = () => {
+    const sorted = [...sortedPosts].sort((a, b) => {
+      return new Date(b.dateCreated) - new Date(a.dateCreated);
+    });
+    setSortedPosts(sorted);
+  };
+
+  const sortByOldest = () => {
+    const sorted = [...sortedPosts].sort((a, b) => {
+      return new Date(a.dateCreated) - new Date(b.dateCreated);
+    });
+    setSortedPosts(sorted);
+  };
+
   useEffect(() => {
-    getMyPosts('api/user/myPosts',user).then((data) => setPosts(data))
-  },[user]);
+    getMyPosts('api/user/myPosts',user).then((data) => setSortedPosts(data))
+  }, []);
+
+  useEffect(() => {
+    if (sortBy === 'newer') {
+      sortByNewest();
+    } else if (sortBy === 'older') {
+      sortByOldest();
+    } else if (sortBy === 'high') {
+      sortByHighestRating();
+    }
+  }, [sortBy, posts]);
 
   return (
-    
-    <Box p ={2} justifyContent = "center" display = "flex" sx ={{overflowY: 'auto', flex: 2}}>
-      <ErrorBoundary>
-        <PostElement posts={posts} />
-      </ErrorBoundary>
+    console.log("sposts: ", posts),
+    <Box p={2} display="flex" flexDirection="column" sx={{overflowY: 'auto', flex: 1}}>
+      <Box display="flex" justifyContent="flex-end" mb={1}>
+      <InputLabel sx={{ paddingLeft: '32px' }}>Sort by:</InputLabel>
+        <FormControl>
+          <br/>
+          <Select value={sortBy} onChange={handleSortChange}  style={{ height: '30px' }}>
+            <MenuItem value="newer" onClick={() => {handleClose(); sortByNewest();}}>Newest</MenuItem>
+            <MenuItem value="older"onClick={() => {handleClose(); sortByOldest();}}>Oldest</MenuItem>
+            <MenuItem value="high"onClick={() => {handleClose(); sortByHighestRating();}}>High Rating</MenuItem>
+            <MenuItem value="low"onClick={() => {handleClose(); sortByLowestRating();}}>Low Rating</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+      <Box display="flex" justifyContent="center" sx={{overflowY: 'auto', flex: 1}}>
+        
+        <PostElement posts={sortedPosts} />
+      </Box>
     </Box>
   )
 }

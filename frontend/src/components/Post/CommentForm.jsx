@@ -55,9 +55,9 @@ const CommentForm = ({ postId }) => {
       return;
     }
 
-    if (comment.length < 5 || comment.length > 1000) {
+    if (comment.length <= 5 || comment.length >= 1000) {
       window.alert(
-        `your recipe was ${comment.length} characters, it must be within 5 and 1000 characters`
+        `your recipe was ${comment.length} characters, it must be over 5 and less than 1000 characters`
       );
       return;
     }

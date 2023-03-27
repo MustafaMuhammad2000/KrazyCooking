@@ -13,7 +13,12 @@ import { AccessTime, Person, North, South } from "@mui/icons-material";
 import { useState, useEffect } from "react";
 import moment from "moment";
 import { useUser } from "../../utils/UserContext";
-import { savePost, getSavedPosts } from "../../utils/fetchFromApi";
+import {
+  savePost,
+  getSavedPosts,
+  upvotePost,
+  removeUpvote,
+} from "../../utils/fetchFromApi";
 
 const PostCard = ({ post }) => {
   const [counter, setCounter] = useState(0);
@@ -193,7 +198,13 @@ const PostCard = ({ post }) => {
             <IconButton
               type="button"
               onClick={() => {
-                setCounter(counter + 1);
+                // setUpvote(1);
+
+                if (user === null) {
+                  window.alert("You must be logged in to upvote a post");
+                  return;
+                }
+                upvotePost(post._id, user);
               }}
             >
               <North />
@@ -201,14 +212,23 @@ const PostCard = ({ post }) => {
             <IconButton
               type="button"
               onClick={() => {
-                setCounter(counter - 1);
+                // setUpvote(-1);
+
+                if (user === null) {
+                  window.alert("You must be logged in to remove an upvote");
+                  return;
+                }
+
+                removeUpvote(post._id, user);
               }}
             >
               <South />
             </IconButton>
 
-            <Typography variant="h5">{counter}</Typography>
+            <Typography variant="h4">{post.upvotes}</Typography>
+            {/* <Typography variant="h4">{post.upvotes + upvote}</Typography> */}
           </Stack>
+
           {/* Menu*/}
           <Stack direction="row" alignItems="center">
             <Button>

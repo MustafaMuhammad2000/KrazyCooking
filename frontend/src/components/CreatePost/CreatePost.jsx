@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useUser } from "../../utils/UserContext";
 import { Box, Stack, styled, Button } from "@mui/material";
 import { createPost } from "../../utils/fetchFromApi";
+import { WithContext as ReactTags } from "react-tag-input";
+import "./tagsStyle.css";
 
 const IdeaInput = styled("textarea")`
   width: 40vw;
@@ -46,14 +48,41 @@ const buttonStyle = {
   },
 };
 
-const tags = ["Pasta", "Spaghetti", "Beef"];
-
 const CreatePost = () => {
   const { user } = useUser();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [image, setImage] = useState("");
+  const [tags, setTags] = useState([]);
 
+  const handleDelete = (i) => {
+    setTags(tags.filter((tag, index) => index !== i));
+  };
+
+  const handleAddition = (tag) => {
+    setTags([...tags, tag]);
+  };
+
+  const handleDrag = (tag, currPos, newPos) => {
+    const newTags = tags.slice();
+
+    newTags.splice(currPos, 1);
+    newTags.splice(newPos, 0, tag);
+
+    // re-render
+    setTags(newTags);
+  };
+
+  const KeyCodes = {
+    comma: 188,
+    enter: 13,
+  };
+
+  const delimiters = [KeyCodes.comma, KeyCodes.enter];
+
+  const handleTagClick = (index) => {
+    console.log("The tag at index " + index + " was clicked");
+  };
   //   title: Joi.string().min(3).max(100).required(),
   //   body: Joi.string().min(5).max(1000).required(),
   //   tags: Joi.array().items(Joi.string().max(20)).required(),
@@ -86,7 +115,9 @@ const CreatePost = () => {
     let data = new FormData();
     data.append("title", title);
     data.append("body", body);
-    data.append("tags", tags);
+    for (let i = 0; i < tags.length; i++) {
+      data.append("tags", tags[i].text);
+    }
     if (image !== "") data.append("image", image);
 
     const res = createPost(data, user);
@@ -107,11 +138,7 @@ const CreatePost = () => {
         justifyContent="center"
         flexDirection="column"
       >
-        <Stack
-          direction="column"
-          alignItems="center"
-          gap={0}
-          pb={2}
+        <Box
           mb={40}
           sx={{
             backgroundColor: "#A5D2FF",
@@ -137,22 +164,39 @@ const CreatePost = () => {
                 placeholder="Write your idea here..."
               />
             </Box>
-            <Box>
-              {/* Submitting Image */}
-              <input
-                type="file"
-                accept="image/jpeg, image/png, image/jpg"
-                onChange={(event) => {
-                  console.log("recipe image: ", event.target.files[0]);
-                  setImage(event.target.files[0]);
-                }}
-              ></input>
-              <Button type="submit" style={buttonStyle}>
-                Submit
-              </Button>
+
+            {/* Inputs */}
+            <Box ml={25} pb={3}>
+              <Box p={2}>
+                <ReactTags
+                  tags={tags}
+                  delimiters={delimiters}
+                  handleDelete={handleDelete}
+                  handleAddition={handleAddition}
+                  handleDrag={handleDrag}
+                  handleTagClick={handleTagClick}
+                  inputFieldPosition="bottom"
+                  autocomplete
+                />
+              </Box>
+              <Box>
+                {/* Submitting Image */}
+                <input
+                  type="file"
+                  accept="image/jpeg, image/png, image/jpg"
+                  onChange={(event) => {
+                    console.log("recipe image: ", event.target.files[0]);
+                    setImage(event.target.files[0]);
+                  }}
+                ></input>
+
+                <Button type="submit" style={buttonStyle}>
+                  Submit
+                </Button>
+              </Box>
             </Box>
           </form>
-        </Stack>
+        </Box>
       </Box>
     </div>
   );

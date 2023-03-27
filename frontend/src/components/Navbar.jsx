@@ -7,8 +7,6 @@ import logo from "../utils/krazy-logo-45.png";
 import SearchBar from "./SearchBar";
 import { useUser } from "../utils/UserContext";
 
-
-
 const LoginButton = styled(Button)({
   boxShadow: "none",
   textTransform: "none",
@@ -38,7 +36,7 @@ const CreatePostButton = styled(Button)({
   fontSize: 20,
   color: "#6b6c7f",
   padding: "6px 18px",
-  border: "1px solid",
+  border: "2px solid",
   borderRadius: 30,
   lineHeight: 1.5,
   marginLeft: 40,
@@ -79,9 +77,6 @@ const RegisterButton = styled(Button)({
   },
 });
 
-
-
-
 const Navbar = () => {
   const navigate = useNavigate();
   const { user, setUser } = useUser();
@@ -92,7 +87,7 @@ const Navbar = () => {
   const axios = require("axios");
 
   const handleRandomPress = () => {
-    navigate('/randompost');
+    navigate("/randompost");
     window.location.reload();
   };
 
@@ -111,23 +106,22 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (user!=null){
-          axios
-            .get("http://localhost:8000/api/user/Profile", {
-              headers: {
-                authorization: `${user}`,
-              },
-            })
-            .then((response) => {
-              setAvatar(response.data.profilePicture);
-              setUsername(response.data.username);
-              console.log(response);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+    if (user != null) {
+      axios
+        .get("http://localhost:8000/api/user/Profile", {
+          headers: {
+            authorization: `${user}`,
+          },
+        })
+        .then((response) => {
+          setAvatar(response.data.profilePicture);
+          setUsername(response.data.username);
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-
   });
 
   return (
@@ -149,7 +143,7 @@ const Navbar = () => {
         <img src={logo} alt="logo" height={45} />
       </Link>
 
-        <LoginButton onClick={handleRandomPress}>Random Post</LoginButton>
+      <LoginButton onClick={handleRandomPress}>Random Post</LoginButton>
 
       <Stack direction="row" alignItems={"center"}>
         <SearchBar />

@@ -164,7 +164,7 @@ const PostCard = ({ post }) => {
                 key={index}
                 sx={{
                   borderRadius: 20,
-                  border: "2px solid #323232",
+                  border: "1px solid #323232",
                   color: "#323232",
                   backgroundColor: "#f2a7c6",
                   fontSize: "16px",

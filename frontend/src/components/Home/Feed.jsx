@@ -1,11 +1,12 @@
+
 import  React,{ useState, useEffect } from 'react';
 import { Box, Stack, Typography, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
-import PostElement from './PostElement';
-import { fetchFromAPI } from '../../utils/fetchFromApi';
+
+import PostElement from "./PostElement";
+import { fetchFromAPI } from "../../utils/fetchFromApi";
 
 const Feed = () => {
-
   const [posts, setPosts] = useState([]);
   const [sortBy, setSortBy] = useState('newer');
   const [sortedPosts, setSortedPosts] = useState(posts);
@@ -57,7 +58,9 @@ const Feed = () => {
     setSortedPosts(sorted);
   };
 
+  // Fetches all post from api when the page loads
   useEffect(() => {
+
     fetchFromAPI(`api/post`).then((data) => setSortedPosts(data))
   }, []);
 
@@ -90,8 +93,9 @@ const Feed = () => {
         
         <PostElement posts={sortedPosts} />
       </Box>
+
     </Box>
-  )
-}
+  );
+};
 
 export default Feed;

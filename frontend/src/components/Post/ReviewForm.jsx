@@ -51,6 +51,7 @@ const StyledRating = styled(Rating)(({ theme }) => ({
   },
 }));
 
+// Contains custom icons and labels for each rating value
 const customIcons = {
   1: {
     icon: <SentimentVeryDissatisfiedIcon color="error" />,

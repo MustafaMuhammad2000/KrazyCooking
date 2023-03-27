@@ -55,14 +55,17 @@ const CreatePost = () => {
   const [image, setImage] = useState("");
   const [tags, setTags] = useState([]);
 
+  //remove tag from tag array
   const handleDelete = (i) => {
     setTags(tags.filter((tag, index) => index !== i));
   };
 
+  //Adds a new tag to tag array
   const handleAddition = (tag) => {
     setTags([...tags, tag]);
   };
 
+  //updates tag array when rearagnged in gui
   const handleDrag = (tag, currPos, newPos) => {
     const newTags = tags.slice();
 
@@ -80,13 +83,7 @@ const CreatePost = () => {
 
   const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
-  const handleTagClick = (index) => {
-    console.log("The tag at index " + index + " was clicked");
-  };
-  //   title: Joi.string().min(3).max(100).required(),
-  //   body: Joi.string().min(5).max(1000).required(),
-  //   tags: Joi.array().items(Joi.string().max(20)).required(),
-
+  //functionality on submit
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -112,16 +109,19 @@ const CreatePost = () => {
       return;
     }
 
+    //add data inputted into form to a FormData object
     let data = new FormData();
     data.append("title", title);
     data.append("body", body);
+    //Add all tags to an array
     for (let i = 0; i < tags.length; i++) {
       data.append("tags", tags[i].text);
     }
+    //only add image if one was submitted
     if (image !== "") data.append("image", image);
 
+    //submit api request
     const res = createPost(data, user);
-    console.log("postResponse: ", res);
 
     setTitle("");
     setBody("");
@@ -174,7 +174,6 @@ const CreatePost = () => {
                   handleDelete={handleDelete}
                   handleAddition={handleAddition}
                   handleDrag={handleDrag}
-                  handleTagClick={handleTagClick}
                   inputFieldPosition="bottom"
                   autocomplete
                 />

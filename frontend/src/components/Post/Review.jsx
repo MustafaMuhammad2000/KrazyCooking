@@ -33,6 +33,7 @@ const Review = ({ review, rating }) => {
     >
       <Box sx={{ display: "flex", flexDirecction: "column" }}>
         <Box>
+          {/* displaying the author's profile picture, username, and date */}
           <CardHeader
             avatar={
               <Avatar>
@@ -43,9 +44,11 @@ const Review = ({ review, rating }) => {
             subheader={moment(new Date(review.dateCreated)).fromNow()}
           ></CardHeader>
           <CardContent>
+            {/* displaying the review text */}
             <Typography paragraph>{review.body}</Typography>
           </CardContent>
           <CardActions>
+            {/* if the logged-in user is the author or an admin, display the delete button */}
             {(review.author._id === id || admin) && (
               <Button
                 size="small"
@@ -56,10 +59,12 @@ const Review = ({ review, rating }) => {
                 Delete
               </Button>
             )}
+            {/* displaying the rating */}
             <Rating name="read-only" value={rating} readOnly />
           </CardActions>
         </Box>
       </Box>
+      {/* displaying the review picture */}
       {review.picture && (
         <CardMedia
           component="img"

@@ -1,22 +1,8 @@
 import React, { useState } from "react";
-import moment from "moment";
-import Popup from "./Popup";
 import { styled } from "@mui/material/styles";
-import ReviewForm from "./ReviewForm";
-import { useUser } from "../../utils/UserContext";
-import { deleteReply } from "../../utils/fetchFromApi";
 import Comment from "./Comment";
 import { Box, Button, Menu, MenuItem, Fade } from "@mui/material";
 import Review from "./Review";
-
-const CommentInput = styled("textarea")`
-  width: 100%;
-  height: 150px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: none;
-`;
 
 const SortButton = styled(Button)({
   boxShadow: "none",
@@ -53,6 +39,7 @@ const calculateAverageRating = (reviews) => {
 const CommentFeed = ({ comments }) => {
   const [sortedComments, setSortedComments] = useState(comments);
 
+  //sets recipe array to be sorted by highest avg rating
   const sortByHighestRating = () => {
     const sorted = [...sortedComments].sort((a, b) => {
       const aAverageRating = calculateAverageRating(a.reviews);
@@ -62,6 +49,7 @@ const CommentFeed = ({ comments }) => {
     setSortedComments(sorted);
   };
 
+  //Consts for opening/closing sort by button
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -71,6 +59,7 @@ const CommentFeed = ({ comments }) => {
     setAnchorEl(null);
   };
 
+  //Sort recipe array by most recently created
   const sortByNewest = () => {
     const sorted = [...sortedComments].sort((a, b) => {
       return new Date(b.dateCreated) - new Date(a.dateCreated);
@@ -80,6 +69,7 @@ const CommentFeed = ({ comments }) => {
 
   return (
     <div>
+      {/* Button to select sorting option */}
       <SortButton
         id="sort-button"
         aria-controls={open ? "fade-menu" : undefined}
@@ -99,6 +89,7 @@ const CommentFeed = ({ comments }) => {
         onClose={handleClose}
         TransitionComponent={Fade}
       >
+        {/* Sorting by newest */}
         <MenuItem
           onClick={() => {
             handleClose();
@@ -107,6 +98,8 @@ const CommentFeed = ({ comments }) => {
         >
           Newest
         </MenuItem>
+
+        {/* Sorting by oldest */}
         <MenuItem
           onClick={() => {
             handleClose();
@@ -115,6 +108,8 @@ const CommentFeed = ({ comments }) => {
         >
           Oldest
         </MenuItem>
+
+        {/* Sorting By highest rating */}
         <MenuItem
           onClick={() => {
             handleClose();
@@ -125,6 +120,7 @@ const CommentFeed = ({ comments }) => {
         </MenuItem>
       </Menu>
 
+      {/* Display all recipes and replys fetched from api */}
       {sortedComments.map((comment, index) => (
         <Box key={comment._id} mt={5}>
           <Comment comment={comment} />

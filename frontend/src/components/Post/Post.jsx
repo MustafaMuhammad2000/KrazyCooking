@@ -1,20 +1,22 @@
-import { useState, useEffect, setState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import PostBody from "./PostBody";
 import { Stack, IconButton } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { fetchFromAPI } from "../../utils/fetchFromApi";
-import CommentFeed from "./CommentFeed";
 import { useNavigate } from "react-router-dom";
 
 const Post = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  //Go back to previous page
   const goBack = () => {
     navigate(-1);
   };
   const [post, setPost] = useState([]);
 
+  //when page is loaded fetch post from api
   useEffect(() => {
     fetchFromAPI("api/post/" + id + "/view").then((data) => setPost(data));
   }, []);
@@ -26,6 +28,7 @@ const Post = () => {
       gap={2}
       alignContent="center"
     >
+      {/* Arrow back button */}
       <IconButton
         sx={{
           borderRadius: 25,

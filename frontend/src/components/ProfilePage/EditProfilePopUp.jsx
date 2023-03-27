@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./EditProfilePopUp.css";
 import { useUser } from "../../utils/UserContext";
+import { changePassword, postProfilePic } from "../../utils/fetchFromApi";
 
 const EditProfilePopUp = ({
   isVisible,
@@ -14,14 +15,14 @@ const EditProfilePopUp = ({
   const [ConfirmPassword, setConfirmPW] = useState("");
   const [newProfilePicture, setNewProfilePicture] = useState("");
   const [error, setError] = useState(false);
-  const { user, setUser } = useUser();
-
-  const axios = require("axios");
+  const { user} = useUser();
 
   if (!isVisible) {
     return null;
   }
 
+
+  //handles the saving of the profile picture to the profile
   const handleSaveClick = async (e) => {
     // update profile information here with new values
 
@@ -29,28 +30,16 @@ const EditProfilePopUp = ({
 
     let data = new FormData();
     data.append("image", newProfilePicture);
-    console.log(data);
-    console.log("what:", newProfilePicture);
+    postProfilePic(data,user);
     try {
-      const res = await axios.post(
-        "http://localhost:8000/api/user/uploadProfilePic",
-        data,
-        {
-          headers: {
-            authorization: `${user}`,
-          },
-        }
-      );
-      console.log("what:", res);
       handleSave(newProfilePicture);
     } catch {
       console.error("error:", error);
-      alert("Profile picture upload failed. Please try again.");
     }
 
-    // onClose(); // hide the pop-up
   };
 
+  // handles the changing of the password when the change password btn is clicked
   const handleChangePWClick = async (e) => {
     e.preventDefault();
 
@@ -58,37 +47,24 @@ const EditProfilePopUp = ({
       newPassword === "" ||
       CurrentPW === "" ||
       ConfirmPassword === "" ||
-      newPassword != ConfirmPassword
+      newPassword !== ConfirmPassword
     ) {
       setError(true);
     } else {
-      // setSubmitted(true);
       setError(false);
       try {
-        const response = await axios.patch(
-          "http://localhost:8000/api/user/updatePassword",
-          {
-            currentPassword: `${CurrentPW}`,
-            newPassword: `${newPassword}`,
-          },
-          {
-            headers: {
-              authorization: `${user}`,
-            },
-          }
-        );
+        const response = await changePassword(CurrentPW,newPassword,user);
         console.log(response.data);
-        alert("Password changed successfully!");
         setCurrentPW("");
         setNewPW("");
         setConfirmPW("");
       } catch (error) {
         console.error(error);
-        alert("Password change failed. Please try again.");
       }
     }
   };
 
+  //// hides the pop-up
   const handleCloseClick = () => {
     onClose(); // hide the pop-up
   };

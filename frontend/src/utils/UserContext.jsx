@@ -1,4 +1,5 @@
 import {createContext, useContext, useState, useEffect} from 'react';
+import { validateToken } from './fetchFromApi';
 
 const UserContext = createContext();
 
@@ -10,17 +11,11 @@ export function UserProvider(props) {
   useEffect(() => {
     // Load token from local storage
     const token = localStorage.getItem('token');
-    const axios = require('axios');
 
     if (token) {
       // Perform a check with the server to verify the token is valid
-      axios
-        .get('http://localhost:8000/api/user/getUser', {
-          headers: {
-            authorization: `${token}`,
-          },
-        })
-        .then((response) => {
+      const data=validateToken(token);
+        data.then((response) => {
           setUser(token);
           const parts = token.split('.');
           const payload = JSON.parse(decodeURIComponent(window.atob(parts[1])));

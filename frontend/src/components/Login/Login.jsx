@@ -1,16 +1,18 @@
 import React, {useState, useEffect } from 'react';
 import { useUser } from '../../utils/UserContext';
 import { Box, Stack, Typography } from '@mui/material';
+import {
+  LoginAPI,
+  validateToken
+} from "../../utils/fetchFromApi";
 
 function Login() {
   const [Username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { setUser } = useUser();
-  const { setUserId } = useUser();
-  const axios = require("axios");
 
-  console.log("Entered user:", Username);
 
+  // button and container styles
   const containerStyle = {
     display: 'flex',
     justifyContent: 'center',
@@ -64,18 +66,15 @@ fontStyle: 'normal'
     //boxShadow: '#DBDCF9'
   };
 
+   /// checks the token from local storage and verifies it
   useEffect(() => {
     const checkToken = () => {
       const token = localStorage.getItem("token");
       if (token) {
         // Perform a check with the server to verify the token is valid
-        axios
-          .get("http://localhost:8000/api/user/getUser", {
-            headers: {
-              authorization: `${token}`,
-            },
-          })
-          .then((response) => {
+        const data= validateToken(token);
+        console.log("Hey this is the data:", data);
+          data.then((response) => {
             const { username } = response.data;
             setUser(response.data);
             console.log("Hey this is the data:", response.data);
@@ -99,34 +98,31 @@ fontStyle: 'normal'
     };
   }, [setUser]);
 
+  //handles the user entering username
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
 
+  //handles the user entering password
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
+
+  /// handles the login function, when submit is pressed
   const handleSubmit = async (event) => {
     event.preventDefault();
-    //TODO: add login logic here
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/user/login",
-        {
-          username: Username,
-          password: password,
-        }
-      );
-      const { token } = response.data;
+      const data= await LoginAPI(Username,password);
+      const { token } = data;
       localStorage.setItem("token", token);
-      console.log("this is the token:", response.data);
       setUser(Username);
       window.location.href = "/";
     } catch (error) {
       console.error(error);
-      alert("Login failed. Please try again.");
     }
+     
+
   };
 
   return (

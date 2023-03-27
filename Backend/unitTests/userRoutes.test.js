@@ -338,6 +338,24 @@ describe("User Routes", function () {
     expect(res2.statusCode).toBe(200);
   });
 
+  /* Unit tests for profile route */
+
+   // ur-23 Getting profile of logged in user
+   test('ur-23 Getting profile of logged in user', async () => {
+
+    const res = await request(baseURL).get('/profile').set('authorization', `${token}`);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(200);
+  });
+
+  // ur-24 Getting profile of user who is not logged in
+  test('ur-24 Getting profile of user who is not logged in', async () => {
+
+    const res = await request(baseURL).get('/profile');
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(401);
+  });
+
   // Delete the test User from the database, as well as its posts
 
   afterAll(async () => {

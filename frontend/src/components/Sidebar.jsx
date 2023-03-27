@@ -92,8 +92,6 @@ const Sidebar = () => {
         {isOpen ? "❮" : "❯"}
       </ToggleButton>
       <SidebarMenu isOpen={isOpen}>
-        <SidebarLinkSpecial to="/myPosts">★ Ingredient ★ of&nbsp;the Month</SidebarLinkSpecial>
-      
         <SidebarLink to="/">🏠 Home</SidebarLink>
         <SidebarLink to="/saved">💾 Saved&nbsp;Posts</SidebarLink>
         <SidebarLink to="/myPosts">✏️ My Posts</SidebarLink>

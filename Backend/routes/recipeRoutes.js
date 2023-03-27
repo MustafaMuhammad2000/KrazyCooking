@@ -12,9 +12,10 @@ const router = express.Router();
 const { validateRecipe } = require("../middleware/bodyVerify");
 
 /*
-    Recipe Routes 
+    Specifies all the express routes involved with Recipes
 */
 
+// creating a new recipe
 router.post(
   "/:pid",
   verifyToken,
@@ -23,6 +24,7 @@ router.post(
   createRecipe
 );
 
+// deleting an existing recipe
 router.delete("/:rcid", verifyToken, deleteRecipe);
 
 module.exports = router;

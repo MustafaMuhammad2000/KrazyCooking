@@ -1,9 +1,12 @@
+/*
+  All functionality for write commands related to reviews
+*/
 const mongoose = require("mongoose");
-
 const db = require("../Models/DB");
 const { uploadImage, deleteImage } = require("../helpers/imageFunctions");
 const ObjectId = mongoose.Types.ObjectId;
 
+//Create a review for a recipe
 const createReview = async (req, res) => {
   try {
     const recipeId = req.params.rcid;
@@ -51,6 +54,7 @@ const createReview = async (req, res) => {
   }
 };
 
+//Delete an existing review for a recipe, have to be owner or admin
 const deleteReview = async (req, res) => {
   try {
     const reviewId = req.params.rid;
@@ -77,7 +81,7 @@ const deleteReview = async (req, res) => {
     );
 
     if (!recipe) {
-      console.log("WTF no parent recipe?");
+      console.log("Odd.. no parent recipe?");
     }
     // Delete review
     await db.Review.deleteOne({ _id: reviewId });

@@ -19,3 +19,4 @@ export { default as RandomPost } from "./Post/RandomPost";
 export { default as SavedPostsFeed } from "./Home/SavedPostsFeed";
 export { default as MyPostsFeed } from "./Home/MyPostsFeed";
 export { default as Sidebar } from "./Sidebar";
+export { default as SearchResults } from "./Home/SearchResults";

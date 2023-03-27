@@ -1,22 +1,32 @@
-import {Link, useLocation} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { Typography, Stack, Grid, Box, IconButton, Menu, MenuItem, Button} from '@mui/material';
 import {AccessTime, Person, North, South} from '@mui/icons-material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import moment from 'moment';
 import { useUser } from "../../utils/UserContext";
-import { savePost } from "../../utils/fetchFromApi";
+import { savePost, getSavedPosts } from "../../utils/fetchFromApi";
 
 const PostCard = ({post}) => {
 
     const [counter, setCounter] = useState(0);
     const timeSincePost = moment(new Date(post.dateCreated)).fromNow();
     const [menuAnchor, setMenuAnchor] = useState(null);
+    const [saved, setSaved] = useState(); // new state variable
     const {id} = useUser();
     const {admin} = useUser();
     const {user} = useUser();    
     const axios = require("axios");
-      const location = useLocation();
-      const isSavedPage = location.pathname === "/saved";
+
+    useEffect(() => {
+      const response = getSavedPosts('api/user/savedPosts', user)
+      response.then((data) => {
+        const saved = data.some((savedPost) => savedPost._id === post._id);
+        console.log('saved: ',saved);
+        console.log('data: ',data);
+        console.log('opost id: ',post._id);
+        setSaved(saved);
+      });
+    }, [user,post._id]);
 
     function handleMenuClick(event) {
       const svg = event.currentTarget;
@@ -47,16 +57,35 @@ const PostCard = ({post}) => {
 
 
     const handleSavePost = () => {
-   
+      if (saved) {
+        // if the post is already saved, unsave it
+        axios
+          .delete(`http://localhost:8000/api/user/removeSavedPost/${post._id}`, {
+            headers: {
+              authorization: `${user}`,
+            },
+          })
+          .then((response) => {
+            alert("Post unsaved.");
+            setSaved(false);
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Unable to unsave post. Please try again later.");
+          });
+      } else {
+        // if the post is not saved, save it
         savePost(post._id,user)
-        .then((response) => {
-       //   alert("Post saved.");
-        })
-        .catch((error) => {
-          console.log(error);
-          alert("Unable to save post. Please try again later.");
-        });
-    };     
+          .then((response) => {
+            setSaved(true);
+          })
+          .catch((error) => {
+            console.log(error);
+            alert("Unable to save post. Please try again later.");
+          });
+      }
+      handleMenuClose();
+    };       
 
   return (
     (
@@ -119,7 +148,7 @@ const PostCard = ({post}) => {
         >
           {/* Title */}
           <Typography variant="h2" color="gray">
-             <Link to={isSavedPage ? `/post/${post._id}` : `/saved/post/${post._id}`}>{post.title}</Link>
+             <Link to={`/post/${post._id}`}>{post.title}</Link>
           </Typography>
 
           {/* Voting and Menu */}
@@ -169,7 +198,15 @@ const PostCard = ({post}) => {
                 open={Boolean(menuAnchor)}
                 onClose={handleMenuClose}
               >
-                <MenuItem onClick={handleSavePost}>Save Post</MenuItem>
+                     { (saved) ? (
+                  <MenuItem onClick={handleSavePost}>
+                    Unsave Post
+                  </MenuItem>
+                ) : (
+                  <MenuItem onClick={handleSavePost} >
+                  Save Post
+                </MenuItem>
+                )}
                 {(id === post.author._id)|| (admin) ? (
                   <MenuItem onClick={handleDeletePost} style={{ color: "red" }}>
                     Delete Post
@@ -185,3 +222,4 @@ const PostCard = ({post}) => {
 }
 
 export default PostCard
+

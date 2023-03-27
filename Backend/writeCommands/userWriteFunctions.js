@@ -1,16 +1,18 @@
+/*
+  All functionality for write commands related to users
+*/
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
 const db = require("../Models/DB");
 const { uploadImage, deleteImage } = require("../helpers/imageFunctions");
 const dotenv = require("dotenv");
 dotenv.config();
 const ObjectId = mongoose.Types.ObjectId;
 
+//Registers a new user, has to have unique username
 const registerUser = async (req, res) => {
   try {
-    console.log(req.body);
     const { username, password, dateOfBirth } = req.body;
 
     const userInDb = await db.User.findOne({ username: username });
@@ -19,8 +21,6 @@ const registerUser = async (req, res) => {
     }
 
     bcrypt.hash(password, 8, async function (err, hash) {
-      //   console.log(hash);
-      //   console.log(err);
       const newUser = await db.User.create({
         admin: false,
         username,
@@ -31,7 +31,6 @@ const registerUser = async (req, res) => {
       });
       newUser.save();
       if (err) {
-        console.log(err);
         return res.status(500).json({ message: err.message });
       }
       res.status(201).json({ validReg: true });
@@ -40,15 +39,15 @@ const registerUser = async (req, res) => {
     if (error instanceof mongoose.Error.ValidationError) {
       res.status(400).json({ message: error.message });
     } else {
-      console.log(error);
       res.status(500).json({ message: error.message });
     }
   }
 };
 
+//Logins an exisitng user, according to request body.
+//Returns a user token for future requests, valid for 10 hours
 const loginUser = async (req, res) => {
   try {
-    console.log(req.body);
     const { username, password } = req.body;
     const user = await db.User.findOne({ username });
     if (!user) {
@@ -58,7 +57,6 @@ const loginUser = async (req, res) => {
     if (!passwordIsValid) {
       return res.status(401).json({ message: "Invalid username or password" });
     }
-    console.log("passed authentication");
     const payload = {
       username: user.username,
       id: user._id,
@@ -69,21 +67,11 @@ const loginUser = async (req, res) => {
     const token = jwt.sign(payload, secretKey, options);
     res.json({ token });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
 
-const checkImage = async (req, res) => {
-  try {
-    res.json({ message: "YOU MADE IT HERE" });
-    uploadImage(req.file);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: error.message });
-  }
-};
-
+//Uploads a new profile pic for the current user
 const uploadProfilePic = async (req, res) => {
   try {
     if (!req.file) {
@@ -104,14 +92,13 @@ const uploadProfilePic = async (req, res) => {
       { profilePicture: image_url },
       { new: true }
     );
-    // console.log(updatedUser);
     res.status(200).json(updatedUser);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
 
+//Updates password for current user
 const updatePassword = async (req, res) => {
   try {
     const username = req.user.username;
@@ -128,21 +115,18 @@ const updatePassword = async (req, res) => {
       return res.status(401).json({ message: "Invalid username or password" });
     }
     bcrypt.hash(newPassword, 8, async function (err, hash) {
-      // console.log(hash);
-      // console.log(err);
       await db.User.findOneAndUpdate({ username }, { password: hash });
       if (err) {
-        console.log(err);
         return res.status(500).json({ message: err.message });
       }
       res.status(200).json({ message: "Password updated successfully" });
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
 
+//Saves a post for the logged in user
 const savePost = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -176,6 +160,7 @@ const savePost = async (req, res) => {
   }
 };
 
+//Removes a saved post for the logged in user
 const removeSavedPost = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -202,7 +187,6 @@ const removeSavedPost = async (req, res) => {
 module.exports = {
   registerUser,
   loginUser,
-  checkImage,
   uploadProfilePic,
   updatePassword,
   savePost,

@@ -90,13 +90,14 @@ export default function Form() {
     backgroundColor: "#FFFFFF",
   };
   const formStyle = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: "55px",
-    backgroundColor: "#CEE7FF",
-    borderRadius: "15px",
-    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '55px',
+    backgroundColor: '#B4DAFF', //B4DAFF
+    borderRadius: '15px',
+    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
   };
 
   const labelStyle = {

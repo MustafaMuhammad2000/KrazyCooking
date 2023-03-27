@@ -13,15 +13,16 @@ const LoginButton = styled(Button)({
   boxShadow: "none",
   textTransform: "none",
   fontSize: 20,
+  color: "#6b6c7f",
   padding: "6px 18px",
   border: "2px solid",
   borderRadius: 30,
   lineHeight: 1.5,
-  backgroundColor: "#3DCBA7",
-  borderColor: "#3DCBA7",
+  backgroundColor: "#D9DAFF",
+  borderColor: "#a9aac9",
   "&:hover": {
-    backgroundColor: "#45E4BC",
-    borderColor: "#3DCBA7",
+    backgroundColor: "#bdbffc",
+    borderColor: "#6b6c7f",
     boxShadow: "none",
   },
   "&:active": {
@@ -41,16 +42,16 @@ const CreatePostButton = styled(Button)({
   borderRadius: 30,
   lineHeight: 1.5,
   marginLeft: 40,
-  backgroundColor: "#b7b9f7",
-  borderColor: "#b7b9f7",
+  backgroundColor: "#D9DAFF",
+  borderColor: "#a9aac9",
   "&:hover": {
-    backgroundColor: "#D9DAFF",
+    backgroundColor: "#bdbffc",
     borderColor: "#6b6c7f",
     boxShadow: "none",
   },
   "&:active": {
     boxShadow: "none",
-    backgroundColor: "#b7b9f7",
+    backgroundColor: "#2E987D",
     borderColor: "#b7b9f7",
   },
 });
@@ -59,15 +60,16 @@ const RegisterButton = styled(Button)({
   boxShadow: "none",
   textTransform: "none",
   fontSize: 20,
+  color: "#6b6c7f",
   padding: "6px 18px",
   border: "2px solid",
   borderRadius: 30,
   lineHeight: 1.5,
-  backgroundColor: "#3DCBA7",
-  borderColor: "#3DCBA7",
+  backgroundColor: "#D9DAFF", //#D9DAFF
+  borderColor: "#a9aac9",
   "&:hover": {
-    backgroundColor: "#45E4BC",
-    borderColor: "#3DCBA7",
+    backgroundColor: "#bdbffc",
+    borderColor: "#6b6c7f",
     boxShadow: "none",
   },
   "&:active": {
@@ -135,7 +137,7 @@ const Navbar = () => {
       p={2}
       sx={{
         position: "sticky",
-        background: "#4DFED1",
+        background: "#B4DAFF",
         top: 0,
         justifyContent: "space-between",
         pr: 10,

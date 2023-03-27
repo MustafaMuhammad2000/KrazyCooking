@@ -3,8 +3,21 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 postURL = process.env.BASEURL + '/post';
+var testPostID;
+var token;
 
 describe('Read Post Routes', function () {
+
+  // Before tests, login to an account to get authorization token
+  beforeAll(async() => {
+    const body = {
+      username: "test1",
+      password: "test2"
+    }
+    const res = await request(process.env.BASEURL+'/user').post('/login').send(body); 
+    token = res.body.token;
+    console.log(token);
+  });
 
   // router.get("/", getAllPosts);
   // pr-1 Getting all the data in posts from the database
@@ -19,11 +32,29 @@ describe('Read Post Routes', function () {
   // router.get("/:pid/view", getPost);
   // pr-2 Find and view post with valid Post ID 
   test('Find and view post with valid Post ID', async () => {
-    const res = await request(postURL).get('/64134c6f84de83bc075d329e/view'); 
+    // Create a post for the purpose of this test
+    const body = {
+      title: "Post Routes Test Post 1",
+      body: "Turkey stuffed with a duck stuffed with a goose",
+      tags: ["Turkey", "Duck", "Goose", "Bird"]
+    }
+    const res = await request(process.env.BASEURL + '/post').post('/').set('authorization', token).send(body); 
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(201);
+
+    testPostID = res.body._id; // ID of the post we just created
+
+    // Getting the single post
+    const res2 = await request(postURL).get('/' + testPostID +'/view'); 
     const posts = res.body;
     console.log(posts);
-    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
-    expect(res.statusCode).toBe(200);
+    expect(res2.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res2.statusCode).toBe(200);
+
+    // Deleting the post to avoid clutter
+    const res3 = await request(postURL).delete('/'+testPostID).set('authorization', token); 
+    expect(res3.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res3.statusCode).toBe(200);
   });
 
   // pr-3 Find post with invalid Post ID 
@@ -73,13 +104,14 @@ describe('Read Post Routes', function () {
     expect(res.statusCode).toBe(200);
   });
 
-  // pr-9 Find posts with search term ?
-  test('Find posts with search term ?', async () => {
-    const res = await request(postURL).get('/search?q=t̵̨̡̤̹̮̥̫͙̗͐͑̋́͊̒̆̓̔̐̀̀͒̓̚͠͠ͅḥ̸̢̳̫̼̥̘͇̳͈̮͍̈́́̆̈͗͛̊̎̑̾̀̆̽̽̈̏̀͘̚͠͠ͅi̵̢̢̹̘̩͉̲̦̺͌̀̏̂̾̽̌̇͌͝s̴̢̧̼̹̞̯̤̰̫̺̩̟̱̺̠̗͉̟͉͖͇̞̺̙̩̮̎́͒͒̂͒͒̓͂͋̓̓́̐̇͆̈͂̒̐̀̀̐̍̕͜ ̶̡̨̨̢̥̜̤̥̝̠̪̫͚̙͚̐͜͝ͅţ̶̢̡̢̫̜̱̖͚̝̪̲͇̦̭͍̗̣̜͓̦͖̓̽̋̌ͅẻ̸̞̤̳͈̤͚̖͓̙͒̊̂͒̃̈̌̆̎̍͗̂̈́̐̎̊͐̆̚͘͝͠x̸̨̨̧̳̳̲̖̘͔͖̥̏̆ͅt̵̨̨̢͔̘̥͇̻̝͚̫̙̔́͊͠ͅͅ ̸̢̮̯͖̘̣̑͊̄̿̒͌̆̓̀̚͘i̴̧̡̧̡̺̖̝̠͎̰̘̦͇͔͍̩͙̼͖̯̭̒͐͆̒̄̚͜ͅş̴̧̨͔͎̣̲͙̲̠͈͙̟̀̈́̉̈́̽͊̊̐́͑̀̐̌͂̅̚̚͝ ̵͓̠̠̫̲͍͚͖̾̋͛̆̆͑̇͋͑̂̅́̐͌́͠͝w̵̡̧̡̡̢̯̫͕̲̬̫̮̯̥̜̞̬̘̬̯̜̰̙̙̗̫̱͌͑̂͑̈͋̾̋͋̒͂i̵̡̡̧̮̯̠̖̺̠̖̘̖̥̣̦̪̟̫͉̙̓͊̓́̿͠e̶̢̡̱̞̯̥̎̅̑̌͋̑͛̓̓̄́͑̎̎̈́̇̂͆̌̀͐̓́̓͋̏͐̕͝͝r̶̢̯̫͙̱̝̘̯̝̼̗̲̞̭͓͍͕̠̝͕͇̈͊̅̀͂̑̾̔̾̇̈́̇̀͘̕͝d̵̛͙̀̀̉͋́̈́̊̅̈́͐̑͊̊̇̉̏̍̓̆͛̆̈́͒̒̐̆͠'); 
+  // pr-9 Find posts with search term including special characters
+  test('Find posts with search term including special characters', async () => {
+
+    const res = await request(postURL).get('/search?q=potato+@+corn+#+syrup');
     const posts = res.body;
     console.log(posts);
     expect(res.header['content-type']).toBe('application/json; charset=utf-8');
-    expect(res.statusCode).toBe(500);
+    expect(res.statusCode).toBe(200); 
   });
 
   // pr-10 Find posts with multiple search terms
@@ -91,13 +123,22 @@ describe('Read Post Routes', function () {
     expect(res.statusCode).toBe(200);
   });
 
+  // pr-10.5 Get tag of the month
+  test('Get tag of the month', async () => {
+    const res = await request(postURL).get('/tagofmonth'); 
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(200);
+  });
+
 });
 
 describe('Write Post Routes', function () {
 
+   // Before tests, login to an account to get authorization token
   var token = '';
-  // Before tests, login to an account to get authorization token
-  beforeAll(async() => {
+  var pid = '';
+
+   beforeAll(async() => {
     const body = {
       username: "test1",
       password: "test2"
@@ -106,8 +147,6 @@ describe('Write Post Routes', function () {
     token = res.body.token;
     console.log(token);
   });
-
-  var pid = '';
 
   // router.post("/", verifyToken, upload.single("image"), validatePost, createPost);
   // pr-11 Create new post with all valid data and proper authorization token
@@ -126,7 +165,7 @@ describe('Write Post Routes', function () {
   });
 
   // pr-12 Create post with all empty fields
-  test('Create post with all empty ', async () => {
+  test('Create post with all empty fields', async () => {
     const body = {
       title: '',
       body: '',
@@ -135,8 +174,8 @@ describe('Write Post Routes', function () {
     const res = await request(postURL).post('/').set('authorization', token).send(body); 
     const posts = res.body;
     console.log(posts);
-    //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
-    expect(res.statusCode).toBe(500);
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(400);
   });
 
   // pr-13 Create new post with all valid data and but no authorization token
@@ -149,7 +188,7 @@ describe('Write Post Routes', function () {
     const res = await request(postURL).post('/').send(body); 
     const posts = res.body;
     console.log(posts);
-    //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(401);
   });
 
@@ -196,7 +235,7 @@ describe('Write Post Routes', function () {
     const res = await request(postURL).put('/'+pid+'/upvote'); 
     const posts = res.body;
     console.log(posts);
-    //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(401);
   });
 
@@ -205,7 +244,7 @@ describe('Write Post Routes', function () {
     const res = await request(postURL).put('/'+pid+'/remove-upvote'); 
     const posts = res.body;
     console.log(posts);
-    //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(401);
   });
 
@@ -269,7 +308,7 @@ describe('Write Post Routes', function () {
     const res = await request(postURL).put('/'+pid+'/upvote').set('authorization', token); 
     const posts = res.body;
     console.log(posts);
-    //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(404);
   });
 
@@ -278,7 +317,7 @@ describe('Write Post Routes', function () {
     const res = await request(postURL).put('/'+pid+'/remove-upvote').set('authorization', token); 
     const posts = res.body;
     console.log(posts);
-    //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(404);
   });
 

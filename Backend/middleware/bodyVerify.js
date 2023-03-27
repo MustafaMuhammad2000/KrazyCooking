@@ -1,3 +1,8 @@
+/*
+  Middleware functions that ensure the body of the request fits the format specificed in the
+  below Joi objects
+*/
+
 const Joi = require("joi");
 
 const userRegister = Joi.object({

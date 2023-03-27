@@ -1,20 +1,14 @@
-const multer = require("multer");
+/*
+  Middleware functions that ensure the files attached to a request fit the criteria's specified 
+  e.g should ounly be an image file and be a certain size
+*/
 
-// Define storage location and file name
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, "./uploads/");
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, Date.now() + "-" + file.originalname);
-//   },
-// });
+const multer = require("multer");
 
 const storage = multer.memoryStorage();
 
 // Define file filter to accept image files only
 const fileFilter = function (req, file, cb) {
-  console.log("WTF");
   if (!file || !file.fieldname) {
     return cb(new Error("File field is required!"), false);
   }

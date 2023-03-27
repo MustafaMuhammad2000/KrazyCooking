@@ -1,10 +1,12 @@
+/*
+  All functionality for read commands related to Posts
+*/
 const mongoose = require("mongoose");
 const db = require("../Models/DB");
 const ObjectId = mongoose.Types.ObjectId;
 
+//Gets all post in the DB
 const getAllPosts = async (req, res) => {
-  //console.log("Hello from posts");
-
   //get all posts, sorted by most recent
   const Posts = await db.Post.find({})
     .sort({ createdAt: -1 })
@@ -16,6 +18,7 @@ const getAllPosts = async (req, res) => {
   res.status(200).json(Posts);
 };
 
+//Gets specific post in the DB
 const getPost = async (req, res) => {
   const postId = req.params.pid;
   try {
@@ -52,6 +55,7 @@ const getPost = async (req, res) => {
   }
 };
 
+//Gets random post from db
 const getRandomPost = async (req, res) => {
   try {
     const postCount = await db.Post.countDocuments();
@@ -81,6 +85,7 @@ function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 }
 
+//Search posts by keyword in db
 const searchPosts = async (req, res) => {
   const searchTerm = req.query.q;
   const regex = new RegExp(escapeRegex(searchTerm), "gi");
@@ -133,9 +138,39 @@ const searchPosts = async (req, res) => {
   }
 };
 
+//Get most common tag in posts within the last 30 days
+const getTagOfTheMonth = async (req, res) => {
+  const monthAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000); // Calculate a month ago from now
+  console.log(monthAgo);
+  try {
+    const posts = await db.Post.find({
+      dateCreated: { $gte: monthAgo },
+    }).select("tags"); // Find all posts created in the past month and only select the tags field
+    const tagCounts = posts.reduce((acc, post) => {
+      post.tags.forEach((tag) => {
+        if (acc[tag]) {
+          acc[tag]++;
+        } else {
+          acc[tag] = 1;
+        }
+      });
+      return acc;
+    }, {}); // Count the occurrences of each tag in all the posts
+    const mostFrequentTag = Object.keys(tagCounts).reduce((a, b) =>
+      tagCounts[a] > tagCounts[b] ? a : b
+    ); // Find the tag with the highest occurrence count
+
+    res.send({ mostFrequentTag });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+  }
+};
+
 module.exports = {
   getAllPosts,
   getPost,
   getRandomPost,
   searchPosts,
+  getTagOfTheMonth,
 };

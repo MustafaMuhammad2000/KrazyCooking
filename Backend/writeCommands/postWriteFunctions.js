@@ -1,12 +1,14 @@
+/*
+  All functionality for write commands related to Posts
+*/
 const mongoose = require("mongoose");
-
 const db = require("../Models/DB");
 const { uploadImage, deleteImage } = require("../helpers/imageFunctions");
 const ObjectId = mongoose.Types.ObjectId;
 
+//Creating a post from request body
 const createPost = async (req, res) => {
   try {
-    console.log(req.body);
     const { title, body, tags } = req.body;
     const user = await db.User.findOne({ username: req.user.username });
     if (!user) {
@@ -27,11 +29,11 @@ const createPost = async (req, res) => {
     });
     res.status(201).json(newPost);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: error.message });
   }
 };
 
+//deleting a post by id, have to be post owner or admin to delete
 const deletePost = async (req, res) => {
   try {
     const postId = req.params.pid;
@@ -86,6 +88,7 @@ const deletePost = async (req, res) => {
   }
 };
 
+//Upovting a post, have to be a registered user and only one upvote per post
 const upvotePost = async (req, res) => {
   try {
     const postId = req.params.pid;
@@ -114,6 +117,7 @@ const upvotePost = async (req, res) => {
   }
 };
 
+//Remvoe upvote from post, have to be a user who already upvoted the post
 const removeUpvote = async (req, res) => {
   try {
     const postId = req.params.pid;

@@ -109,7 +109,24 @@ const PostBody = ({ post }) => {
             <Typography variant="body1" color="black" paragraph fontSize={20}>
               {post.body}
             </Typography>
-            {/* Post image */}
+
+            {/* Tags */}
+            <Stack direction="row" gap={1}>
+              {post.tags.map((tag, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    borderRadius: 20,
+                    border: "1px solid #000000",
+                    backgroundColor: "#FF69B4",
+                    pl: 1,
+                    pr: 1,
+                  }}
+                >
+                  {tag}
+                </Box>
+              ))}
+            </Stack>
           </Stack>
 
           {/* Post Image */}

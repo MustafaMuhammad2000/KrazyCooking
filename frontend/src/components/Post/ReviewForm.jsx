@@ -107,9 +107,9 @@ const ReviewForm = ({ recipeId }) => {
       return;
     }
 
-    if (comment.length < 5 || comment.length > 1000) {
+    if (comment.length <= 5 || comment.length >= 1000) {
       window.alert(
-        `your review was ${comment.length} characters, it must be between 5 and 1000 characters`
+        `your review was ${comment.length} characters, it must be over 5 and less than 1000 characters`
       );
       return;
     }

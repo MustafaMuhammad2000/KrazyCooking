@@ -1,0 +1,3085 @@
+{
+  "id": "b6f3d14c-03ea-47cf-9ae7-72f517c130b7",
+  "version": "2.0",
+  "name": "Seng 401 Front End Testing",
+  "url": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+  "tests": [{
+    "id": "8c8afbcc-e7e7-4800-a734-c74679a28922",
+    "name": "8. Register with a username that already exists",
+    "commands": [{
+      "id": "f582cea1-9acc-47b9-a1b9-c46101c64249",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3139680d-de62-462a-b294-50f799df0204",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3143b2f4-a685-4419-8e62-48dcfffd023e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-outlined",
+      "targets": [
+        ["css=.MuiButton-outlined", "css:finder"],
+        ["xpath=(//button[@type='button'])[5]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a[2]/button", "xpath:idRelative"],
+        ["xpath=//a[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Register')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "008bd0d0-47ea-4bd0-9903-30e5cfbe7718",
+      "comment": "",
+      "command": "click",
+      "target": "css=.input:nth-child(2)",
+      "targets": [
+        ["css=.input:nth-child(2)", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/p/input", "xpath:idRelative"],
+        ["xpath=//p/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d432b61f-29aa-4fb2-b593-12906a0797b6",
+      "comment": "",
+      "command": "type",
+      "target": "css=.input:nth-child(2)",
+      "targets": [
+        ["css=.input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@value='Admin']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/p/input", "xpath:idRelative"],
+        ["xpath=//p/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "8f10794b-b936-401a-b538-9c8bb73661df",
+      "comment": "",
+      "command": "type",
+      "target": "css=.input:nth-child(4)",
+      "targets": [
+        ["css=.input:nth-child(4)", "css:finder"],
+        ["xpath=//input[@value='justin']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/p/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "justin"
+    }, {
+      "id": "defa46a5-f948-4f85-ac39-e9d20fd2dd8f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.input:nth-child(6)",
+      "targets": [
+        ["css=.input:nth-child(6)", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/p/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f0e5cf94-a2ee-46b1-9fd3-1d7da0aa1b0f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.input:nth-child(6)",
+      "targets": [
+        ["css=.input:nth-child(6)", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/p/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "668de9ca-bbb0-43ac-a20e-1a21db5311bf",
+      "comment": "",
+      "command": "type",
+      "target": "css=.input:nth-child(6)",
+      "targets": [
+        ["css=.input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@value='2023-03-13']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/p/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "2023-03-13"
+    }, {
+      "id": "6d240022-106a-49a7-a742-470be79789a0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/p/p[4]/button", "xpath:idRelative"],
+        ["xpath=//p[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4889d7c4-12e4-4d9d-a0ab-f9f0e5d9909e",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Registration failed. Please try again.",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "59eb86b4-6c57-4376-a2ea-b879733e610b",
+    "name": "10. Registering for a new account",
+    "commands": [{
+      "id": "143737e2-874b-4a9b-a884-e86266f36261",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a795e6ec-3e45-40f1-90a3-01fd590d7870",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c104a09e-206b-4521-9472-6004a79a66b6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-outlined",
+      "targets": [
+        ["css=.MuiButton-outlined", "css:finder"],
+        ["xpath=(//button[@type='button'])[5]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a[2]/button", "xpath:idRelative"],
+        ["xpath=//a[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Register')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "42192134-14c8-4b2a-9776-e7851b2bccb9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.input:nth-child(2)",
+      "targets": [
+        ["css=.input:nth-child(2)", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/p/input", "xpath:idRelative"],
+        ["xpath=//p/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4e2b653b-3f5d-4665-a6e8-3f335fd4a079",
+      "comment": "",
+      "command": "type",
+      "target": "css=.input:nth-child(2)",
+      "targets": [
+        ["css=.input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@value='Selenium']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/p/input", "xpath:idRelative"],
+        ["xpath=//p/input", "xpath:position"]
+      ],
+      "value": "Selenium"
+    }, {
+      "id": "72ecbc91-dfc2-4f4c-b896-86080c0886e8",
+      "comment": "",
+      "command": "type",
+      "target": "css=.input:nth-child(4)",
+      "targets": [
+        ["css=.input:nth-child(4)", "css:finder"],
+        ["xpath=//input[@value='pass']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/p/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "pass"
+    }, {
+      "id": "34d29aa4-43e5-4641-aedf-acf948c542e1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.input:nth-child(6)",
+      "targets": [
+        ["css=.input:nth-child(6)", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/p/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e31309db-9330-42be-aaeb-457031c6d366",
+      "comment": "",
+      "command": "type",
+      "target": "css=.input:nth-child(6)",
+      "targets": [
+        ["css=.input:nth-child(6)", "css:finder"],
+        ["xpath=//input[@value='2023-03-14']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/p/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "2023-03-14"
+    }, {
+      "id": "0e1e0d2f-a333-4fca-8393-fb617d8d7bf7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/p/p[4]/button", "xpath:idRelative"],
+        ["xpath=//p[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ea3abc1-fbe2-4b90-ab56-2f0749e98d97",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=button:nth-child(5)",
+      "targets": [
+        ["css=button:nth-child(5)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//div[3]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "056e7148-d0bf-4f75-9de9-9bd654cbbc8c",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=button:nth-child(5)",
+      "targets": [
+        ["css=button:nth-child(5)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//div[3]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "84f67b01-4f1d-4e2e-9d39-999e131ebdd8",
+      "comment": "",
+      "command": "click",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ee76a197-bfa3-49a0-91aa-79ac56074b6a",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@value='Selenium']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": "Selenium"
+    }, {
+      "id": "c1b905da-3700-4bfe-8b04-be140f056a93",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@value='pass']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "pass"
+    }, {
+      "id": "20a0fe41-ddde-408b-a7bb-e1966c42ecd0",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@value='pass']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "0f4f89cf-15bc-4d58-b9ec-e96a462bb58d",
+      "comment": "Verify the user can login with the account they just created. Delete the user 'Selenium' from db after running this test.",
+      "command": "verifyElementPresent",
+      "target": "css=a > img",
+      "targets": [
+        ["css=a > img", "css:finder"],
+        ["xpath=//img[@alt='logo']", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/a/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "20357c72-009b-4251-8ef5-b18a6cd0af0a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAvatar-fallback",
+      "targets": [
+        ["css=.MuiAvatar-fallback", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "d82ceecd-2b38-47eb-a8e5-8785d24c2a5c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(3)",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3)", "css:finder"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "289b26c3-ff40-4e92-a1c2-50729734cf6f",
+    "name": "5. Logging in with invalid user and pass",
+    "commands": [{
+      "id": "2742becb-2d7e-460c-8132-8346ee905830",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e6ec009b-7bbb-4633-aa2c-c07ece650ead",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b387ef92-fd06-4030-bf3e-267479b8d053",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0b273578-6dc6-4439-bc4c-2574d08cafaa",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6134dd50-80ec-4c21-b1cf-cd405db4f181",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "af1a5236-6329-434e-8483-7b38603369d1",
+      "comment": "",
+      "command": "click",
+      "target": "css=label:nth-child(1)",
+      "targets": [
+        ["css=label:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label", "xpath:idRelative"],
+        ["xpath=//label", "xpath:position"],
+        ["xpath=//label[contains(.,'Username:')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "bcc86d07-91ed-4952-8882-ff33b3f7bb56",
+      "comment": "",
+      "command": "click",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b5abb47-3b6a-49ed-b886-10c7f7987b09",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@value='invalid']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": "invalid"
+    }, {
+      "id": "e3681a74-3d71-4a4f-9462-6791bfdba77d",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='invalid'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "invalid"
+    }, {
+      "id": "7170d6c2-c976-4ca8-b23c-6bed3e4950a3",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(5)",
+      "targets": [
+        ["css=button:nth-child(5)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//div[3]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8608a0e2-776c-492f-8db0-b7942ff2ccbe",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Login failed. Please try again.",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "626d9be7-5116-45a2-af91-412ab3d8d4ef",
+    "name": "4. Logging in with a valid user and pass",
+    "commands": [{
+      "id": "d7b5a3e4-26f9-4846-8eb6-9c0d66b5ce8c",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f1d70749-3fe2-47da-bad5-3ff0de4bc06d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2effbd53-0b5f-4336-87bd-4b059064b5f2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "69beafba-5eef-451d-9fb4-f3aba9142dfe",
+      "comment": "",
+      "command": "click",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "25ddb719-4ba6-452d-8404-e55faf4fc2d6",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@value='test1']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": "test1"
+    }, {
+      "id": "89cca299-c8a1-4d9a-b6c1-939b052b4ef7",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@value='test2']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "test2"
+    }, {
+      "id": "bef71a97-dfca-4675-a9cb-d9898ab85d73",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(5)",
+      "targets": [
+        ["css=button:nth-child(5)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//div[3]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8966500e-ad84-43cd-ba71-ae9863d40b17",
+      "comment": "Assert that the user is brought to the homepage after logging in",
+      "command": "assertElementPresent",
+      "target": "css=a > img",
+      "targets": [
+        ["css=a > img", "css:finder"],
+        ["xpath=//img[@alt='logo']", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/a/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b3bf752-9b69-4ad5-a3c1-75064b13eac0",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.css-3i9vrz > .MuiAvatar-img",
+      "targets": [
+        ["css=.css-3i9vrz > .MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/fa7069b4-496c-4a36-965c-5d68c8ac95e2GoodFood.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "35954730-763a-4fb4-bc66-3d8e9fac3025",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-3i9vrz > .MuiAvatar-img",
+      "targets": [
+        ["css=.css-3i9vrz > .MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/fa7069b4-496c-4a36-965c-5d68c8ac95e2GoodFood.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1b03f61b-6ceb-4564-86d9-afdf7dbc8c61",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.css-3i9vrz > .MuiAvatar-img",
+      "targets": [
+        ["css=.css-3i9vrz > .MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/fa7069b4-496c-4a36-965c-5d68c8ac95e2GoodFood.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ab34c173-2a28-4681-9fd8-4ab3ff39a1a2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(3)",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3)", "css:finder"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "904cb0d4-a3c6-4b19-9aee-6071c758dd7f",
+    "name": "9. Register without providing required fields",
+    "commands": [{
+      "id": "8c7c97df-e362-4814-9b3a-973c7eca5ed5",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "52c60ea3-6309-4d26-a044-121c47922214",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b0bbf4de-f1c1-4ef0-a9aa-823df03f22e8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-outlined",
+      "targets": [
+        ["css=.MuiButton-outlined", "css:finder"],
+        ["xpath=(//button[@type='button'])[5]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a[2]/button", "xpath:idRelative"],
+        ["xpath=//a[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Register')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "398707dc-c994-4f42-9680-a8708b348d9b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/p/p[4]/button", "xpath:idRelative"],
+        ["xpath=//p[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3968e705-0b99-4981-af98-6e09d2387de7",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "your username needs to be at least 5 characters",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "beec6af1-00d7-4a19-95ac-fc326cf38631",
+    "name": "6. Pressing tag of the month",
+    "commands": [{
+      "id": "13446fdc-5a3b-47c6-9fec-933135d664a7",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a7f2b5f8-aa57-4820-8661-12edcd8d4114",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d454fece-df25-4b8b-9a6c-61a30f305fec",
+      "comment": "",
+      "command": "storeText",
+      "target": "css=.MuiBox-root > .MuiButtonBase-root",
+      "targets": [
+        ["css=.MuiBox-root > .MuiButtonBase-root", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/button", "xpath:idRelative"],
+        ["xpath=//div/div/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Milk')]", "xpath:innerText"]
+      ],
+      "value": "tag"
+    }, {
+      "id": "aba79b38-ebc8-4ee0-a264-62f10022fa36",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiBox-root > .MuiButtonBase-root",
+      "targets": [
+        ["css=.MuiBox-root > .MuiButtonBase-root", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/button", "xpath:idRelative"],
+        ["xpath=//div/div/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Milk')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7c97ec9b-58d3-4094-8fa3-d3bf24eca396",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root > .MuiButtonBase-root",
+      "targets": [
+        ["css=.MuiBox-root > .MuiButtonBase-root", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/button", "xpath:idRelative"],
+        ["xpath=//div/div/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Milk')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "18b53394-d82a-45b5-ae8e-745fab7c4440",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiBox-root > .MuiButtonBase-root",
+      "targets": [
+        ["css=.MuiBox-root > .MuiButtonBase-root", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div/button", "xpath:idRelative"],
+        ["xpath=//div/div/div/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Milk')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "63aa9a3d-fbce-447e-83b4-8772cc1417ce",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiBox-root:nth-child(2)",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiBox-root:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/div/div[2]/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9c0df3cc-60e9-4704-81b5-7e01847a2b71",
+      "comment": "Assert that pressing tag of the month shows you posts that contain that tag",
+      "command": "verifyText",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiBox-root:nth-child(2)",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiBox-root:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/div/div[2]/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div[2]", "xpath:position"]
+      ],
+      "value": "${tag}"
+    }]
+  }, {
+    "id": "e964f030-85f1-425e-be69-45417e37387a",
+    "name": "7. Random post button",
+    "commands": [{
+      "id": "a954ec9f-5bc6-4531-bc75-cfe76d473064",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e49247d2-49e6-409c-8a5e-c9fe7d4420dc",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1bf5fa92-cddf-4ec5-b2ce-fc32c13c2957",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.css-vsr4mb > .MuiButtonBase-root",
+      "targets": [
+        ["css=.css-vsr4mb > .MuiButtonBase-root", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Random Post')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "05a3d7c6-d212-40ee-ba4d-9f3d140509ef",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-vsr4mb > .MuiButtonBase-root",
+      "targets": [
+        ["css=.css-vsr4mb > .MuiButtonBase-root", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Random Post')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d75e89e9-bc3a-4242-8ea6-a0ebe5a4b8ec",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiTypography-h2",
+      "targets": [
+        ["css=.MuiTypography-h2", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[2]/div/div/h2", "xpath:idRelative"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Grilled Mangoes')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3e87a753-f9da-4502-84fd-1b8bc1071dd4",
+      "comment": "",
+      "command": "storeText",
+      "target": "css=.MuiTypography-h2",
+      "targets": [
+        ["css=.MuiTypography-h2", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[2]/div/div/h2", "xpath:idRelative"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'Grilled Mangoes')]", "xpath:innerText"]
+      ],
+      "value": "post1"
+    }, {
+      "id": "5e9def2b-a73d-4c1e-b114-f61afd458514",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-vsr4mb > .MuiButtonBase-root",
+      "targets": [
+        ["css=.css-vsr4mb > .MuiButtonBase-root", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Random Post')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6cdd62a6-12af-4a20-b160-c1c71f327cdb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiTypography-h2",
+      "targets": [
+        ["css=.MuiTypography-h2", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[2]/div/div/h2", "xpath:idRelative"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'asdasdasdsasdasdasd')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d86d7b5-d5c1-4a25-9de5-525a9fc59b55",
+      "comment": "Assert that consecutive presses of the random button give different posts",
+      "command": "assertNotText",
+      "target": "css=.MuiTypography-h2",
+      "targets": [
+        ["css=.MuiTypography-h2", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[2]/div/div/h2", "xpath:idRelative"],
+        ["xpath=//h2", "xpath:position"],
+        ["xpath=//h2[contains(.,'asdasdasdsasdasdasd')]", "xpath:innerText"]
+      ],
+      "value": "${post1}"
+    }]
+  }, {
+    "id": "9eaa8e4f-02aa-4e6d-ba5f-d296f0f80847",
+    "name": "13. Upvote post while not logged in",
+    "commands": [{
+      "id": "1e128484-bcfd-42b5-95ba-e461c177807d",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "43972cea-e23d-4380-8063-918a10d6720e",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "93e2619b-4225-471b-b090-de4b034638f9",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiButtonBase-root:nth-child(1) path",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiButtonBase-root:nth-child(1) path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "4982096d-6c8d-43cd-9474-d1cd3b4006d9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiButtonBase-root:nth-child(1) path",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiButtonBase-root:nth-child(1) path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "22ded1e0-0db1-4c1a-bdf3-d4c6b1dd1f72",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiButtonBase-root:nth-child(1) path",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiButtonBase-root:nth-child(1) path", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d144a19-ade3-44ca-9dc5-c2e7708b0904",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "You must be logged in to upvote a post",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "3322e31d-b5a4-4dbf-bed5-464533a9051e",
+    "name": "14. Upvoting post should increase count by 1",
+    "commands": [{
+      "id": "20ab6df1-4deb-4baf-b8d7-424bc8674363",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e89d59a2-01c9-42f8-b11e-0ef84a8daf2c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "27566d0a-43e4-41bd-a108-37361fb98e60",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9dcedd87-0eb0-4b86-ac9a-c7147a5614c0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9187fc62-6314-4061-b5ea-d09b92e75512",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6e908586-a94f-4e7a-9bb4-0dc581cc9d93",
+      "comment": "",
+      "command": "click",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6110f09a-cc12-4b9f-bf1f-9be24a4bfd9e",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@value='Admin']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "7c64e621-600f-43b0-8745-0983e5782208",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='Admin'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "bd2d775b-abb2-475a-ac00-81827aa36296",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='Admin'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "1c1458d9-69ec-436b-94ba-4e11e257beec",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div/div/div[2]/div[2]/div/h4", "xpath:idRelative"],
+        ["xpath=//h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'7')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "969b544f-3ce8-465d-aa8a-2c875507b2fa",
+      "comment": "",
+      "command": "storeText",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div/div/div[2]/div[2]/div/h4", "xpath:idRelative"],
+        ["xpath=//h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'7')]", "xpath:innerText"]
+      ],
+      "value": "origCount"
+    }, {
+      "id": "3f840416-11a5-4623-b8b3-3913b06630ad",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiButtonBase-root:nth-child(1) > .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiButtonBase-root:nth-child(1) > .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "84492670-d347-4abf-af2c-503d2b8cfffa",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiButtonBase-root:nth-child(1) > .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiButtonBase-root:nth-child(1) > .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "550226c8-7b8c-4f9e-96f9-463349ac96e8",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiButtonBase-root:nth-child(1) > .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiButtonBase-root:nth-child(1) > .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "a309fc59-cec3-4803-ab0e-47a6bf976f63",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .css-1ialerq",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .css-1ialerq", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div/div/div[2]/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "54275749-004d-4500-ab45-f91c0d152eab",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div/div/div[2]/div[2]/div/h4", "xpath:idRelative"],
+        ["xpath=//h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'8')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f3d08e0f-f54c-4ca9-b3a5-99aa1f32dd73",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div/div/div[2]/div[2]/div/h4", "xpath:idRelative"],
+        ["xpath=//h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'8')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "486212cb-6b69-4351-a090-dd26fa1cc463",
+      "comment": "",
+      "command": "assertNotText",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div/div/div[2]/div[2]/div/h4", "xpath:idRelative"],
+        ["xpath=//h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'8')]", "xpath:innerText"]
+      ],
+      "value": "${origCount}"
+    }, {
+      "id": "277f2fd8-e362-4f35-838d-31f1ea280ac2",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root > .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root > .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "7372a2c3-5c92-489c-b3fe-c87cb7d6546d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root > .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root > .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "0a675bc3-8770-48c8-8d27-0f2fd41cba04",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "Remove post upvote",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "179e2442-7f76-4bb1-a06d-5a4c41e8da2c",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root > .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root > .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "f3423c5c-7e93-4a1f-a805-18962fc118a0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-3i9vrz > .MuiAvatar-img",
+      "targets": [
+        ["css=.css-3i9vrz > .MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "80a055ab-efd8-42d5-82d1-15169e624c73",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(3)",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3)", "css:finder"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "3682561d-c6d7-4c4d-9c53-08c0d4c6d7ff",
+    "name": "12. Removing upvote should decrease count by 1",
+    "commands": [{
+      "id": "5093adcb-61ef-4163-9b6a-34e77cf15ad8",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "992efc51-be0e-4694-b31f-79c6c8f01e21",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "23eeadec-302c-4226-ad6c-0b613ea76e25",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e29bbc36-14b3-4f10-a72b-db33e3af672c",
+      "comment": "",
+      "command": "click",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7bedf8d9-b7f2-4e6f-84e2-bd083d751e90",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@value='Admin']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "a1c72b3f-761e-47d5-bf12-38ddbf6ccdba",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='Admin'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "3ef7080b-22e1-475a-adce-caef4e5d79f2",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='Admin'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "fdc91f1b-6ebe-4096-bc91-5ca308aa5fdf",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root .MuiButtonBase-root:nth-child(1) > .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root .MuiButtonBase-root:nth-child(1) > .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d2f9ad6-e60e-4da7-8f27-85da3225bd42",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div[2]/div/div[2]/div[2]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/div[2]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'3')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "791f391e-8237-4a3e-88b3-7d1d223a269c",
+      "comment": "",
+      "command": "storeText",
+      "target": "css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div[2]/div/div[2]/div[2]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/div[2]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'3')]", "xpath:innerText"]
+      ],
+      "value": "voteCount+1"
+    }, {
+      "id": "735502f7-439c-4bfe-a2ba-ef3537b7de46",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "012e8825-3128-44dd-ad56-ed3651953148",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "a8646a08-e882-4487-9aec-748d0cf91e3a",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "3c07ab06-f848-44d6-9ef8-fec515ecb282",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div[2]/div/div[2]/div[2]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/div[2]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'2')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9385be4c-622a-4775-86e7-8384e8c3f510",
+      "comment": "",
+      "command": "verifyNotText",
+      "target": "css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(2) > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiStack-root > .MuiTypography-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div[2]/div/div[2]/div[2]/div/h4", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/div[2]/div/h4", "xpath:position"],
+        ["xpath=//h4[contains(.,'2')]", "xpath:innerText"]
+      ],
+      "value": "${voteCount+1}"
+    }, {
+      "id": "8c8d89a9-1197-4513-955b-d961923d3090",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.css-3i9vrz > .MuiAvatar-img",
+      "targets": [
+        ["css=.css-3i9vrz > .MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "15914978-7611-46f4-99b7-7e31d4fd6281",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-3i9vrz > .MuiAvatar-img",
+      "targets": [
+        ["css=.css-3i9vrz > .MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f759b188-0adf-45f7-b298-53952614da67",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.css-3i9vrz > .MuiAvatar-img",
+      "targets": [
+        ["css=.css-3i9vrz > .MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5be4337a-f085-47b2-92e6-023c342bfa7a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(3)",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3)", "css:finder"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "8a641c8e-7b38-4d2b-90e3-4a6e571506d3",
+    "name": "11. Remove upvote while not logged in",
+    "commands": [{
+      "id": "934d246b-9814-4c09-9c01-2d42d762702d",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b84fd263-2efc-4d2a-b209-370eab12fc0f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e9731bde-0f97-4f67-a244-27b390f70c10",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root > .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root > .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "c424d742-e74b-4a73-b7f3-1b73bc61b6a2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root > .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root > .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "f9506977-fb17-4232-a430-0d7a1936c161",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root > .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root > .MuiButtonBase-root:nth-child(2) > .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "21a49b1f-65f9-45f4-b8af-78b15a83eaa9",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "You must be logged in to remove an upvote",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "e2941a52-56a7-48a2-99d4-2f9c24291094",
+    "name": "1. Creating post while logged in",
+    "commands": [{
+      "id": "b735e075-6ce1-415f-b313-f9419d0adbc4",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6ecb45cf-a7a3-4344-8aee-c7b48d1a93e4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6ff23d26-283f-4312-91a7-76c51770da18",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5bd40616-a133-4a42-a902-93ce640f0650",
+      "comment": "",
+      "command": "click",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "63eaadd6-1564-4949-bc3e-2735ef8fce64",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@value='Admin']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "efb32ae4-7717-4810-b1f8-71304df33274",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='Admin'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "9561ecd6-94f6-40b0-bc4c-1fd5daa21bd6",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='Admin'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "b12b0216-fcb4-4522-937d-d8f90c33a900",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.css-iv1ik0",
+      "targets": [
+        ["css=.css-iv1ik0", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/a/button", "xpath:idRelative"],
+        ["xpath=//a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Create Post')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3fac6710-7f83-46a8-a65a-5015fc24a046",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-iv1ik0",
+      "targets": [
+        ["css=.css-iv1ik0", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/a/button", "xpath:idRelative"],
+        ["xpath=//a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Create Post')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "776b3f22-fbf6-4863-8cbe-42f7d33128d6",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.css-iv1ik0",
+      "targets": [
+        ["css=.css-iv1ik0", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/a/button", "xpath:idRelative"],
+        ["xpath=//a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Create Post')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "430f928f-d8df-4c44-97e2-cf21117713ad",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-jpp5if",
+      "targets": [
+        ["css=.css-jpp5if", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/form/div/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "88aabc02-85cf-4fa4-8980-04102b41bb2d",
+      "comment": "",
+      "command": "type",
+      "target": "css=.css-jpp5if",
+      "targets": [
+        ["css=.css-jpp5if", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/form/div/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "This is a test post"
+    }, {
+      "id": "3f3d9c84-3947-47db-a0fa-f7675940705f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-jqzchp",
+      "targets": [
+        ["css=.css-jqzchp", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/form/div[2]/textarea", "xpath:idRelative"],
+        ["xpath=//div[2]/textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e98c7ca0-a282-4db3-9a43-4b6d962ca4d9",
+      "comment": "",
+      "command": "type",
+      "target": "css=.css-jqzchp",
+      "targets": [
+        ["css=.css-jqzchp", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/form/div[2]/textarea", "xpath:idRelative"],
+        ["xpath=//div[2]/textarea", "xpath:position"]
+      ],
+      "value": "This is a test post"
+    }, {
+      "id": "8735f6db-e2a7-4ded-aa8b-4bb5a0e658a5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ReactTags__tagInputField",
+      "targets": [
+        ["css=.ReactTags__tagInputField", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/form/div[3]/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8eca9cb1-a681-460c-810a-e23fcb849439",
+      "comment": "",
+      "command": "type",
+      "target": "css=.ReactTags__tagInputField",
+      "targets": [
+        ["css=.ReactTags__tagInputField", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/form/div[3]/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Test"
+    }, {
+      "id": "316f8b38-1396-4ccd-8e19-844ca0c8fd72",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "css=.ReactTags__tagInputField",
+      "targets": [
+        ["css=.ReactTags__tagInputField", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/form/div[3]/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "b4275b18-9787-45bc-8857-395588e3d2f7",
+      "comment": "",
+      "command": "type",
+      "target": "css=.ReactTags__tagInputField",
+      "targets": [
+        ["css=.ReactTags__tagInputField", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/form/div[3]/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Post"
+    }, {
+      "id": "7c339fca-42cb-44e0-9426-186e2655d292",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "css=.ReactTags__tagInputField",
+      "targets": [
+        ["css=.ReactTags__tagInputField", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/form/div[3]/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "cce629a1-7cec-418f-8236-42c48a047dbc",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.css-1ujsas3:nth-child(2)",
+      "targets": [
+        ["css=.css-1ujsas3:nth-child(2)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/form/div[3]/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7fd70695-5964-4832-8421-27177bece7e1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-1ujsas3:nth-child(2)",
+      "targets": [
+        ["css=.css-1ujsas3:nth-child(2)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/form/div[3]/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "edf09e3e-1eca-46f1-8b78-9abe8696f994",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(8) .css-1a0mub1",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(8) .css-1a0mub1", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div[8]/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[8]/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "28cb7ebf-a421-4146-83b7-39e9832ed8c4",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=This is a test post",
+      "targets": [
+        ["linkText=This is a test post", "linkText"],
+        ["css=.MuiBox-root:nth-child(8) a", "css:finder"],
+        ["xpath=//a[contains(text(),'This is a test post')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div[8]/div/div[2]/div/h2/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/post/6423393e8ca97e87445b89a1')]", "xpath:href"],
+        ["xpath=//div[8]/div/div[2]/div/h2/a", "xpath:position"],
+        ["xpath=//a[contains(.,'This is a test post')]", "xpath:innerText"]
+      ],
+      "value": "This is a test post"
+    }, {
+      "id": "3f89107e-daee-471c-a4d1-fb52f2b23078",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-3i9vrz > .MuiAvatar-img",
+      "targets": [
+        ["css=.css-3i9vrz > .MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ff4a892-5b11-4c67-b9b1-1ed871f93d9b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(3)",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3)", "css:finder"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "a7b7d45b-8e74-46f0-b54c-16c7579054d4",
+    "name": "2. Creating recipe while logged in",
+    "commands": [{
+      "id": "05dcb2d4-8f43-4abd-b624-5a86d04c91c1",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "08e34b4d-6e43-4d54-ba98-e550535ae86f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "462caaa2-04ad-4fd9-a20e-08a4eba1f87f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7226eaf4-784b-45f6-97dc-448f414ff534",
+      "comment": "",
+      "command": "click",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3b7e8972-ecb9-4e93-b988-6d03720064d3",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@value='Admin']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "55ab596f-2bb1-4f5d-98c7-0a08148d0fe0",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='Admin'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "8a9884f6-cf7a-464f-8c0f-e3b8068310d8",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='Admin'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "d9a99cfb-cbe7-4620-bf27-e8d74d314abf",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=This is a test post",
+      "targets": [
+        ["linkText=This is a test post", "linkText"],
+        ["css=.MuiBox-root:nth-child(8) a", "css:finder"],
+        ["xpath=//a[contains(text(),'This is a test post')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div[8]/div/div[2]/div/h2/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/post/6423393e8ca97e87445b89a1')]", "xpath:href"],
+        ["xpath=//div[8]/div/div[2]/div/h2/a", "xpath:position"],
+        ["xpath=//a[contains(.,'This is a test post')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4943a6df-70f4-463a-b5c8-9c8c2bebb1f9",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,0)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8942d7db-fbad-4853-a6f9-51997f481d67",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-64oj17",
+      "targets": [
+        ["css=.css-64oj17", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[3]/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b4c586ca-bb1d-40a9-bfeb-bc3a5abd7645",
+      "comment": "",
+      "command": "type",
+      "target": "css=.css-64oj17",
+      "targets": [
+        ["css=.css-64oj17", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[3]/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "This is a test recipe"
+    }, {
+      "id": "cdd88032-2341-461b-9ed0-3c9b15a303c3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-11pug9o",
+      "targets": [
+        ["css=.css-11pug9o", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//div[3]/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3b89be3e-5329-4d05-8347-c3c02b9c0df9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-wje1bd",
+      "targets": [
+        ["css=.css-wje1bd", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[4]/div/div/div/div/div[2]/p", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/div[2]/p", "xpath:position"],
+        ["xpath=//p[contains(.,'This is a test recipe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c9fe307f-72ab-4419-8b2b-7901e1391b9f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiCardContent-root",
+      "targets": [
+        ["css=.MuiCardContent-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[4]/div/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a76255e4-4651-446d-b3b0-802e087f255f",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.css-wje1bd",
+      "targets": [
+        ["css=.css-wje1bd", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[4]/div/div/div/div/div[2]/p", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/div[2]/p", "xpath:position"],
+        ["xpath=//p[contains(.,'This is a test recipe')]", "xpath:innerText"]
+      ],
+      "value": "This is a test recipe"
+    }, {
+      "id": "f529ebdc-6581-4f12-9e46-e602b5c6fbbe",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-3i9vrz > .MuiAvatar-img",
+      "targets": [
+        ["css=.css-3i9vrz > .MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "16e3d9d8-f2fa-41cd-a6b0-8063b59be754",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(3)",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3)", "css:finder"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "ec7f777c-544a-469c-be06-94d8cca8f860",
+    "name": "3. Deleting post while logged in",
+    "commands": [{
+      "id": "c4e4656d-a11e-49f3-90f1-02e03e0c23e3",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5d88a024-069e-40b9-94d6-5997b6390093",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e385dd64-5943-4120-980b-4308e1312cae",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "af092242-7496-480b-ab93-c732a13f7e51",
+      "comment": "",
+      "command": "click",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dacc1415-7e51-4d90-9997-f8a61dc7a512",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@value='Admin']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "67d492cc-7cad-46ec-ac9d-e0c91f02d266",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='Admin'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "eed40cfb-ec0c-4202-91d3-a2417770db0f",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(5)",
+      "targets": [
+        ["css=button:nth-child(5)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//div[3]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "190cbf84-3553-4553-a1d5-110835c8fa3c",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiBox-root:nth-child(8) .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(8) .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "a72470ce-927a-4766-be8b-eeb0a7301be1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(8) .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(8) .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "7c07f71b-5bb1-42be-9a76-89469f59ad79",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiBox-root:nth-child(8) .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(8) .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "f400e806-2638-4430-b316-f4f855a4a046",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiMenuItem-root:nth-child(2)",
+      "targets": [
+        ["css=.MuiMenuItem-root:nth-child(2)", "css:finder"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'Delete Post')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0d1e1225-0c2a-467a-b742-4cfa18bad344",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "css=.MuiBackdrop-root",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "30cbda29-67cd-4c93-925c-eb5feecfbb01",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.css-3i9vrz > .MuiAvatar-img",
+      "targets": [
+        ["css=.css-3i9vrz > .MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "df8b17c2-fe46-422b-94e1-12f0f0a05dc8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-3i9vrz > .MuiAvatar-img",
+      "targets": [
+        ["css=.css-3i9vrz > .MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "23f8bb8e-1f9e-451f-a095-10418d45f487",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.css-3i9vrz > .MuiAvatar-img",
+      "targets": [
+        ["css=.css-3i9vrz > .MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b805b2df-ab80-4695-8482-5e17f19b6890",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(3)",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3)", "css:finder"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "643ecb3b-5299-4c1d-a14b-bac458ca3611",
+    "name": "15. Search by ingredient",
+    "commands": [{
+      "id": "5417078a-76c3-4847-b561-34f067a9a116",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f6a4fe4c-864b-4453-b001-1bdf50f54279",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x728",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1aed2574-8799-40d6-8ac8-2160a09f3e4a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@value='']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "38fc5e2a-bd3c-4afd-aef2-2ab91ed04215",
+      "comment": "",
+      "command": "type",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@value='milk']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "milk"
+    }, {
+      "id": "72b52508-4d4d-41e2-b9f6-a52ccd5fd6c0",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "css=.search-bar",
+      "targets": [
+        ["css=.search-bar", "css:finder"],
+        ["xpath=//input[@value='milk']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "bfdf5019-9364-4d68-90c5-1addb0556e91",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root > .MuiStack-root > .MuiStack-root:nth-child(1) > .MuiStack-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root > .MuiStack-root > .MuiStack-root:nth-child(1) > .MuiStack-root", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/div/div[2]/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ae80274f-7ea2-4ebb-8b9a-79e78fd5fcf4",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiBox-root:nth-child(2)",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiBox-root:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div/div/div[2]/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div[2]", "xpath:position"]
+      ],
+      "value": "Milk"
+    }, {
+      "id": "3437371f-0f3d-4407-8986-e59655ec9f0a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(2) .MuiBox-root:nth-child(1)",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(2) .MuiBox-root:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[2]/div/div[2]/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "499241c6-1ba7-40ae-aa47-08d9a095e8c6",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.MuiBox-root:nth-child(2) .MuiBox-root:nth-child(1)",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(2) .MuiBox-root:nth-child(1)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[2]/div/div[2]/div/div/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div[2]/div/div/div", "xpath:position"]
+      ],
+      "value": "Milk"
+    }, {
+      "id": "44b42439-19fd-4b0a-8a16-54db550224bb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(2) .css-t6mi5c",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(2) .css-t6mi5c", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[2]/div/div", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div[2]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "34dfdb4a-1aa6-481c-a887-9a6b28f5b538",
+    "name": "16. Saving a post while logged in",
+    "commands": [{
+      "id": "f3850a32-8bbe-4b8a-8b3a-bda4d7f26b20",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ee188461-53ba-4265-b1b1-19f2d7e542cb",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x728",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cc8c2e1d-b0e9-48b9-8cf0-c52174cae9cd",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2bed7fb4-ce7d-4733-803d-d1b5335ad172",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1cb8281a-d0e3-426d-a692-3df766327726",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f722314a-b113-4be0-bb88-b094ecb5177c",
+      "comment": "",
+      "command": "click",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b3c0e0e5-787d-49dc-b261-19b3a40a2fd6",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@value='Admin']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "e4339f48-c400-4e12-8c21-609c417f03ec",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='Admin'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "53e267ad-259b-42ba-bf79-a0ac7c17ff30",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='Admin'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "8923b225-2199-4f5a-9127-1b11ab82fa83",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff29dd7c-8b5f-4107-a42c-cc3ef2994a3c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "c1996a1c-4b9e-4042-bcc3-aacce4c16964",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e95e455-1332-4d16-854a-6da686f03474",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiMenuItem-root:nth-child(1)",
+      "targets": [
+        ["css=.MuiMenuItem-root:nth-child(1)", "css:finder"],
+        ["xpath=//li", "xpath:position"],
+        ["xpath=//li[contains(.,'Save Post')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "59dd73ad-ff69-4ff5-93be-c1fe1d5f3ad2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.sc-gueYoa",
+      "targets": [
+        ["css=.sc-gueYoa", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'❯')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fb26c442-c09d-4531-b2be-cac89a75dc07",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=💾 Saved Posts",
+      "targets": [
+        ["linkText=💾 Saved Posts", "linkText"],
+        ["css=.sc-hLseeU:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'💾 Saved Posts')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div[2]/div/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/saved')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'💾 Saved Posts')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6f2de47f-a824-4d05-88a2-2f8ca9924cf7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.sc-gueYoa",
+      "targets": [
+        ["css=.sc-gueYoa", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'❮')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d73fc5f6-4ee3-494e-8d6e-7b38ffab56da",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-1a0mub1",
+      "targets": [
+        ["css=.css-1a0mub1", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "388787af-ee27-43d9-8fb7-ffc3632718e1",
+      "comment": "Verify that the post appears in the user's saved posts after saving it",
+      "command": "verifyText",
+      "target": "linkText=Cheeto Milk",
+      "targets": [
+        ["linkText=Cheeto Milk", "linkText"],
+        ["css=.MuiTypography-root > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Cheeto Milk')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div/div/div[2]/div/h2/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/post/64225806f71a722eb7e8823c')]", "xpath:href"],
+        ["xpath=//h2/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Cheeto Milk')]", "xpath:innerText"]
+      ],
+      "value": "Cheeto Milk"
+    }, {
+      "id": "eb4936ef-7955-4b3c-8fa2-415b8c8fa7a7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-3i9vrz > .MuiAvatar-img",
+      "targets": [
+        ["css=.css-3i9vrz > .MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5cc2113-57b8-428b-b34a-357f6d501a61",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(3)",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3)", "css:finder"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "b9f88b7c-90e9-420d-83bc-4847477f2657",
+    "name": "21. Saving a post while not logged in",
+    "commands": [{
+      "id": "a584fe38-4afb-43e4-ad7a-d61fcbe8daef",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2091771f-b52b-4dae-a952-24c5e9070e44",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x728",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7f599d1a-61b0-429f-a5ba-0807bb938ea2",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "0e7c0dc1-47be-4df1-9b05-b3d9d0db2a6d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "0054fef9-cd2b-41a8-bf7f-8af33ca48ea5",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiStack-root:nth-child(2) > .MuiButtonBase-root > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "fc6e2020-bdca-4a28-92e2-aa30f2bbe755",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiMenuItem-root",
+      "targets": [
+        ["css=.MuiMenuItem-root", "css:finder"],
+        ["xpath=//li", "xpath:position"],
+        ["xpath=//li[contains(.,'Save Post')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f73171eb-7c02-4d90-a40f-7cddb54bd4c7",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "You must be logged in to save a post",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "d97d2865-7502-4f91-9502-82c9edc0d971",
+    "name": "18. Posting a recipe while not logged in",
+    "commands": [{
+      "id": "6438aeb4-2f50-451d-b224-117346b230d8",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7bc7e809-8612-4a26-a02c-5e25ece256c5",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x728",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "10993a66-4e4f-4157-ba6b-d6acf3207802",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Cheeto Milk",
+      "targets": [
+        ["linkText=Cheeto Milk", "linkText"],
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiTypography-root > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Cheeto Milk')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div/div/div[2]/div/h2/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/post/64225806f71a722eb7e8823c')]", "xpath:href"],
+        ["xpath=//h2/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Cheeto Milk')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6d658841-5e44-4cf5-9956-e683f90c726a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-64oj17",
+      "targets": [
+        ["css=.css-64oj17", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[3]/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3afbd318-ccc2-4aa3-908e-d259d4722832",
+      "comment": "",
+      "command": "type",
+      "target": "css=.css-64oj17",
+      "targets": [
+        ["css=.css-64oj17", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[3]/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "This is a test recipe"
+    }, {
+      "id": "cecf98b6-4128-437f-b502-cdb0830febab",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-11pug9o",
+      "targets": [
+        ["css=.css-11pug9o", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//div[3]/form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Submit')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f27986ff-f68f-45bc-8f73-eb66c2ab3da7",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "you must be logged in to suggest a recipe",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "11ea7a85-d622-44c4-9ce0-894f9a134fb6",
+    "name": "19. Posting a review while not logged in",
+    "commands": [{
+      "id": "cee350b9-e72f-4fa3-8416-9c9c932e7cac",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9abc04b0-c8ce-4d14-8959-9316715e0d01",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x728",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b17c03cb-1928-4261-bc55-f68397a0a814",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Cheeto Milk",
+      "targets": [
+        ["linkText=Cheeto Milk", "linkText"],
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiTypography-root > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Cheeto Milk')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div/div/div[2]/div/h2/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/post/64225806f71a722eb7e8823c')]", "xpath:href"],
+        ["xpath=//h2/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Cheeto Milk')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3910a8fe-d416-45bb-8bd9-b8f2f43527d5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiBox-root:nth-child(2) > .MuiPaper-root .MuiButtonBase-root",
+      "targets": [
+        ["css=.MuiBox-root:nth-child(2) > .MuiPaper-root .MuiButtonBase-root", "css:finder"],
+        ["xpath=(//button[@type='button'])[11]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[4]/div/div/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "05b2aeb6-e0d5-4885-9775-a79ed303c99c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-17lhymo .css-64oj17",
+      "targets": [
+        ["css=.css-17lhymo .css-64oj17", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[4]/div/div/div/div/div[3]/div/div/div/form/textarea", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/form/textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c16c024d-0cf1-4d09-8a3e-ff030db53db8",
+      "comment": "",
+      "command": "type",
+      "target": "css=.css-17lhymo .css-64oj17",
+      "targets": [
+        ["css=.css-17lhymo .css-64oj17", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[4]/div/div/div/div/div[3]/div/div/div/form/textarea", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/form/textarea", "xpath:position"]
+      ],
+      "value": "This is a test review"
+    }, {
+      "id": "92d72771-86cf-40a2-b1ea-1ba3bbe6e74a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-ykqdxu:nth-child(9)",
+      "targets": [
+        ["css=.css-ykqdxu:nth-child(9)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[4]/div/div/div/div/div[3]/div/div/div/form/span/label[5]", "xpath:idRelative"],
+        ["xpath=//label[5]", "xpath:position"],
+        ["xpath=//label[contains(.,'5 Stars')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "056a96cd-ad84-4a6a-bde2-ed05cf63691b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-11pug9o:nth-child(4)",
+      "targets": [
+        ["css=.css-11pug9o:nth-child(4)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[4]/div/div/div/div/div[3]/div/div/div/form/button", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e8dd57d-4934-4c95-a8ac-d7e50799f64f",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "you must be logged in to leave a review!",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "7fbd60a0-0c15-4cdc-8749-dc46c3a6117b",
+    "name": "20. Posting a review without an image",
+    "commands": [{
+      "id": "e7b00d9e-a12d-4b63-8933-feee20a5a58a",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a01b790a-e83b-427f-96eb-60176d6713a9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x728",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5232d1bc-7ae7-42be-a95c-2df246ef0750",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dcd8c440-2c6f-4c80-9aae-db3da1c7b5bb",
+      "comment": "",
+      "command": "click",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "14a27782-21eb-48a0-8953-f3d8fa3c1b7b",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@value='Admin']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "cebafe18-6177-45c3-828a-bce27965e93e",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='Admin'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "340637d0-3959-4222-bb2d-ec7bec0ae471",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(5)",
+      "targets": [
+        ["css=button:nth-child(5)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/button", "xpath:idRelative"],
+        ["xpath=//div[3]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b2363ef6-a852-439c-a12d-5117e4a40d55",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Cheeto Milk",
+      "targets": [
+        ["linkText=Cheeto Milk", "linkText"],
+        ["css=.MuiBox-root:nth-child(1) > .MuiStack-root .MuiTypography-root > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Cheeto Milk')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div/div/div[2]/div/h2/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/post/64225806f71a722eb7e8823c')]", "xpath:href"],
+        ["xpath=//h2/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Cheeto Milk')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d609712d-d128-4c85-9b91-430bb9c5bc64",
+      "comment": "",
+      "command": "click",
+      "target": "css=div:nth-child(4) > .MuiBox-root:nth-child(2) > .MuiPaper-root .MuiButtonBase-root:nth-child(1)",
+      "targets": [
+        ["css=div:nth-child(4) > .MuiBox-root:nth-child(2) > .MuiPaper-root .MuiButtonBase-root:nth-child(1)", "css:finder"],
+        ["xpath=(//button[@type='button'])[10]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[4]/div/div/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[4]/div/div/div/div/div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "090bbfda-cc89-48de-936d-f5e8cc1e2e70",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-17lhymo .css-64oj17",
+      "targets": [
+        ["css=.css-17lhymo .css-64oj17", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[4]/div/div/div/div/div[3]/div/div/div/form/textarea", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/form/textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "283389fd-cd41-4dc2-b2a1-3c1cb443ea0a",
+      "comment": "",
+      "command": "type",
+      "target": "css=.css-17lhymo .css-64oj17",
+      "targets": [
+        ["css=.css-17lhymo .css-64oj17", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[4]/div/div/div/div/div[3]/div/div/div/form/textarea", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/form/textarea", "xpath:position"]
+      ],
+      "value": "This is a test review"
+    }, {
+      "id": "c677b033-136a-4fc8-8fc1-38bc689d8838",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-ykqdxu:nth-child(9)",
+      "targets": [
+        ["css=.css-ykqdxu:nth-child(9)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[4]/div/div/div/div/div[3]/div/div/div/form/span/label[5]", "xpath:idRelative"],
+        ["xpath=//label[5]", "xpath:position"],
+        ["xpath=//label[contains(.,'5 Stars')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9864f1f4-f9ce-492a-aefd-b87996823e9e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.css-11pug9o:nth-child(4)",
+      "targets": [
+        ["css=.css-11pug9o:nth-child(4)", "css:finder"],
+        ["xpath=(//button[@type='submit'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/div/div[4]/div/div/div/div/div[3]/div/div/div/form/button", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6dedde3-c6ae-4165-98f3-5597e9c7db4e",
+      "comment": "",
+      "command": "assertAlert",
+      "target": "you must add an image to your review",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "08551839-cd99-41de-a709-cefd76696d3c",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiAvatar-img",
+      "targets": [
+        ["css=.MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "88bc0fb6-4f28-4382-81e8-0d7e14d794bf",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAvatar-img",
+      "targets": [
+        ["css=.MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4cfa42f3-b95d-4062-99e5-bbfebd2a7e6c",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiAvatar-img",
+      "targets": [
+        ["css=.MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b613ccc9-924b-4e0d-89b5-4a6e8edf969e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiMenuItem-root:nth-child(3)",
+      "targets": [
+        ["css=.MuiMenuItem-root:nth-child(3)", "css:finder"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "9ac159bf-50d5-46f6-892e-53cb9f0656ec",
+    "name": "17. Unsaving a post",
+    "commands": [{
+      "id": "40949004-8f27-43e7-96ec-c27a708d0d15",
+      "comment": "",
+      "command": "open",
+      "target": "http://krazy-cooking-frontend.uw.r.appspot.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2e90083d-6ee7-4d2d-9f8e-c784d669143f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x728",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "53f056c3-94ed-47d7-99f0-a4531fd27859",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-contained",
+      "targets": [
+        ["css=.MuiButton-contained", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "13a434cd-e286-45b8-995f-6f22437ea46c",
+      "comment": "",
+      "command": "click",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=(//input[@value=''])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a4d0b655-c7a6-48fd-9ed6-219d2820bb63",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(1) > input",
+      "targets": [
+        ["css=label:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@value='Admin']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label/input", "xpath:idRelative"],
+        ["xpath=//label/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "0d9bb312-657c-4d92-8efd-7a47aa04738c",
+      "comment": "",
+      "command": "type",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='Admin'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "Admin"
+    }, {
+      "id": "1ea09ae5-4f82-4574-a3a7-73811409ed43",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "css=label:nth-child(3) > input",
+      "targets": [
+        ["css=label:nth-child(3) > input", "css:finder"],
+        ["xpath=(//input[@value='Admin'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[3]/form/label[2]/input", "xpath:idRelative"],
+        ["xpath=//label[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "3847841c-2953-47a7-be3e-2289c04bda4b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.sc-gueYoa",
+      "targets": [
+        ["css=.sc-gueYoa", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/button", "xpath:idRelative"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'❯')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8c45e8f3-6432-498c-85ce-06f30cb51d6c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=💾 Saved Posts",
+      "targets": [
+        ["linkText=💾 Saved Posts", "linkText"],
+        ["css=.sc-hLseeU:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'💾 Saved Posts')]", "xpath:link"],
+        ["xpath=//div[@id='root']/div/div[2]/div/a[2]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/saved')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'💾 Saved Posts')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "970ea6e7-1b65-4113-a717-1459fb18e408",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiButton-root > svg",
+      "targets": [
+        ["css=.MuiButton-root > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "ae07c997-6284-4533-bec9-b2e9158f9548",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButton-root > svg",
+      "targets": [
+        ["css=.MuiButton-root > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "c000ac6c-602e-4931-82bb-b2540c02d83f",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiButton-root > svg",
+      "targets": [
+        ["css=.MuiButton-root > svg", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "3d7fa0fb-7206-4bf5-b967-e95bcc95133f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiMenuItem-root:nth-child(1)",
+      "targets": [
+        ["css=.MuiMenuItem-root:nth-child(1)", "css:finder"],
+        ["xpath=//li", "xpath:position"],
+        ["xpath=//li[contains(.,'Unsave Post')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1b54a175-8d94-4bb4-8b7d-44eaef86b394",
+      "comment": "",
+      "command": "verifyElementNotPresent",
+      "target": "css=.css-1a0mub1",
+      "targets": [
+        ["css=.css-1a0mub1", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[3]/div[2]/div/div/div/div[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b430565-538e-4f58-8130-6474a0364dcb",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.MuiAvatar-img",
+      "targets": [
+        ["css=.MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "60cbf14a-6e82-4ba7-bcf1-8ba3155dd96a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiAvatar-img",
+      "targets": [
+        ["css=.MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ed08df0c-67c3-4dda-92da-03aac0385381",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.MuiAvatar-img",
+      "targets": [
+        ["css=.MuiAvatar-img", "css:finder"],
+        ["xpath=//img[contains(@src,'https://storage.googleapis.com/krazy_cooking/Avatar.png')]", "xpath:img"],
+        ["xpath=//div[@id='root']/div/div/div[2]/div/button/div/img", "xpath:idRelative"],
+        ["xpath=//div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3fb94ef9-75fd-42de-9d50-496c4596eb3e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiButtonBase-root:nth-child(3)",
+      "targets": [
+        ["css=.MuiButtonBase-root:nth-child(3)", "css:finder"],
+        ["xpath=//li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'Logout')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "1f0df7e8-c291-43df-9744-7d074f971aa2",
+    "name": "Register",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }, {
+    "id": "e7664795-dd3f-4e98-8f38-4078253f402f",
+    "name": "Login",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:3000/", "http://localhost:3000/register", "http://krazy-cooking-frontend.uw.r.appspot.com/"],
+  "plugins": []
+}

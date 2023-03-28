@@ -5,6 +5,7 @@ import { Box, Stack, styled, Button } from "@mui/material";
 import { createPost } from "../../utils/fetchFromApi";
 import { WithContext as ReactTags } from "react-tag-input";
 import "./tagsStyle.css";
+import { useNavigate } from "react-router-dom";
 
 const IdeaInput = styled("textarea")`
   width: 40vw;
@@ -54,6 +55,7 @@ const CreatePost = () => {
   const [body, setBody] = useState("");
   const [image, setImage] = useState("");
   const [tags, setTags] = useState([]);
+  const navigate = useNavigate();
 
   //remove tag from tag array
   const handleDelete = (i) => {
@@ -84,7 +86,7 @@ const CreatePost = () => {
   const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
   //functionality on submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (body.trim() === "") return;
@@ -126,11 +128,12 @@ const CreatePost = () => {
     if (image !== "") data.append("image", image);
 
     //submit api request
-    const res = createPost(data, user);
+    const res = await createPost(data, user);
 
     setTitle("");
     setBody("");
-    // window.location.href = window.location.href;
+
+    navigate(-1);
   };
 
   return (

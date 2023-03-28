@@ -51,30 +51,38 @@ const PostCard = ({ post }) => {
   }
 
   /// function for calling to delete the posts
-  const handleDeletePost = () => {
-    const response = deletePost(post._id,user)
-    response.then((data)=>{
+  const handleDeletePost = async () => {
+    const response = await deletePost(post._id, user);
+    window.location.href = window.location.href;
+    response.then((data) => {
       alert("Post deleted.");
-      window.location.href = "/";
-    })
+    });
   };
 
-  /// save post function 
+  const addUpvote = async () => {
+    await upvotePost(post._id, user);
+    window.location.reload();
+  };
+
+  const deleteUpvote = async () => {
+    await removeUpvote(post._id, user);
+    window.location.reload();
+  };
+
+  /// save post function
   const handleSavePost = () => {
     if (saved) {
       // if the post is already saved, unsave it
-      const response = unsavePost(post._id,user)
-        response.then((data) => {
-          setSaved(false);
-        })
-
+      const response = unsavePost(post._id, user);
+      response.then((data) => {
+        setSaved(false);
+      });
     } else {
       // if the post is not saved, save it
-      const response = savePost(post._id, user)
-        response.then((data) => {
-          setSaved(true);
-        })
-
+      const response = savePost(post._id, user);
+      response.then((data) => {
+        setSaved(true);
+      });
     }
     handleMenuClose();
   };
@@ -183,7 +191,7 @@ const PostCard = ({ post }) => {
                   window.alert("You must be logged in to upvote a post");
                   return;
                 }
-                upvotePost(post._id, user);
+                addUpvote();
               }}
             >
               <North />
@@ -198,7 +206,7 @@ const PostCard = ({ post }) => {
                   return;
                 }
 
-                removeUpvote(post._id, user);
+                deleteUpvote();
               }}
             >
               <South />

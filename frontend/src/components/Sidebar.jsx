@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-
 //Styles for the GUI
 const SidebarWrapper = styled.div`
   position: relative;
@@ -10,13 +9,13 @@ const SidebarWrapper = styled.div`
 
 const ToggleButton = styled.button`
   position: fixed;
-  top: 95%;
+  top: 50%;
   left: ${({ isOpen }) => (isOpen ? "180px" : "0")};
-  background-color: white;
+  background-color: #b4daff;
   border: 1px solid #333;
   cursor: pointer;
   outline: none;
-  padding: 10px;
+  padding: 15px;
   margin: 10px 0;
   z-index: 1;
 `;
@@ -42,16 +41,16 @@ const SidebarLink = styled(Link)`
   border-left: 4px solid transparent;
   text-align: center;
   border-bottom: 1px solid #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
   &:hover {
     background-color: #f7f7f7;
   }
 
   &.active {
-    border-left: 4px solid #3DCBA7;
-    color: #3DCBA7;
+    border-left: 4px solid #3dcba7;
+    color: #3dcba7;
   }
 `;
 
@@ -65,16 +64,16 @@ const SidebarLinkSpecial = styled(Link)`
   border-left: 4px solid transparent;
   text-align: center;
   border-bottom: 1px solid #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 
   &:hover {
     background-color: #f7f7f7;
   }
 
   &.active {
-    border-left: 4px solid #3DCBA7;
-    color: #3DCBA7;
+    border-left: 4px solid #3dcba7;
+    color: #3dcba7;
   }
 `;
 

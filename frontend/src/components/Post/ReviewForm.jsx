@@ -90,7 +90,7 @@ const ReviewForm = ({ recipeId }) => {
   const [image, setImage] = useState("");
   const [value, setValue] = React.useState(3);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (comment.trim() === "") {
       window.alert("review cannot be empty");
@@ -120,7 +120,9 @@ const ReviewForm = ({ recipeId }) => {
     data.append("body", comment);
     data.append("rating", value);
 
-    postReview(data, recipeId, user);
+    const response = await postReview(data, recipeId, user);
+
+    window.location.reload();
 
     setComment("");
   };

@@ -1,4 +1,13 @@
-import { Stack, Button, Avatar, Menu, MenuItem } from "@mui/material";
+import {
+  Stack,
+  Button,
+  Avatar,
+  Menu,
+  MenuItem,
+  Typography,
+  Box,
+  Chip,
+} from "@mui/material";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
@@ -7,7 +16,7 @@ import logo from "../utils/krazy-logo-45.png";
 import SearchBar from "./SearchBar";
 import { useUser } from "../utils/UserContext";
 import { fetchFromAPI, getProfile } from "../utils/fetchFromApi";
-
+import { fontSize } from "@mui/system";
 
 //style for the login button
 const LoginButton = styled(Button)({
@@ -91,22 +100,22 @@ const Navbar = () => {
   const [tag, setTag] = useState("");
 
   const handleTagPress = () => {
-    navigate('/search/' + tag);
+    navigate("/search/" + tag);
   };
-  
+
   const handleRandomPress = () => {
     navigate("/randompost");
     window.location.reload();
   };
-// opens the menu under the avatar
+  // opens the menu under the avatar
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-// closes the menu under the avatar
+  // closes the menu under the avatar
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
-// handles the logout function by deleting the token
+  // handles the logout function by deleting the token
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem("token");
@@ -116,8 +125,9 @@ const Navbar = () => {
   // obtains the data to use for the avatar and username
   useEffect(() => {
     if (user != null) {
-      const data =getProfile(user);
-        data.then((response) => {
+      const data = getProfile(user);
+      data
+        .then((response) => {
           setAvatar(response.profilePicture);
           setUsername(response.username);
         })
@@ -128,7 +138,9 @@ const Navbar = () => {
   });
 
   useEffect(() => {
-    fetchFromAPI('api/post/tagofmonth').then((data) => setTag(data.mostFrequentTag))
+    fetchFromAPI("api/post/tagofmonth").then((data) =>
+      setTag(data.mostFrequentTag)
+    );
   }, []);
 
   return (
@@ -150,9 +162,25 @@ const Navbar = () => {
         <img src={logo} alt="logo" height={45} />
       </Link>
 
-        <LoginButton onClick={handleRandomPress}>Random Post</LoginButton>
-        Most popular tag this month:
+      <LoginButton onClick={handleRandomPress}>Random Post</LoginButton>
+      <Box>
+        <Chip
+          label="Tag of the Month:"
+          sx={{
+            padding: 1,
+            pt: 3,
+            pb: 3,
+            mr: 2,
+            borderRadius: 0,
+            fontSize: 20,
+            fontWeight: "bold",
+            color: "#6b6c7f",
+            background: "linear-gradient(17deg, #FFF01F 0%, #F8C8DC 100%)",
+          }}
+        />
+
         <LoginButton onClick={handleTagPress}> {tag} </LoginButton>
+      </Box>
 
       <Stack direction="row" alignItems={"center"}>
         <SearchBar />

@@ -41,7 +41,7 @@ const CommentForm = ({ postId }) => {
   const [image, setImage] = useState("");
 
   //Called when user submits recipe
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     //checks if comment is empty
@@ -67,7 +67,7 @@ const CommentForm = ({ postId }) => {
     data.append("body", comment);
 
     //send form data to api, including post id and user auth token
-    const res = postComment(data, postId, user);
+    const res = await postComment(data, postId, user);
 
     setComment("");
   };

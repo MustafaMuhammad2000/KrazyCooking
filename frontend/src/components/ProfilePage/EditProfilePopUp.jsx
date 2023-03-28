@@ -15,12 +15,11 @@ const EditProfilePopUp = ({
   const [ConfirmPassword, setConfirmPW] = useState("");
   const [newProfilePicture, setNewProfilePicture] = useState("");
   const [error, setError] = useState(false);
-  const { user} = useUser();
+  const { user } = useUser();
 
   if (!isVisible) {
     return null;
   }
-
 
   //handles the saving of the profile picture to the profile
   const handleSaveClick = async (e) => {
@@ -30,13 +29,14 @@ const EditProfilePopUp = ({
 
     let data = new FormData();
     data.append("image", newProfilePicture);
-    postProfilePic(data,user);
+    await postProfilePic(data, user);
     try {
       handleSave(newProfilePicture);
     } catch {
       console.error("error:", error);
     }
 
+    window.location.reload();
   };
 
   // handles the changing of the password when the change password btn is clicked
@@ -53,7 +53,7 @@ const EditProfilePopUp = ({
     } else {
       setError(false);
       try {
-        const response = await changePassword(CurrentPW,newPassword,user);
+        const response = await changePassword(CurrentPW, newPassword, user);
         console.log(response.data);
         setCurrentPW("");
         setNewPW("");

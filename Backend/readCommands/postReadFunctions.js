@@ -65,9 +65,19 @@ const getRandomPost = async (req, res) => {
       .skip(randomIndex)
       .populate({
         path: "recipes",
-        populate: {
-          path: "reviews",
-        },
+        populate: [
+          {
+            path: "author",
+            select: "username profilePicture",
+          },
+          {
+            path: "reviews",
+            populate: {
+              path: "author",
+              select: "username profilePicture",
+            },
+          },
+        ],
       })
       .lean();
     if (!post) {

@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a9560292.css",
+    "main.js": "/static/js/main.fd0ce05e.js",
+    "static/media/krazy-logo-45.png": "/static/media/krazy-logo-45.686acce00a06a5a568c5.png",
+    "index.html": "/index.html",
+    "main.a9560292.css.map": "/static/css/main.a9560292.css.map",
+    "main.fd0ce05e.js.map": "/static/js/main.fd0ce05e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a9560292.css",
+    "static/js/main.fd0ce05e.js"
+  ]
+}

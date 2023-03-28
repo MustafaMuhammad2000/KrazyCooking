@@ -9,6 +9,7 @@ import {
   Button,
 } from "@mui/material";
 import { AccessTime, North, South } from "@mui/icons-material";
+import Avatar from "@mui/material/Avatar";
 import { useState, useEffect } from "react";
 import moment from "moment";
 import { useUser } from "../../utils/UserContext";
@@ -51,30 +52,39 @@ const PostCard = ({ post }) => {
   }
 
   /// function for calling to delete the posts
-  const handleDeletePost = () => {
-    const response = deletePost(post._id,user)
-    response.then((data)=>{
+  const handleDeletePost = async () => {
+    const response = await deletePost(post._id, user);
+    window.location.href = window.location.href;
+    response.then((data) => {
       alert("Post deleted.");
-      window.location.href = "/";
-    })
+    });
   };
 
-  /// save post function 
-  const handleSavePost = () => {
+  const addUpvote = async () => {
+    await upvotePost(post._id, user);
+    window.location.reload();
+  };
+
+  const deleteUpvote = async () => {
+    await removeUpvote(post._id, user);
+    window.location.reload();
+  };
+
+  /// save post function
+  const handleSavePost = async () => {
+    if (user === null) {
+      window.alert("You must be logged in to save a post");
+      return;
+    }
     if (saved) {
       // if the post is already saved, unsave it
-      const response = unsavePost(post._id,user)
-        response.then((data) => {
-          setSaved(false);
-        })
-
+      const response = await unsavePost(post._id, user);
+      setSaved(false);
+      window.location.href = window.location.href;
     } else {
       // if the post is not saved, save it
-      const response = savePost(post._id, user)
-        response.then((data) => {
-          setSaved(true);
-        })
-
+      const response = await savePost(post._id, user);
+      setSaved(true);
     }
     handleMenuClose();
   };
@@ -103,7 +113,12 @@ const PostCard = ({ post }) => {
             pr: 1,
           }}
         >
-          <img src={post.author.profilePicture} alt="logo" height={30} />
+          <Avatar
+            alt="logo"
+            src={post.author.profilePicture}
+            sx={{ marginLeft: -1 }} // add marginLeft: 0 to align with edge of Stack
+          />
+          {/* <img src={post.author.profilePicture} alt="logo" height={30} /> */}
           <Typography>{post.author.username}</Typography>
         </Stack>
 
@@ -183,7 +198,7 @@ const PostCard = ({ post }) => {
                   window.alert("You must be logged in to upvote a post");
                   return;
                 }
-                upvotePost(post._id, user);
+                addUpvote();
               }}
             >
               <North />
@@ -198,7 +213,7 @@ const PostCard = ({ post }) => {
                   return;
                 }
 
-                removeUpvote(post._id, user);
+                deleteUpvote();
               }}
             >
               <South />
@@ -209,9 +224,8 @@ const PostCard = ({ post }) => {
 
           {/* Menu*/}
           <Stack direction="row" alignItems="center">
-            <Button>
+            <Button onClick={handleMenuClick}>
               <svg
-                onClick={handleMenuClick}
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"

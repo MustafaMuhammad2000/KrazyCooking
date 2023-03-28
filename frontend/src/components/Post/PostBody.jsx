@@ -23,6 +23,16 @@ const PostBody = ({ post }) => {
     return;
   }
 
+  const addUpvote = async () => {
+    await upvotePost(post._id, user);
+    window.location.reload();
+  };
+
+  const deleteUpvote = async () => {
+    await removeUpvote(post._id, user);
+    window.location.reload();
+  };
+
   //Styling for save post button
   const bookmarkStyle = {
     position: "absolute",
@@ -54,7 +64,7 @@ const PostBody = ({ post }) => {
             pr: 1,
           }}
         >
-          <Person />
+          <img src={post.author.profilePicture} alt="logo" height={30} />
           <Typography>
             <ErrorBoundary>{post.author.username}</ErrorBoundary>
           </Typography>
@@ -164,7 +174,7 @@ const PostBody = ({ post }) => {
                   window.alert("You must be logged in to upvote a post");
                   return;
                 }
-                upvotePost(post._id, user);
+                addUpvote();
               }}
             >
               <North />
@@ -178,8 +188,7 @@ const PostBody = ({ post }) => {
                   window.alert("You must be logged in to remove an upvote");
                   return;
                 }
-
-                removeUpvote(post._id, user);
+                deleteUpvote();
               }}
             >
               <South />

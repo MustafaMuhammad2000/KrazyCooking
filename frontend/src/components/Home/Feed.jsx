@@ -1,26 +1,21 @@
-
-import  React,{ useState, useEffect } from 'react';
-import { Box, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-
+import React, { useState, useEffect } from "react";
+import { Box, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 import PostElement from "./PostElement";
 import { fetchFromAPI } from "../../utils/fetchFromApi";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
-  const [sortBy, setSortBy] = useState('older');
+  const [sortBy, setSortBy] = useState("older");
   const [sortedPosts, setSortedPosts] = useState(posts);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-
-
   //// handles the sorting menu changes
   const handleSortChange = (event) => {
     setSortBy(event.target.value);
   };
-
 
   //// sorts the posts by the highest upvotes
   const sortByHighestRating = () => {
@@ -65,40 +60,82 @@ const Feed = () => {
 
   // Fetches all post from api when the page loads
   useEffect(() => {
-
-    fetchFromAPI(`api/post`).then((data) => setSortedPosts(data))
+    fetchFromAPI(`api/post`).then((data) => setSortedPosts(data));
   }, []);
 
   /// applies the sorting functions to the posts
   useEffect(() => {
-    if (sortBy === 'newer') {
+    if (sortBy === "newer") {
       sortByNewest();
-    } else if (sortBy === 'older') {
+    } else if (sortBy === "older") {
       sortByOldest();
-    } else if (sortBy === 'high') {
+    } else if (sortBy === "high") {
       sortByHighestRating();
     }
   }, [sortBy, posts]);
 
   return (
-    <Box p={2} display="flex" flexDirection="column" sx={{overflowY: 'auto', flex: 1}}>
+    <Box
+      p={2}
+      display="flex"
+      flexDirection="column"
+      sx={{ overflowY: "auto", flex: 1 }}
+    >
       <Box display="flex" justifyContent="flex-end" mb={1}>
-      <InputLabel sx={{ paddingLeft: '32px' }}>Sort by:</InputLabel>
+        <InputLabel sx={{ paddingLeft: "32px" }}>Sort by:</InputLabel>
         <FormControl>
-          <br/>
-          <Select value={sortBy} onChange={handleSortChange}  style={{ height: '30px' }}>
-            <MenuItem value="older"onClick={() => {handleClose(); sortByOldest();}}>Oldest</MenuItem>
-            <MenuItem value="newer" onClick={() => {handleClose(); sortByNewest();}}>Newest</MenuItem>
-            <MenuItem value="high"onClick={() => {handleClose(); sortByHighestRating();}}>High Rating</MenuItem>
-            <MenuItem value="low"onClick={() => {handleClose(); sortByLowestRating();}}>Low Rating</MenuItem>
+          <br />
+          <Select
+            value={sortBy}
+            onChange={handleSortChange}
+            style={{ height: "30px" }}
+          >
+            <MenuItem
+              value="older"
+              onClick={() => {
+                handleClose();
+                sortByOldest();
+              }}
+            >
+              Oldest
+            </MenuItem>
+            <MenuItem
+              value="newer"
+              onClick={() => {
+                handleClose();
+                sortByNewest();
+              }}
+            >
+              Newest
+            </MenuItem>
+            <MenuItem
+              value="high"
+              onClick={() => {
+                handleClose();
+                sortByHighestRating();
+              }}
+            >
+              Highest Upvotes
+            </MenuItem>
+            <MenuItem
+              value="low"
+              onClick={() => {
+                handleClose();
+                sortByLowestRating();
+              }}
+            >
+              Lowest Upvotes
+            </MenuItem>
           </Select>
         </FormControl>
       </Box>
-      <Box display="flex" justifyContent="center" sx={{overflowY: 'auto', flex: 1}}>
-        
+      <Box
+        display="flex"
+        justifyContent="center"
+        sx={{ overflowY: "auto", flex: 1 }}
+      >
         <PostElement posts={sortedPosts} />
       </Box>
-
     </Box>
   );
 };

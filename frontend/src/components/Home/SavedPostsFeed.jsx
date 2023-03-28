@@ -1,16 +1,24 @@
-import React,{ useState, useEffect } from 'react';
-import { Box, Stack, Typography, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import React, { useState, useEffect } from "react";
+import {
+  Box,
+  Stack,
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { useUser } from "../../utils/UserContext";
-import PostElement from './PostElement';
-import { getSavedPosts } from '../../utils/fetchFromApi';
+import PostElement from "./PostElement";
+import { getSavedPosts } from "../../utils/fetchFromApi";
 
 import ErrorBoundary from "../../utils/ErrorBoundary";
 
 const SavedPostsFeed = () => {
   const [posts, setPosts] = useState([]);
-  const [sortBy, setSortBy] = useState('older');
+  const [sortBy, setSortBy] = useState("older");
   const [sortedPosts, setSortedPosts] = useState(posts);
-  const { user } = useUser();    
+  const { user } = useUser();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -57,40 +65,86 @@ const SavedPostsFeed = () => {
   };
   // Fetches all post from api when the page loads
   useEffect(() => {
-    getSavedPosts('api/user/savedPosts',user).then((data) => setSortedPosts(data))
-  },[user]);
+    getSavedPosts("api/user/savedPosts", user).then((data) =>
+      setSortedPosts(data)
+    );
+  }, [user]);
 
   /// applies the sorting functions to the posts
   useEffect(() => {
-    if (sortBy === 'newer') {
+    if (sortBy === "newer") {
       sortByNewest();
-    } else if (sortBy === 'older') {
+    } else if (sortBy === "older") {
       sortByOldest();
-    } else if (sortBy === 'high') {
+    } else if (sortBy === "high") {
       sortByHighestRating();
     }
   }, [sortBy, posts]);
 
   return (
-    <Box p={2} display="flex" flexDirection="column" sx={{overflowY: 'auto', flex: 1}}>
+    <Box
+      p={2}
+      display="flex"
+      flexDirection="column"
+      sx={{ overflowY: "auto", flex: 1 }}
+    >
       <Box display="flex" justifyContent="flex-end" mb={1}>
-      <InputLabel sx={{ paddingLeft: '32px' }}>Sort by:</InputLabel>
+        <InputLabel sx={{ paddingLeft: "32px" }}>Sort by:</InputLabel>
         <FormControl>
-          <br/>
-          <Select value={sortBy} onChange={handleSortChange}  style={{ height: '30px' }}>
-            <MenuItem value="older"onClick={() => {handleClose(); sortByOldest();}}>Oldest</MenuItem>
-            <MenuItem value="newer" onClick={() => {handleClose(); sortByNewest();}}>Newest</MenuItem>
-            <MenuItem value="high"onClick={() => {handleClose(); sortByHighestRating();}}>High Rating</MenuItem>
-            <MenuItem value="low"onClick={() => {handleClose(); sortByLowestRating();}}>Low Rating</MenuItem>
+          <br />
+          <Select
+            value={sortBy}
+            onChange={handleSortChange}
+            style={{ height: "30px" }}
+          >
+            <MenuItem
+              value="older"
+              onClick={() => {
+                handleClose();
+                sortByOldest();
+              }}
+            >
+              Oldest
+            </MenuItem>
+            <MenuItem
+              value="newer"
+              onClick={() => {
+                handleClose();
+                sortByNewest();
+              }}
+            >
+              Newest
+            </MenuItem>
+            <MenuItem
+              value="high"
+              onClick={() => {
+                handleClose();
+                sortByHighestRating();
+              }}
+            >
+              Highest Upvotes
+            </MenuItem>
+            <MenuItem
+              value="low"
+              onClick={() => {
+                handleClose();
+                sortByLowestRating();
+              }}
+            >
+              Lowest Upvotes
+            </MenuItem>
           </Select>
         </FormControl>
       </Box>
-      <Box display="flex" justifyContent="center" sx={{overflowY: 'auto', flex: 1}}>
-        
+      <Box
+        display="flex"
+        justifyContent="center"
+        sx={{ overflowY: "auto", flex: 1 }}
+      >
         <PostElement posts={sortedPosts} />
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default SavedPostsFeed
+export default SavedPostsFeed;

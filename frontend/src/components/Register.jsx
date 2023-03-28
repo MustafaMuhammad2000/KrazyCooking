@@ -16,6 +16,8 @@ export default function Form() {
   const [error, setError] = useState(false);
   const axios = require("axios");
 
+  const [showSuccess, setShowSuccess] = useState(false);
+
   //handles the name used for registering
   const handleName = (e) => {
     setName(e.target.value);
@@ -31,6 +33,16 @@ export default function Form() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (username.length < 5) {
+      window.alert(`your username needs to be at least 5 characters`);
+      return;
+    }
+
+    if (password.length < 3) {
+      window.alert(`your password needs to be at least 3 characters`);
+      return;
+    }
+
     if (username === "" || password === "") {
       setError(true);
       {
@@ -43,7 +55,8 @@ export default function Form() {
         successMessage();
       }
       try {
-        const response = await RegisterAPI(username,password,DOB) 
+        const response = await RegisterAPI(username, password, DOB);
+        setShowSuccess(true);
         window.location.href = "/login";
       } catch (error) {
         console.error(error);
@@ -64,7 +77,7 @@ export default function Form() {
       </div>
     );
   };
- // displays a error when registration was unsuccessful
+  // displays a error when registration was unsuccessful
   const errorMessage = () => {
     return (
       <div
@@ -86,14 +99,13 @@ export default function Form() {
     backgroundColor: "#FFFFFF",
   };
   const formStyle = {
-
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '55px',
-    backgroundColor: '#B4DAFF', 
-    borderRadius: '15px',
-    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "55px",
+    backgroundColor: "#B4DAFF",
+    borderRadius: "15px",
+    boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
   };
 
   const labelStyle = {
@@ -128,7 +140,6 @@ export default function Form() {
     borderRadius: "3px",
     fontSize: "16px",
     backgroundColor: "#FFFFFF",
-
   };
 
   return (
@@ -184,7 +195,7 @@ export default function Form() {
         <div className="messages">
           <Typography color="black">
             {errorMessage()}
-            {successMessage()}
+            {showSuccess && successMessage()}
           </Typography>
         </div>
       </form>

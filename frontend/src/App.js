@@ -1,7 +1,6 @@
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Box } from '@mui/material';
-import {UserProvider} from './utils/UserContext';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Box } from "@mui/material";
+import { UserProvider } from "./utils/UserContext";
 import {
   Navbar,
   Feed,
@@ -15,7 +14,7 @@ import {
   SavedPostsFeed,
   Sidebar,
   MyPostsFeed,
-  SearchResults
+  SearchResults,
 } from "./components";
 
 const App = () => (
@@ -30,7 +29,7 @@ const App = () => (
           <Route path="/search/:query" element={<SearchResults />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/user/:id" element={<ProfilePage />} />
+          <Route path="/user/myprofile" element={<ProfilePage />} />
           <Route path="/createPost" element={<CreatePost />} />
           <Route path="/randompost" element={<RandomPost />} />
           <Route path="/saved" element={<SavedPostsFeed />} />

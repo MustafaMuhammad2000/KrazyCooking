@@ -4,11 +4,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const baseURL = process.env.BASEURL + '/recipe';
+var pid;
 
 describe('Recipe Routes', function () {
 
   var token = '';
-  const pid = '64134c6f84de83bc075d329e';
   var originalCount;
   // Before tests, login to an account to get authorization token
   beforeAll(async() => {
@@ -21,11 +21,22 @@ describe('Recipe Routes', function () {
     console.log(token);
     expect(res.statusCode).toBe(200);
 
-    const res2 = await request(process.env.BASEURL+'/post').get('/'+pid+'/view'); 
-    originalCount = res2.body.recipes.length;
-    console.log(originalCount);
-    expect(res2.statusCode).toBe(200);
+    // Create a post to be used for future tests
+    const body2 = {
+      title: "Recipe Routes Test Post 1",
+      body: "Chicken salad with sour patch kids",
+      tags: ["Chicken", "Salad", "Candy"]
+    }
+    const res2 = await request(process.env.BASEURL + '/post').post('/').set('authorization', token).send(body2); 
+    expect(res2.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res2.statusCode).toBe(201);
 
+    pid = res2.body._id; // ID of the post we just created
+
+    const res3 = await request(process.env.BASEURL+'/post').get('/'+pid+'/view'); 
+    originalCount = res3.body.recipes.length;
+    console.log(originalCount);
+    expect(res3.statusCode).toBe(200);
   });
 
   // rcr-1 Posting a recipe with no picture on an non-existing post with proper authorization
@@ -55,7 +66,7 @@ describe('Recipe Routes', function () {
   }); 
 
   // rcr-3 Posting a recipe with no picture on a valid post without proper authorization
-  test('Posting a recipe on a recipe without authorization', async () => {
+  test('Posting a recipe on a post without authorization', async () => {
     const body = {
       body: "1. add chicken \n 2. add sour patch kids"
     }
@@ -63,7 +74,7 @@ describe('Recipe Routes', function () {
     const res = await request(baseURL).post('/'+ pid).send(body);
 
     console.log(res.body);
-    expect(res.header['content-type']).toBe('text/html; charset=utf-8');
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(401);
   }); 
 
@@ -94,10 +105,8 @@ describe('Recipe Routes', function () {
     console.log(token);
     expect(res.statusCode).toBe(200);
 
-    const res2 = await request(baseURL).delete('/'+rcid).set('authorization', wrongToken);
-
     // Delete the recipe itself
-    console.log(res.body);
+    const res2 = await request(baseURL).delete('/'+rcid).set('authorization', wrongToken);
     expect(res2.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res2.statusCode).toBe(400);
   });
@@ -150,6 +159,12 @@ describe('Recipe Routes', function () {
  
   }); 
 
-  
+  // Delete the test post to avoid cluttering the database
+  afterAll(async () => {
+
+    const res = await request(process.env.BASEURL+'/post').delete('/'+pid).set('authorization', token); 
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(200);
+  });
 
 }); 

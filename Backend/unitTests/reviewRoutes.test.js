@@ -1,5 +1,6 @@
 const request = require('supertest');
 const dotenv = require("dotenv");
+const path = require('path');
 
 dotenv.config();
 
@@ -8,12 +9,14 @@ const baseURL = process.env.BASEURL + '/review';
 describe('Review Routes', function () {
 
   var token = '';
-  const pid = '64134c6f84de83bc075d329e';
-  const rcid = '64136fed022d91a7a4f7fffe';
+  var adminToken = '';
+  var pid = '';
+  var rcid = '';
   var reid = '';
 
-  // Change filepath to an image on your own computer when testing
-  const testImage = 'C:/Users/Justin/Desktop/Seng 401/KrazyCooking/Backend/unitTests/chicken_salad.jpg';
+  // Relative path of the test image
+  const testImage = path.resolve('unitTests/chicken_salad.jpg');
+  console.log(testImage);
   
   var originalCount;
   
@@ -28,21 +31,41 @@ describe('Review Routes', function () {
     console.log(token);
     expect(res.statusCode).toBe(200);
 
-    // Retrieving the number of reviews on the recipe on the post
-    const res2 = await request(process.env.BASEURL+'/post').get('/'+pid+'/view'); 
-    originalCount = res2.body.recipes[0].reviews.length;
-    console.log(originalCount);
-    expect(res2.statusCode).toBe(200);
+    // Create a post for the purpose of these tests
+    const body2 = {
+      title: "Review Routes Test Post 1",
+      body: "Turkey stuffed with a duck stuffed with a goose",
+      tags: ["Turkey", "Duck", "Goose", "Bird"]
+    }
+    const res2 = await request(process.env.BASEURL + '/post').post('/').set('authorization', token).send(body2); 
+    expect(res2.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res2.statusCode).toBe(201);
+    pid = res2.body._id; // ID of the post we just created
 
-  });
+    // Add a recipe to the post for the purpose of these tests
+    const body3 = {
+      body: "1. Stuff a duck with a goose \n 2. Stuff a turkey with the duck"
+    }
+    const res3 = await request(process.env.BASEURL + '/recipe').post('/'+ pid).send(body3).set('authorization', token);
+    expect(res3.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res3.statusCode).toBe(201);
+    rcid = res3.body.recipe._id;
+
+    // Retrieving the number of reviews on the recipe on the post
+    const res4 = await request(process.env.BASEURL+'/post').get('/'+pid+'/view'); 
+    originalCount = res4.body.recipes[0].reviews.length;
+    console.log(originalCount);
+    expect(res4.statusCode).toBe(200);
+  }, 10000);
 
   // rer-1 Posting a review on a valid recipe with no picture
   test('Posting a review with no picture', async () => {
     const res = await request(baseURL).post('/'+ rcid).field('body', 'hello').field('rating', 4).set('authorization', token);
 
+    // Review without an image should give a 400
     console.log(res.body);
     expect(res.header['content-type']).toBe('application/json; charset=utf-8');
-    expect(res.statusCode).toBe(500);
+    expect(res.statusCode).toBe(400);
   }); 
 
   // rer-2 Posting a review on an invalid recipe ID with proper authorization
@@ -66,7 +89,7 @@ describe('Review Routes', function () {
     const res = await request(baseURL).post('/'+ rcid).attach('image', testImage).field('body', 'hello').field('rating', 4);
 
     console.log(res.body);
-    expect(res.header['content-type']).toBe('text/html; charset=utf-8');
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(401);
   }); 
 
@@ -94,7 +117,7 @@ describe('Review Routes', function () {
 
     const res2 = await request(baseURL).delete('/'+reid).set('authorization', wrongToken);
 
-    // Delete the review itself
+    // Attempt to delete the review
     console.log(res.body);
     expect(res2.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res2.statusCode).toBe(400);
@@ -149,6 +172,38 @@ describe('Review Routes', function () {
  
   }); 
 
-  
+  // rer-10 An admin deleting someone else's review 
+  test('An admin deleting a review', async () => {
+
+    // Posting a review as a regular user
+    const res = await request(baseURL).post('/'+ rcid).attach('image', testImage).field('body', 'hello').field('rating', 4).set('authorization', token);
+    const reid2 = res.body._id;
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(201);
+
+    // Login to an account which is an admin
+    const body = {
+      username: "Admin",
+      password: "Admin"
+    }
+    const res2 = await request(process.env.BASEURL+'/user').post('/login').send(body); 
+    adminToken = res2.body.token;
+    console.log(token);
+    expect(res2.statusCode).toBe(200);
+
+    // Delete the review as an admin
+    const res3 = await request(baseURL).delete('/'+reid2).set('authorization', adminToken);
+    expect(res3.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res3.statusCode).toBe(200);
+ 
+  }); 
+
+  // Delete the test post to avoid cluttering the database
+  afterAll(async () => {
+
+    const res = await request(process.env.BASEURL+'/post').delete('/'+pid).set('authorization', adminToken); 
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.statusCode).toBe(200);
+  });
 
 }); 

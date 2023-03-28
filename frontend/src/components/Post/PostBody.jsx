@@ -64,7 +64,7 @@ const PostBody = ({ post }) => {
             pr: 1,
           }}
         >
-          <Person />
+          <img src={post.author.profilePicture} alt="logo" height={30} />
           <Typography>
             <ErrorBoundary>{post.author.username}</ErrorBoundary>
           </Typography>

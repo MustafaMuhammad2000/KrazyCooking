@@ -48,42 +48,48 @@ export const deletePost = async (post_id, user) => {
 
 //function to save a post, requires post id and auth token
 export const savePost = async (postId, user) => {
-  axios
-    .post(
-      `${BASE_URL}/api/user/savePost/${postId}`,
-      {},
-      {
-        headers: {
-          authorization: `${user}`,
-        },
-      }
-    )
-    .then((response) => {
-      window.alert(response.data.message);
-    })
-    .catch((error) => {
-      console.log(error);
-      if (error.response) window.alert(error.response.data.message);
-    });
+  return new Promise((resolve, reject) => {
+    axios
+      .post(
+        `${BASE_URL}/api/user/savePost/${postId}`,
+        {},
+        {
+          headers: {
+            authorization: `${user}`,
+          },
+        }
+      )
+      .then((response) => {
+        window.alert(response.data.message);
+        resolve(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.response) window.alert(error.response.data.message);
+        reject(error);
+      });
+  });
 };
 
 //function to unsave a post, requires post id and auth token
 export const unsavePost = async (postId, user) => {
-  console.log("token: ", user);
-  console.log("post id: ", postId);
-  axios
-    .delete(`${BASE_URL}/api/user/removeSavedPost/${postId}`, {
-      headers: {
-        authorization: `${user}`,
-      },
-    })
-    .then((response) => {
-      window.alert(response.data.message);
-    })
-    .catch((error) => {
-      console.log(error);
-      if (error.response) window.alert(error.response.data.message);
-    });
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`${BASE_URL}/api/user/removeSavedPost/${postId}`, {
+        headers: {
+          authorization: `${user}`,
+        },
+      })
+      .then((response) => {
+        window.alert(response.data.message);
+        resolve(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.response) window.alert(error.response.data.message);
+        reject(error);
+      });
+  });
 };
 
 //function to upvote a post, requires an auth token
@@ -159,17 +165,16 @@ export const postComment = async (body, postId, user) => {
     },
   };
 
-  try {
-    const response = await axios.post(
-      `${BASE_URL}/api/recipe/${postId}`,
-      body,
-      options
-    );
-    return response;
-  } catch (error) {
-    console.error(error);
-  }
-  return;
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${BASE_URL}/api/recipe/${postId}`, body, options)
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
 };
 
 // Function to post a review to endpoint, needs auth token and comment id

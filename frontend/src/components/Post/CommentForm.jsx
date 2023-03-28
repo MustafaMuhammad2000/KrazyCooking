@@ -70,6 +70,7 @@ const CommentForm = ({ postId }) => {
     const res = await postComment(data, postId, user);
 
     setComment("");
+    window.location.reload();
   };
 
   //Element for writing recipes, includes a text box and adding an image

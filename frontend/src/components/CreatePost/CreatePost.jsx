@@ -117,6 +117,11 @@ const CreatePost = () => {
     for (let i = 0; i < tags.length; i++) {
       data.append("tags", tags[i].text);
     }
+
+    if (tags.length < 2) {
+      window.alert("You must add at least 2 tags");
+      return;
+    }
     //only add image if one was submitted
     if (image !== "") data.append("image", image);
 

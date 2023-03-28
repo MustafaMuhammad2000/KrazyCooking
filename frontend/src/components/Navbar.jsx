@@ -83,17 +83,18 @@ const RegisterButton = styled(Button)({
 const Navbar = () => {
   const navigate = useNavigate();
   const { user, setUser } = useUser();
-
   const [anchorEl, setAnchorEl] = useState(null);
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
   const axios = require("axios");
   const [tag, setTag] = useState("");
 
+  //sends user to search route with tag of month as search query
   const handleTagPress = () => {
     navigate('/search/' + tag);
   };
   
+  //sends user to randompost route
   const handleRandomPress = () => {
     navigate("/randompost");
     window.location.reload();

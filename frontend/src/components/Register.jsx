@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Typography, Stack } from "@mui/material";
 import React, { Component } from "react";
+import { RegisterAPI } from "../utils/fetchFromApi";
 
 export default function Form() {
   // States for registration
@@ -15,16 +16,18 @@ export default function Form() {
   const [error, setError] = useState(false);
   const axios = require("axios");
 
+  //handles the name used for registering
   const handleName = (e) => {
     setName(e.target.value);
     setSubmitted(false);
   };
-
+  //handles the password used for registering
   const handlePassword = (e) => {
     setPassword(e.target.value);
     setSubmitted(false);
   };
 
+  // calls the RegisterAPI function whenever the submit button is pressed
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -40,22 +43,15 @@ export default function Form() {
         successMessage();
       }
       try {
-        const response = await axios.post(
-          "http://localhost:8000/api/user/register",
-          {
-            username: username,
-            password: password,
-            dateOfBirth: DOB,
-          }
-        );
+        const response = await RegisterAPI(username,password,DOB) 
         window.location.href = "/login";
       } catch (error) {
         console.error(error);
-        alert("Registration failed. Try again.");
       }
     }
   };
 
+  // displays a message when registration was successful
   const successMessage = () => {
     return (
       <div
@@ -68,7 +64,7 @@ export default function Form() {
       </div>
     );
   };
-
+ // displays a error when registration was unsuccessful
   const errorMessage = () => {
     return (
       <div
@@ -81,7 +77,7 @@ export default function Form() {
       </div>
     );
   };
-
+  // styles for the GUI
   const containerStyle = {
     display: "flex",
     justifyContent: "center",
@@ -95,7 +91,7 @@ export default function Form() {
     flexDirection: 'column',
     alignItems: 'center',
     padding: '55px',
-    backgroundColor: '#B4DAFF', //B4DAFF
+    backgroundColor: '#B4DAFF', 
     borderRadius: '15px',
     boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)'
   };
@@ -115,7 +111,6 @@ export default function Form() {
     backgroundColor: "#DBDCF9",
     color: "#000000",
     border: "none",
-    //borderRadius: '3px',
     fontSize: "16px",
     cursor: "pointer",
     borderRadius: 20,
@@ -134,7 +129,6 @@ export default function Form() {
     fontSize: "16px",
     backgroundColor: "#FFFFFF",
 
-    //boxShadow: '#DBDCF9'
   };
 
   return (

@@ -18,10 +18,25 @@ export const createPost = async (body, user) => {
     });
 };
 
+//function to delete a post , requires an auth token
+export const deletePost = async (post_id, user) => {
+  axios
+    .delete(`${BASE_URL}/api/post${post_id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `${user}`,
+      },
+    })
+    .catch((error) => {
+      console.log(error);
+      if (error.response)
+        console.log("delete post error: ", error.response.data.message);
+    });
+};
+
+
 //function to save a post, requires post id and auth token
 export const savePost = async (postId, user) => {
-  console.log("token: ", user);
-  console.log("post id: ", postId);
   axios
     .post(
       `${BASE_URL}/api/user/savePost/${postId}`,
@@ -181,8 +196,6 @@ export const getSavedPosts = async (url, user) => {
       },
     })
     .catch((error) => {
-      console.log(error);
-      console.log(user);
       if (error.response)
         console.log("get post error: ", error.response.data.message);
     });
@@ -198,10 +211,135 @@ export const getMyPosts = async (url, user) => {
       },
     })
     .catch((error) => {
-      console.log(error);
-      console.log(user);
       if (error.response)
         console.log("get post error: ", error.response.data.message);
     });
   return data.posts;
+};
+
+
+// Endpoint to login
+export const LoginAPI = async (Username,Password) => {
+  const response = await axios
+    .post(`${BASE_URL}/api/user/login`, {
+        username: Username,
+        password: Password,
+    })
+    .catch((error) => {
+      if (error.response)
+      {
+        console.error(error);
+        alert("Login failed. Please try again.");
+      }
+    });
+  return response.data;
+};
+
+// Endpoint to Register
+export const RegisterAPI = async (Username,Password,DOB) => {
+  const response = await axios
+    .post(`${BASE_URL}/api/user/login`, {
+        username: Username,
+        password: Password,
+        dateOfBirth: DOB,
+    })
+    .catch((error) => {
+      if (error.response)
+      {
+        console.error(error);
+        alert("Registration failed. Please try again.");
+      }
+    });
+    console.log("response:", response.data);
+  return response.data;
+};
+
+
+// Endpoint to validate user token
+export const validateToken = async (token) => {
+  const response = await axios
+    .get(`${BASE_URL}/api/user/getUser`, {
+      headers: {
+        authorization: `${token}`,
+      },
+    })
+    .catch((error) => {
+      if (error.response)
+      {
+        console.error(error);
+      }
+    });
+  return response.data;
+};
+
+
+// Endpoint to get user profile
+export const getProfile = async (user) => {
+  const response = await axios
+    .get(`${BASE_URL}/api/user/Profile`, {
+      headers: {
+        authorization: `${user}`,
+      },
+    })
+    .catch((error) => {
+      if (error.response)
+      {
+        console.error(error);
+      }
+    });
+  return response.data;
+};
+
+//Function to upload profilePic to endpoint, Picture, user required
+export const postProfilePic= async (data, user) => {
+  const options = {
+    headers: {
+      authorization: `${user}`,
+      "Content-Type": "application/json",
+    },
+  };
+
+    await axios.post(`${BASE_URL}/api/user/uploadProfilePic`, data, options)
+    .then((response) => {
+      console.log("respon:", response);
+      
+      return response;
+    })
+    .catch((error) => {
+      console.error(error);
+      if (error.response) {
+              console.log("respon:", error.response);
+        alert("Profile picture upload failed. Please try again.");
+      }
+    });
+  return;
+};
+
+//Function to change password to endpoint, Picture, user, password, new password required
+export const changePassword= async (CurrentPW,newPassword, user) => {
+  const options = {
+    headers: {
+      authorization: `${user}`,
+    },
+  };
+
+    await axios.patch(`${BASE_URL}/api/user/updatePassword`, 
+      {
+        currentPassword: CurrentPW,
+        newPassword: newPassword,
+      }, 
+      options)
+    .then((response) => {
+      console.log("respon:", response);
+      alert("Password changed successfully!");
+      return response;
+    })
+    .catch((error) => {
+      console.error(error);
+      if (error.response) {
+              console.log("respon:", error.response);
+        alert("Password change failed. Please try again.");
+      }
+    });
+  return;
 };

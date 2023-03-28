@@ -6,10 +6,10 @@ import { useNavigate } from "react-router-dom";
 import logo from "../utils/krazy-logo-45.png";
 import SearchBar from "./SearchBar";
 import { useUser } from "../utils/UserContext";
-import { fetchFromAPI } from "../utils/fetchFromApi";
+import { fetchFromAPI, getProfile } from "../utils/fetchFromApi";
 
 
-
+//style for the login button
 const LoginButton = styled(Button)({
   boxShadow: "none",
   textTransform: "none",
@@ -32,7 +32,7 @@ const LoginButton = styled(Button)({
     borderColor: "#3DCBA7",
   },
 });
-
+// style for the create post button
 const CreatePostButton = styled(Button)({
   boxShadow: "none",
   textTransform: "none",
@@ -56,7 +56,7 @@ const CreatePostButton = styled(Button)({
     borderColor: "#b7b9f7",
   },
 });
-
+//style for the register button
 const RegisterButton = styled(Button)({
   boxShadow: "none",
   textTransform: "none",
@@ -98,34 +98,28 @@ const Navbar = () => {
     navigate("/randompost");
     window.location.reload();
   };
-
+// opens the menu under the avatar
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+// closes the menu under the avatar
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
-
+// handles the logout function by deleting the token
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem("token");
     window.location.href = "/";
   };
 
-  
+  // obtains the data to use for the avatar and username
   useEffect(() => {
     if (user != null) {
-      axios
-        .get("http://localhost:8000/api/user/Profile", {
-          headers: {
-            authorization: `${user}`,
-          },
-        })
-        .then((response) => {
-          setAvatar(response.data.profilePicture);
-          setUsername(response.data.username);
-          console.log(response);
+      const data =getProfile(user);
+        data.then((response) => {
+          setAvatar(response.profilePicture);
+          setUsername(response.username);
         })
         .catch((error) => {
           console.log(error);

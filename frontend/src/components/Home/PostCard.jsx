@@ -17,6 +17,8 @@ import {
   getSavedPosts,
   upvotePost,
   removeUpvote,
+  deletePost,
+  unsavePost,
 } from "../../utils/fetchFromApi";
 
 const PostCard = ({ post }) => {
@@ -28,70 +30,51 @@ const PostCard = ({ post }) => {
   const { user } = useUser();
   const axios = require("axios");
 
+  // retrieves the saved posts
   useEffect(() => {
     const response = getSavedPosts("api/user/savedPosts", user);
     response.then((data) => {
       const saved = data.some((savedPost) => savedPost._id === post._id);
-      console.log("saved: ", saved);
-      console.log("data: ", data);
-      console.log("opost id: ", post._id);
       setSaved(saved);
     });
   }, [user, post._id]);
 
+  // handles the dot menu
   function handleMenuClick(event) {
     const svg = event.currentTarget;
     setMenuAnchor(event.currentTarget);
   }
 
+  // handles the closing of the dropdown menu
   function handleMenuClose() {
     setMenuAnchor(null);
   }
 
+  /// function for calling to delete the posts
   const handleDeletePost = () => {
-    axios
-      .delete(`http://localhost:8000/api/post/${post._id}`, {
-        headers: {
-          authorization: `${user}`,
-        },
-      })
-      .then((response) => {
-        alert("Post deleted.");
-        window.location.href = "/";
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Unable to delete post. Please try again later.");
-      });
+    const response = deletePost(post._id,user)
+    response.then((data)=>{
+      alert("Post deleted.");
+      window.location.href = "/";
+    })
   };
 
+  /// save post function 
   const handleSavePost = () => {
     if (saved) {
       // if the post is already saved, unsave it
-      axios
-        .delete(`http://localhost:8000/api/user/removeSavedPost/${post._id}`, {
-          headers: {
-            authorization: `${user}`,
-          },
-        })
-        .then((response) => {
-          alert("Post unsaved.");
+      const response = unsavePost(post._id,user)
+        response.then((data) => {
           setSaved(false);
         })
-        .catch((error) => {
-          console.log(error);
-          alert("Unable to unsave post. Please try again later.");
-        });
+
     } else {
       // if the post is not saved, save it
-      savePost(post._id, user)
-        .then((response) => {
+      const response = savePost(post._id, user)
+        response.then((data) => {
           setSaved(true);
         })
-        .catch((error) => {
-          console.log(error);
-          alert("Unable to save post. Please try again later.");
-        });
+
     }
     handleMenuClose();
   };

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+
+//Styles for the GUI
 const SidebarWrapper = styled.div`
   position: relative;
 `;
@@ -79,6 +81,7 @@ const SidebarLinkSpecial = styled(Link)`
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  ///toggles the sidebar
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -89,8 +92,6 @@ const Sidebar = () => {
         {isOpen ? "❮" : "❯"}
       </ToggleButton>
       <SidebarMenu isOpen={isOpen}>
-        <SidebarLinkSpecial to="/myPosts">★ Ingredient ★ of&nbsp;the Month</SidebarLinkSpecial>
-      
         <SidebarLink to="/">🏠 Home</SidebarLink>
         <SidebarLink to="/saved">💾 Saved&nbsp;Posts</SidebarLink>
         <SidebarLink to="/myPosts">✏️ My Posts</SidebarLink>

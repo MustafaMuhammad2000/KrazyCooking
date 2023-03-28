@@ -60,6 +60,9 @@ const getSavedPosts = async (req, res) => {
         .status(404)
         .json({ message: "Saved posts not found for user" });
     }
+    savedPosts.savedPosts.forEach(function (post) {
+      post.upvotes = post.upvotes.length;
+    });
     res.status(200).json({ savedPosts: savedPosts.savedPosts });
   } catch (error) {
     console.error(error);

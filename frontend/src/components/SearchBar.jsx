@@ -8,12 +8,13 @@ const SearchBar = () => {
     const [searchText, setSearchText] = useState('');
     const navigate = useNavigate();
 
+    //sends user to search route with search query
     const handleSubmit = (e) => {
         e.preventDefault();
         navigate('/search/' + searchText);
     }
 
-
+    //update search bar with user input
     const handleChange = (e) => {
         setSearchText(e.target.value);
     }

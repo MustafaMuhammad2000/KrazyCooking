@@ -49,8 +49,8 @@ function validateUpdatePass(req, res, next) {
 }
 
 const createPost = Joi.object({
-  title: Joi.string().min(3).max(100).required(),
-  body: Joi.string().min(5).max(1000).required(),
+  title: Joi.string().min(3).max(200).required(),
+  body: Joi.string().min(5).max(4000).required(),
   tags: Joi.array().items(Joi.string().max(20)).required(),
 });
 

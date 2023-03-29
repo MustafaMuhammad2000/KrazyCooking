@@ -35,11 +35,7 @@ const Review = ({ review, rating }) => {
         <Box>
           {/* displaying the author's profile picture, username, and date */}
           <CardHeader
-            avatar={
-              <Avatar>
-                <img src={review.author.profilePicture} height={30} />
-              </Avatar>
-            }
+            avatar={<Avatar alt="logo" src={review.author.profilePicture} />}
             title={review.author.username}
             subheader={moment(new Date(review.dateCreated)).fromNow()}
           ></CardHeader>
@@ -52,8 +48,9 @@ const Review = ({ review, rating }) => {
             {(review.author._id === id || admin) && (
               <Button
                 size="small"
-                onClick={() => {
-                  deleteReply(`review/${review._id}`, user);
+                onClick={async () => {
+                  await deleteReply(`review/${review._id}`, user);
+                  window.location.reload();
                 }}
               >
                 Delete

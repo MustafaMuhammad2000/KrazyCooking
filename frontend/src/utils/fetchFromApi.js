@@ -144,16 +144,22 @@ export const removeUpvote = async (postId, user) => {
 
 //deletes a reply from the database, requires auth token
 export const deleteReply = async (url, user) => {
-  axios
-    .delete(`${BASE_URL}/api/${url}`, {
-      headers: {
-        authorization: `${user}`,
-      },
-    })
-    .catch((error) => {
-      console.error(error);
-      if (error.response) window.alert(error.response.data.message);
-    });
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`${BASE_URL}/api/${url}`, {
+        headers: {
+          authorization: `${user}`,
+        },
+      })
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((error) => {
+        console.error(error);
+        if (error.response) window.alert(error.response.data.message);
+        reject(error);
+      });
+  });
 };
 
 //Function to post a recipe to endpoint, needs auth token and post id

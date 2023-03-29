@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Stack, Typography, IconButton, Box } from "@mui/material";
+import { Stack, Typography, IconButton, Box, Avatar } from "@mui/material";
 import { North, South, Person, AccessTime } from "@mui/icons-material";
 import moment from "moment";
 import CommentFeed from "./CommentFeed";
@@ -64,7 +64,12 @@ const PostBody = ({ post }) => {
             pr: 1,
           }}
         >
-          <img src={post.author.profilePicture} alt="logo" height={30} />
+          <Avatar
+            alt="logo"
+            src={post.author.profilePicture}
+            sx={{ marginLeft: -1 }} // add marginLeft: 0 to align with edge of Stack
+          />
+          {/* <img src={post.author.profilePicture} alt="logo" height={30} /> */}
           <Typography>
             <ErrorBoundary>{post.author.username}</ErrorBoundary>
           </Typography>

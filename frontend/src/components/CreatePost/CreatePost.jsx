@@ -97,16 +97,16 @@ const CreatePost = () => {
       return;
     }
 
-    if (title.length <= 3 || title.length >= 100) {
+    if (title.length <= 3 || title.length >= 200) {
       window.alert(
-        `your title was ${title.length} characters, it must be over 3 and less than 100 characters`
+        `your title was ${title.length} characters, it must be over 3 and less than 200 characters`
       );
       return;
     }
 
-    if (body.length <= 5 || body.length >= 1000) {
+    if (body.length <= 5 || body.length >= 2000) {
       window.alert(
-        `your idea was ${body.length} characters, it must be over 5 and less than 1000 characters`
+        `your idea was ${body.length} characters, it must be over 5 and less than 2000 characters`
       );
       return;
     }

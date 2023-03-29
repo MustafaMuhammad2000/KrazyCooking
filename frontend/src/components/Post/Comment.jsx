@@ -54,11 +54,7 @@ const Comment = ({ comment }) => {
         <Box>
           {/* Contains profile picture, time since recipe, and username */}
           <CardHeader
-            avatar={
-              <Avatar>
-                <img src={comment.author.profilePicture} height={30} />
-              </Avatar>
-            }
+            avatar={<Avatar alt="logo" src={comment.author.profilePicture} />}
             title={comment.author.username}
             subheader={moment(new Date(comment.dateCreated)).fromNow()}
           />
@@ -86,8 +82,8 @@ const Comment = ({ comment }) => {
             {(comment.author._id === id || admin) && (
               <Button
                 size="small"
-                onClick={() => {
-                  deleteReply(`recipe/${comment._id}`, user);
+                onClick={async () => {
+                  await deleteReply(`recipe/${comment._id}`, user);
                   //  refresh page
                   window.location.href = window.location.href;
                 }}

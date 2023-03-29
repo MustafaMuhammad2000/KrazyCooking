@@ -103,7 +103,11 @@ const Navbar = () => {
     navigate("/search/" + tag);
   };
 
-  
+  const random_hex_color_code = () => {
+    let n = (Math.random() * 0xfffff * 1000000).toString(16);
+    return "#" + n.slice(0, 6);
+  };
+
   //sends user to randompost route
   const handleRandomPress = () => {
     navigate("/randompost");
@@ -176,8 +180,8 @@ const Navbar = () => {
             borderRadius: 0,
             fontSize: 20,
             fontWeight: "bold",
-            color: "#6b6c7f",
-            background: "linear-gradient(17deg, #FFF01F 0%, #F8C8DC 100%)",
+            color: "#fff",
+            background: `linear-gradient(17deg, ${random_hex_color_code()} 0%, ${random_hex_color_code()} 100%)`,
           }}
         />
 
